@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "native-base": "^2.3.6",
+    "prop-types": "^15.6.0",
     "react": "16.2.0",
     "react-native": "0.52.0",
     "react-native-linear-gradient": "^2.4.0",
