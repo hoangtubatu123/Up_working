@@ -13,7 +13,7 @@ import RegisterContainer from '../Modules/loginAndRegister/RegisterContainer'
 //
 //  MAIN SCREEN
 import HomeContainer from '../Modules/News/HomeContainer';
-
+import InfoUpContainer from '../Modules/infoUp/InfoUpContainer';
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
@@ -47,7 +47,7 @@ export const Start = StackNavigator(
     {
         // Login: {screen: LoginContainer},
         // RegisterContainer: {screen: RegisterContainer,},
-           Home : {screen:HomeContainer,}
+           Home : {screen:InfoUpContainer,}
         // EmailIdentityContainer: {screen: EmailIdentityContainer,},
         // ResetPasswordContainer: {screen: ResetPasswordContainer,},
         // CodeIdentityContainer: {screen: CodeIdentityContainer,},

@@ -8,54 +8,27 @@ import * as size from '../../Styles/size';
 import * as color from '../../Styles/color';
 import Icon from '../../Commons/Icon';
 
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-
-class HomeContainer extends Component {
-    constructor() {
+class InfoUpContainer extends Component {
+    constructor(){
         super();
         this.state = {
-            tab: 0,
-            isLoading: false,
-            feature: {
-                "url": "https://images.unsplash.com/photo-1505906960586-b2f5793971ad?auto=format&fit=crop&w=707&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                "title": "THIS IS SAMPLE TEXT",
-                "description": "Sample description goes here",
-                "created_at": "24h ago"
-            },
-
+            isLoading : false
         }
     }
-
-    componentWillMount() {
+    componentWillMount(){
         this.isLoading();
     }
+    isLoading(){
+        setTimeout(() => this.setState({isLoading : true}), 1000);
 
-
-    isLoading() {
-        this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 1000);
     }
-
-    // ViewDashboard() {
-    //     this.isLoading();
-    //     this.setState({tab: 0});
-    // }
-    //
-    // ViewBlog() {
-    //     this.isLoading();
-    //     this.setState({tab: 1})
-    // }
-    //
-    // ViewCard() {
-    //     this.isLoading();
-    //     this.setState({tab: 2})
-    // }
-
-    ShowTab() {
+    showInfo(){
         const {news, general} = this.props;
         const {isLoading} = this.state;
         return (
+            <View>
             <Content
                 showsVerticalScrollIndicator={false}
             >
@@ -100,9 +73,24 @@ class HomeContainer extends Component {
                         </View>
                 }
             </Content>
+                <View style={general.wrapperBuyNowButton}>
+                    <TouchableOpacity
+                        style={general.buttonBuyNowFullSize}
+                        onPress={() => {
+
+                        }}
+                    >
+                        <Text style={[general.paddingRight, general.textBigLight]}>Đặt mua
+                            ngay</Text>
+                        <Icon name="feat|arrow-right"
+                              size={size.iconBig}
+                              color={color.navTitle}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
         );
     }
-
     render() {
         const {navigate} = this.props.navigation;
         const {general, colors} = this.props;
@@ -119,22 +107,18 @@ class HomeContainer extends Component {
                             <HamburgerButton navigate={navigate}/>
                         </Right>
                     </View>
-
                     <View style={general.wrapperFullWidth}>
-                        {this.ShowTab()}
+                        {this.showInfo()}
                     </View>
                 </LinearGradient>
             </Container>
-        );
-    }
+        )}
 }
-
-function mapStateToProps(state) {
+function mapStateToProps(state){
     return {
         general: state.theme.general,
         colors: state.theme.colors,
-        news: state.home.news,
+        news : state.home.news,
     }
 }
-
-export default connect(mapStateToProps)(HomeContainer);
+export default connect(mapStateToProps)(InfoUpContainer);

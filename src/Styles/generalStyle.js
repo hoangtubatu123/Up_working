@@ -19,6 +19,19 @@ export const style = {
         flex: 1,
         backgroundColor: color.none,
     },
+    iconInNews : {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        height: 50,
+        width: 50,
+        borderRadius: 30,
+        backgroundColor: '#35f46f',
+        bottom: -10,
+        right : 50
+    },
+
     wrapperHeader: {
         height: 100,
         paddingTop: Platform.OS === 'ios' ? 20 : 0,
@@ -335,6 +348,24 @@ export const style = {
         marginLeft: -20,
         marginRight: -20,
     },
+    wrapperBuyNowButton: {
+        width: wid,
+        height: 50,
+        position: 'absolute',
+        bottom: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.none,
+    },
+    buttonBuyNowFullSize: {
+        borderRadius: 50,
+        width: size.wid * 0.9,
+        padding: 8,
+        backgroundColor: '#10ef4f',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
     wrapperRevenueLine: {
         padding: 10,
         alignItems: 'center',
@@ -373,6 +404,14 @@ export const style = {
         width: wid / 3,
         borderRadius: 15,
         backgroundColor: color.loadingImage
+    },
+    textBigLight: {
+        paddingBottom: 0,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 13,
+        fontWeight: Platform.OS === 'ios' ? '600' : 'normal',
+        color: color.navTitle,
+
     },
     imageSquareSmall: {
         height: (wid - 60) / 3,
