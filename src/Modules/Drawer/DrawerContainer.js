@@ -3,8 +3,6 @@ import {Platform, StatusBar, Switch, Text, TouchableOpacity, View} from 'react-n
 import {Container, Content} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import * as size from '../../styles/size';
-import * as changeThemeAction from '../home/changeThemeAction';
-import * as homeAction from '../home/homeAction';
 import {connect} from 'react-redux';
 import Icon from '../../commons/Icon';
 import {bindActionCreators} from 'redux';
