@@ -119,7 +119,8 @@ class HomeContainer extends Component {
                                                         <Text style={general.textNoteCard}>{item.created_at}</Text>
                                                     </View>
                                                 </TouchableOpacity>
-                                            )}
+                                            )
+                                        }
 
                                     </Content>
                                     <Text style={[general.textIstActive, general.marginTopBottom, general.paddingLR]}>

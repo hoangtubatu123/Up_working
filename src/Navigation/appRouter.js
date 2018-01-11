@@ -2,6 +2,7 @@ import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import * as size from '../Styles/size';
 import HomeContainer from '../Modules/News/HomeContainer';
 import ReservationContainer from '../Modules/Reservation/ReservationContainer';
+import HistoryContainer from '../Modules/History/HistoryContainer';
 import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
 
 const StackNavigatorStyle = {
@@ -35,6 +36,6 @@ const Drawer = DrawerNavigator(
 
 export const Start = StackNavigator(
     {
-           Home : {screen:UpRoomInformation,}
+           Home : {screen:HistoryContainer,}
     }, StackNavigatorStyle
 );

@@ -191,6 +191,11 @@ export const style = {
         fontFamily: 'Montserrat-Medium',
         fontSize: size.titleGiant,
     },
+    textTitleGiantThin: {
+        color: '#FFFFFF',
+        fontFamily: 'Montserrat-Light',
+        fontSize: 35,
+    },
     textDescriptionCard: {
         color: color.textColor,
         fontFamily: 'Montserrat-Light',
@@ -278,6 +283,22 @@ export const style = {
         height: hei / 3,
         borderRadius: 15,
         backgroundColor: color.loadingImage
+    },
+    imageFeatureInCol: {
+        height: hei / 5,
+        borderRadius: 15,
+        backgroundColor: color.loadingImage
+    },
+    imageFeatureHeightLow: {
+        height: hei / 5,
+        borderRadius: 10,
+        backgroundColor: color.loadingImage
+    },
+
+    wrapperFeatureHeightLow: {
+        height: hei / 6,
+        borderRadius: 10,
+        backgroundColor: color.mainColor
     },
     imageFullWidth: {
         flex: 1,
@@ -477,8 +498,8 @@ export const style = {
         marginLeft: 20
     },
     marginLR: {
-        marginLeft: 5,
-        marginRight: 5
+        marginLeft: 20,
+        marginRight: 20,
     },
     marginRight: {
         marginRight: 10
@@ -625,6 +646,11 @@ export const style = {
     buttonUser:{
         padding: 3,
         borderRadius: 5,
+    },
+    buttonOrder:{
+        backgroundColor:color.mainColor,
+        height: 30,
+        borderRadius: 20,
     }
 
 };

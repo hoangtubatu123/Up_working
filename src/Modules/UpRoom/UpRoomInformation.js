@@ -3,11 +3,9 @@ import {Image, Text, TouchableOpacity, View,} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
-import IconLight from '../../Commons/IconLight';
-import IconDark from '../../Commons/IconDark';
 import general from '../../Styles/generalStyle';
 import {connect} from 'react-redux'
-import { Col, Row, Grid } from "react-native-easy-grid";
+import {Col, Grid} from "react-native-easy-grid";
 
 class UpRoomInformation extends Component {
     constructor() {
@@ -84,8 +82,67 @@ class UpRoomInformation extends Component {
                             <Loading/>
                             :
                             <Grid>
-                                <Col></Col>
-                                <Col></Col>
+                                <Col>
+                                    {
+                                        this.state.data.map((item, i) =>
+                                            <TouchableOpacity
+                                                key={i}
+                                                activeOpacity={0.8}
+                                                style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
+                                                <View style={[general.paddingLR, {paddingRight: 10}]}>
+                                                    <Image
+                                                        resizeMode={'cover'}
+                                                        source={{uri: item.url}}
+                                                        style={general.imageFeatureInCol}
+                                                    />
+                                                </View>
+
+                                                <View
+                                                    style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR]}>
+                                                    <Text
+                                                        style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
+                                                    <Text/>
+                                                    <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                                </View>
+                                                <Text/>
+                                                <TouchableOpacity style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginRight: 10}]}>
+                                                    <Text style={general.textTitleCardLight}>Đặt chỗ ngay</Text>
+                                                </TouchableOpacity>
+                                            </TouchableOpacity>
+                                        )
+                                    }
+                                </Col>
+                                <Col>
+                                    {
+                                        this.state.data.map((item, i) =>
+                                            <TouchableOpacity
+                                                key={i}
+                                                activeOpacity={0.8}
+                                                style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
+                                                <View style={[general.paddingLR, {paddingLeft: 10}]}>
+                                                    <Image
+                                                        resizeMode={'cover'}
+                                                        source={{uri: item.url}}
+                                                        style={[general.imageFeatureInCol]}
+                                                    />
+                                                </View>
+
+                                                <View
+                                                    style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR]}>
+                                                    <Text
+                                                        style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
+                                                    <Text/>
+                                                    <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                                </View>
+                                                <Text/>
+                                                <TouchableOpacity style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginLeft: 10}]}>
+                                                    <Text style={general.textTitleCardLight}>Đặt chỗ ngay</Text>
+                                                </TouchableOpacity>
+
+                                            </TouchableOpacity>
+                                        )
+                                    }
+                                </Col>
                             </Grid>
                     }
                 </Content>
