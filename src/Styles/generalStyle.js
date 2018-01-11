@@ -135,7 +135,7 @@ export const style = {
         fontSize: size.titleHeader,
         color: color.textColor,
     },
-    textTitleChart: {
+    textTitleBoldNormal: {
         backgroundColor: color.none,
         fontFamily: 'Montserrat-Bold',
         fontSize: 12,
@@ -325,6 +325,15 @@ export const style = {
         marginLeft: -20,
         marginRight: -20,
     },
+    wrapperTabInImage:{
+        position: 'absolute',
+        width: 200,
+        height: 30,
+        backgroundColor: color.mainColor,
+        borderRadius: 50,
+        bottom: 10,
+        right: 5,
+    },
     wrapperRevenueLine: {
         padding: 10,
         alignItems: 'center',
@@ -388,11 +397,9 @@ export const style = {
     },
 
     linearGradient: {
-        padding: 20,
         paddingBottom: 0,
         paddingTop: 0,
-        height: hei,
-        width: wid,
+        flex: 1
     },
     contentModal: {
         flex: 1,
@@ -414,6 +421,9 @@ export const style = {
         paddingTop: 0,
         height: hei / 3,
         width: wid,
+    },
+    paddingBorder:{
+        padding: 20,
     },
     padding: {
         padding: 10
