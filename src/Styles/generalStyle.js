@@ -12,6 +12,18 @@ export const style = {
     wrapperBackButton: {
         width: 50,
     },
+    iconInfoUp:{
+        flex: 1,
+        flexDirection : 'row',
+        justifyContent:'center', alignItems:'center',
+        position: 'absolute',
+        height: 30,
+        width: wid/2,
+        borderRadius: 30,
+        backgroundColor: color.mainColor,
+        bottom:-wid/10,
+        right: -5
+    },
     iconInNews: {
         flex: 1,
         justifyContent: 'center',
@@ -25,6 +37,37 @@ export const style = {
         right: 50
     },
 
+    wrapperLogin : {
+        width:wid,
+        flex:7/8,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    itemInput: {
+        width: size.wid * 0.8,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textTitleInput: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Light',
+        fontSize: 12,
+        backgroundColor: color.none,
+        paddingLeft: 25,
+        marginTop: (Platform.OS === 'ios') ? 25 : 20,
+        color: color.darkGray,
+        fontWeight: '600',
+    },
+    inputTheme02: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        height: 30,
+        padding: 0,
+        margin: 0,
+        fontSize: 13,
+        lineHeight: 10,
+        color: color.darkGray,
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
     wrapperHeader: {
         height: 100,
         paddingTop: Platform.OS === 'ios' ? 20 : 0,
@@ -293,6 +336,10 @@ export const style = {
         height: hei / 3,
         backgroundColor: color.loadingImage
     },
+    imageLogin:{
+        width: 3*wid/4,
+        height: hei/3,
+    },
     imageFullWidth: {
         flex: 1,
         backgroundColor: color.loadingImage
@@ -348,9 +395,17 @@ export const style = {
         alignItems: 'center',
         backgroundColor: color.none,
     },
+    wrapperLoginButton:{
+        marginTop:50,
+        width: wid*0.9,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.none,
+    },
     buttonBuyNowFullSize: {
         borderRadius: 50,
-        width: size.wid * 0.9,
+        width: size.wid * 0.8,
         padding: 8,
         backgroundColor: color.mainColor,
         alignItems: 'center',
@@ -411,7 +466,13 @@ export const style = {
         fontSize: 13,
         fontWeight: Platform.OS === 'ios' ? '600' : 'normal',
         color: color.navTitle,
-
+    },
+    textLogin:{
+            paddingBottom: 0,
+            fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+            fontSize: 13,
+            fontWeight: Platform.OS === 'ios' ? '400' : 'normal',
+            color: color.darkGray,
     },
     imageSquareSmall: {
         height: (wid - 60) / 3,

@@ -2,6 +2,7 @@ import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import * as size from '../Styles/size';
 import HomeContainer from '../Modules/News/HomeContainer';
 import InfoUpContainer from '../Modules/infoUp/InfoUpContainer';
+import LoginContainer from '../Modules/loginAndRegister/LoginContainer';
 import ReservationContainer from '../Modules/Reservation/ReservationContainer';
 import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
 
@@ -37,8 +38,8 @@ const Drawer = DrawerNavigator(
 export const Start = StackNavigator(
     {
 
-        // Login: {screen: LoginContainer},
-        // RegisterContainer: {screen: RegisterContainer,},
+        Login: {screen: LoginContainer},
+        // RegisterContainer: {screen: RegisterContainer,},Login: {screen: LoginContainer},
            Home : {screen:InfoUpContainer,}
         // EmailIdentityContainer: {screen: EmailIdentityContainer,},
         // ResetPasswordContainer: {screen: ResetPasswordContainer,},
