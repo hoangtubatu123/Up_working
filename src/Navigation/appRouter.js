@@ -1,17 +1,10 @@
-// import React, {Component} from 'react';
-// import {
-//     DrawerItems, TouchableOpacity, StatusBar, View
-// } from 'react-native';
 import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
-// import Icon from '../commons/Icon';
-// import * as color from '../styles/color';
 import * as size from '../Styles/size';
-// LOGIN
-
-//
-//  MAIN SCREEN
 import HomeContainer from '../Modules/News/HomeContainer';
 import InfoUpContainer from '../Modules/infoUp/InfoUpContainer';
+import ReservationContainer from '../Modules/Reservation/ReservationContainer';
+import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
+
 const StackNavigatorStyle = {
     navigationOptions: {
         header: null,
