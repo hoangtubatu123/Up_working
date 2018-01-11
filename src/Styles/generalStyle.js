@@ -1,23 +1,17 @@
 import {Platform, StyleSheet} from 'react-native';
-import * as colorLight from './colorLight';
+import * as colorLight from './color';
 import * as size from './size';
 import {hei, wid} from './size';
+import {mainColor} from "./color";
 
 let color = colorLight;
-export const colors = [color.colorGradient0, color.colorGradient1, color.colorGradient2];
-export const themeCalendar = {
-    textDayFontFamily: 'Montserrat-Regular',
-    textMonthFontFamily: 'Montserrat-Regular',
-    textDayHeaderFontFamily: 'Montserrat-Regular',
-    textDayFontSize: 14,
-    textMonthFontSize: 16,
-    textDayHeaderFontSize: 14
-};
-
 export const style = {
     wrapperContainer: {
         flex: 1,
-        backgroundColor: color.none,
+        backgroundColor: color.background,
+    },
+    wrapperBackButton:{
+        width: 50,
     },
     iconInNews : {
         flex: 1,
@@ -27,7 +21,7 @@ export const style = {
         height: 50,
         width: 50,
         borderRadius: 30,
-        backgroundColor: '#35f46f',
+        backgroundColor: color.mainColor,
         bottom: -10,
         right : 50
     },
@@ -252,9 +246,6 @@ export const style = {
         fontFamily: 'Montserrat-Regular',
         fontSize: 12,
     },
-    iconStyle: {
-        color: color.textColor,
-    },
     iconGray: {
         color: '#a5a5a5',
     },
@@ -266,14 +257,15 @@ export const style = {
         paddingLeft: 3
     },
     wrapperImageFeature: {
+        width:wid,
         height: hei / 3,
     },
     wrapperImageSquareBig: {
         height: wid - 40,
     },
     wrapperImageSquare: {
-        height: wid / 3,
-        width: wid / 3,
+        height: wid / 2,
+        width: wid / 2,
     },
     wrapperTextInImage: {
         padding: 10,
@@ -298,8 +290,8 @@ export const style = {
         width: wid / 3,
     },
     imageFeature: {
+        width : wid,
         height: hei / 3,
-        borderRadius: 15,
         backgroundColor: color.loadingImage
     },
     imageFullWidth: {
@@ -352,7 +344,7 @@ export const style = {
         width: wid,
         height: 50,
         position: 'absolute',
-        bottom: 0,
+        bottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: color.none,
@@ -361,7 +353,7 @@ export const style = {
         borderRadius: 50,
         width: size.wid * 0.9,
         padding: 8,
-        backgroundColor: '#10ef4f',
+        backgroundColor: color.mainColor,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
@@ -400,8 +392,8 @@ export const style = {
         backgroundColor: color.loadingImage
     },
     imageSquare: {
-        height: wid / 3,
-        width: wid / 3,
+        height: wid / 2,
+        width: wid / 2,
         borderRadius: 15,
         backgroundColor: color.loadingImage
     },
@@ -475,7 +467,7 @@ export const style = {
         paddingLeft: 10
     },
     paddingLR: {
-        paddingLeft: 20,
+        paddingLeft: 15,
         paddingRight: 20,
     },
     paddingLine: {

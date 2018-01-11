@@ -7,8 +7,6 @@ import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 // import * as color from '../styles/color';
 import * as size from '../Styles/size';
 // LOGIN
-import LoginContainer from '../Modules/loginAndRegister/LoginContainer';
-import RegisterContainer from '../Modules/loginAndRegister/RegisterContainer'
 
 //
 //  MAIN SCREEN
@@ -45,6 +43,7 @@ const Drawer = DrawerNavigator(
 
 export const Start = StackNavigator(
     {
+
         // Login: {screen: LoginContainer},
         // RegisterContainer: {screen: RegisterContainer,},
            Home : {screen:InfoUpContainer,}

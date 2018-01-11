@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Platform, StatusBar, Switch, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content} from 'native-base';
-import LinearGradient from 'react-native-linear-gradient';
 import * as size from '../../styles/size';
-import * as changeThemeAction from '../home/changeThemeAction';
-import * as homeAction from '../home/homeAction';
+import general from '../../styles/generalStyle';
 import {connect} from 'react-redux';
 import Icon from '../../commons/Icon';
 import {bindActionCreators} from 'redux';
@@ -23,22 +21,12 @@ class DrawerContainer extends Component {
     }
     render() {
         const {navigate} = this.props.navigation;
-        const {general, colors, colorsDrawer} = this.props;
         return (
             <Container style={general.wrapperContainer}>
                 <StatusBar
-                    barStyle={this.props.theme ? "dark-content" : "light-content"}
-                    backgroundColor={this.props.theme ? "#FFFFFF" : "#7D9CEF"}
+                    barStyle={"dark-content"}
+                    backgroundColor={"#FFFFFF"}
                 />
-                <LinearGradient
-                    colors={colorsDrawer}
-                    style={general.linearGradientInDrawer}>
-                    <View style={[general.wrapperLogoInDrawer]}>
-                        <Text style={[general.textTitleHeader]}>
-                            TIN MỚI
-                        </Text>
-                    </View>
-                </LinearGradient>
                 <Content style={general.padding}>
 
                     <TouchableOpacity
@@ -348,21 +336,14 @@ class DrawerContainer extends Component {
         );
     }
 }
-
 function mapStateToProps(state) {
     return {
-        theme: state.theme.theme,
-        general: state.theme.general,
         colors: state.theme.colors,
         colorsDrawer: state.theme.colorsDrawer
     }
 }
-
 function mapDispatchToProps(dispatch) {
     return {
-        changeThemeAction: bindActionCreators(changeThemeAction, dispatch),
-        homeAction: bindActionCreators(homeAction, dispatch)
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContainer)

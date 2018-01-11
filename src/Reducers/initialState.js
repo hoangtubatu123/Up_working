@@ -1,6 +1,6 @@
 
 import {StyleSheet} from 'react-native';
-import * as colorLight from '../Styles/colorLight';
+import * as colorLight from '../Styles/color';
 import * as style from '../Styles/generalStyle';
 
 let color = colorLight;

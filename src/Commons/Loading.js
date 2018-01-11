@@ -3,13 +3,13 @@ import {
     View
 } from 'react-native';
 import {Spinner} from 'native-base';
-import {connect} from 'react-redux'
+import general from '../Styles/generalStyle';
 
 class Loading extends Component{
     render(){
         return(
             <View
-                style={this.props.general.wrapperCenter}
+                style={general.wrapperCenter}
                 onPress={() => this.props.goBack(null)}
             >
                 <Spinner color={this.props.colorText}/>
@@ -17,11 +17,5 @@ class Loading extends Component{
         );
     }
 }
-function mapStateToProps(state) {
-    return {
-        general: state.theme.general,
-        colorText: state.theme.colorText
-    }
-}
 
-export default connect(mapStateToProps)(Loading);
+export default Loading;
