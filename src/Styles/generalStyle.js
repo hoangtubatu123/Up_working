@@ -2,7 +2,6 @@ import {Platform, StyleSheet} from 'react-native';
 import * as colorLight from './color';
 import * as size from './size';
 import {hei, wid} from './size';
-import {mainColor} from "./color";
 
 let color = colorLight;
 export const style = {
@@ -10,10 +9,10 @@ export const style = {
         flex: 1,
         backgroundColor: color.background,
     },
-    wrapperBackButton:{
+    wrapperBackButton: {
         width: 50,
     },
-    iconInNews : {
+    iconInNews: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
@@ -23,7 +22,7 @@ export const style = {
         borderRadius: 30,
         backgroundColor: color.mainColor,
         bottom: -10,
-        right : 50
+        right: 50
     },
 
     wrapperHeader: {
@@ -129,16 +128,16 @@ export const style = {
         alignItems: 'center',
         flexDirection: 'row',
     },
-    wrapperPeople:{
+    wrapperPeople: {
         height: 70,
     },
-    wrapperModalStaff:{
+    wrapperModalStaff: {
         width: wid * 0.8,
         height: hei * 0.4,
         borderRadius: 10,
         backgroundColor: 'rgba(47, 24, 71, 0.8)'
     },
-    wrapperModalClass:{
+    wrapperModalClass: {
         width: wid * 0.9,
         height: hei * 0.8,
         borderRadius: 10,
@@ -149,7 +148,7 @@ export const style = {
         fontSize: size.titleHeader,
         color: color.textColor,
     },
-    textTitleChart: {
+    textTitleBoldNormal: {
         backgroundColor: color.none,
         fontFamily: 'Montserrat-Bold',
         fontSize: 12,
@@ -257,7 +256,7 @@ export const style = {
         paddingLeft: 3
     },
     wrapperImageFeature: {
-        width:wid,
+        width: wid,
         height: hei / 3,
     },
     wrapperImageSquareBig: {
@@ -290,7 +289,7 @@ export const style = {
         width: wid / 3,
     },
     imageFeature: {
-        width : wid,
+        width: wid,
         height: hei / 3,
         backgroundColor: color.loadingImage
     },
@@ -305,7 +304,7 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBadge:{
+    wrapperBadge: {
         height: 15,
         width: 15,
         borderRadius: 7.5,
@@ -357,6 +356,15 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
+    },
+    wrapperTabInImage: {
+        position: 'absolute',
+        width: 200,
+        height: 30,
+        backgroundColor: color.mainColor,
+        borderRadius: 50,
+        bottom: 10,
+        right: 5,
     },
     wrapperRevenueLine: {
         padding: 10,
@@ -429,11 +437,9 @@ export const style = {
     },
 
     linearGradient: {
-        padding: 20,
         paddingBottom: 0,
         paddingTop: 0,
-        height: hei,
-        width: wid,
+        flex: 1
     },
     contentModal: {
         flex: 1,
@@ -455,6 +461,9 @@ export const style = {
         paddingTop: 0,
         height: hei / 3,
         width: wid,
+    },
+    paddingBorder: {
+        padding: 20,
     },
     padding: {
         padding: 10
@@ -573,11 +582,11 @@ export const style = {
     deadlineProgressJobAssignment: {
         width: 80,
         height: 3,
-        backgroundColor: '#c50000' ,
+        backgroundColor: '#c50000',
     },
     progress: {
         height: 3,
-        backgroundColor: '#c50000' ,
+        backgroundColor: '#c50000',
     },
     wrapperProgressDark: {
         height: 3,
@@ -598,9 +607,9 @@ export const style = {
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor : '#ffffff',
-        borderTopLeftRadius : 10,
-        borderTopRightRadius : 10,
+        backgroundColor: '#ffffff',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
     },
     bottomModal: {
         width: wid * 0.8,
@@ -622,7 +631,7 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBottomModule:{
+    wrapperBottomModule: {
         height: 50,
     },
     trelloCart: {
@@ -633,7 +642,7 @@ export const style = {
     },
     contentTrello: {
         flex: 1,
-        backgroundColor : 'rgb(192, 198, 209)'
+        backgroundColor: 'rgb(192, 198, 209)'
     },
     wrapperItem: {
         width: wid * 0.9 - 40,
@@ -646,14 +655,14 @@ export const style = {
         padding: 10,
         flex: 1
     },
-    inputTheme:{
+    inputTheme: {
         fontSize: size.titleNormal,
         width: wid * 0.7,
     },
-    colorDark:{
+    colorDark: {
         color: 'black'
     },
-    buttonUser:{
+    buttonUser: {
         padding: 3,
         borderRadius: 5,
     }
