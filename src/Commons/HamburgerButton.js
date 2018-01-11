@@ -3,27 +3,22 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Icon from './Icon';
-import {connect} from 'react-redux';
+import * as color from '../Styles/color';
 
 class HamburgerButton extends Component{
     render(){
-        const {general} = this.props;
         return(
             <TouchableOpacity
                 onPress={() => this.props.navigate('DrawerOpen')}>
                 <Icon
                     name="materialCommunity|menu"
                     size={35}
-                    style={[general.iconStyle, {marginRight: -3, padding: 5}]}
+                    style={{marginRight: -3, padding: 5}}
+                    color={color.mainColor}
                 />
             </TouchableOpacity>
         );
     }
 }
-function mapStateToProps(state) {
-    return {
-        general: state.theme.general,
-    }
-}
 
-export default connect(mapStateToProps)(HamburgerButton);
+export default HamburgerButton;

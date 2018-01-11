@@ -6,12 +6,9 @@ import {compose, applyMiddleware, createStore} from 'redux';
 import rootReducer from './Reducers/index';
 import {Start} from './Navigation/appRouter';
 
-
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
 
 class App extends React.Component {
-
-
     render() {
         return (
             <Provider store={store}>
@@ -19,7 +16,6 @@ class App extends React.Component {
             </Provider>
         );
     }
-
 }
 
 

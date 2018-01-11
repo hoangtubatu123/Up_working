@@ -1,23 +1,16 @@
 import {Platform, StyleSheet} from 'react-native';
-import * as colorLight from './colorLight';
+import * as colorLight from './color';
 import * as size from './size';
 import {hei, wid} from './size';
 
 let color = colorLight;
-export const colors = [color.colorGradient0, color.colorGradient1, color.colorGradient2];
-export const themeCalendar = {
-    textDayFontFamily: 'Montserrat-Regular',
-    textMonthFontFamily: 'Montserrat-Regular',
-    textDayHeaderFontFamily: 'Montserrat-Regular',
-    textDayFontSize: 14,
-    textMonthFontSize: 16,
-    textDayHeaderFontSize: 14
-};
-
 export const style = {
     wrapperContainer: {
         flex: 1,
-        backgroundColor: color.none,
+        backgroundColor: color.background,
+    },
+    wrapperBackButton:{
+        width: 50,
     },
     wrapperHeader: {
         height: 100,
@@ -238,9 +231,6 @@ export const style = {
         color: color.textColorReverse,
         fontFamily: 'Montserrat-Regular',
         fontSize: 12,
-    },
-    iconStyle: {
-        color: color.textColor,
     },
     iconGray: {
         color: '#a5a5a5',

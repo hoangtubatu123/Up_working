@@ -4,6 +4,7 @@ import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
+import general from '../../Styles/generalStyle';
 import * as size from '../../Styles/size';
 import {connect} from 'react-redux'
 
@@ -45,7 +46,7 @@ class HomeContainer extends Component {
     // }
 
     ShowTab() {
-        const {news, general} = this.props;
+        const {news} = this.props;
         const {isLoading} = this.state;
                 return (
                     <Content
@@ -152,11 +153,10 @@ class HomeContainer extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
-        const {general, colors} = this.props;
+        const {colors} = this.props;
         return (
             <Container style={general.wrapperContainer}>
-                <LinearGradient
-                    colors={colors}
+                <View
                     style={general.linearGradient}>
                     <View style={general.wrapperHeader}>
                         <Text style={[general.textTitleHeader]}>
@@ -210,7 +210,7 @@ class HomeContainer extends Component {
                     <View style={general.wrapperFullWidth}>
                         {this.ShowTab()}
                     </View>
-                </LinearGradient>
+                </View>
             </Container>
         );
     }
@@ -218,8 +218,6 @@ class HomeContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        general: state.theme.general,
-        colors: state.theme.colors,
         news: state.home.news,
     }
 }
