@@ -9,9 +9,22 @@ export const style = {
         flex: 1,
         backgroundColor: color.background,
     },
-    wrapperBackButton:{
+    wrapperBackButton: {
         width: 50,
     },
+    iconInNews: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        height: 50,
+        width: 50,
+        borderRadius: 30,
+        backgroundColor: color.mainColor,
+        bottom: -10,
+        right: 50
+    },
+
     wrapperHeader: {
         height: 100,
         paddingTop: Platform.OS === 'ios' ? 20 : 0,
@@ -115,16 +128,16 @@ export const style = {
         alignItems: 'center',
         flexDirection: 'row',
     },
-    wrapperPeople:{
+    wrapperPeople: {
         height: 70,
     },
-    wrapperModalStaff:{
+    wrapperModalStaff: {
         width: wid * 0.8,
         height: hei * 0.4,
         borderRadius: 10,
         backgroundColor: 'rgba(47, 24, 71, 0.8)'
     },
-    wrapperModalClass:{
+    wrapperModalClass: {
         width: wid * 0.9,
         height: hei * 0.8,
         borderRadius: 10,
@@ -254,8 +267,8 @@ export const style = {
         height: wid - 40,
     },
     wrapperImageSquare: {
-        height: wid / 3,
-        width: wid / 3,
+        height: wid / 2,
+        width: wid / 2,
     },
     wrapperTextInImage: {
         padding: 10,
@@ -280,8 +293,8 @@ export const style = {
         width: wid / 3,
     },
     imageFeature: {
-        height: hei / 3,
         borderRadius: 15,
+        height: hei / 3,
         backgroundColor: color.loadingImage
     },
     imageFeatureInCol: {
@@ -311,7 +324,7 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBadge:{
+    wrapperBadge: {
         height: 15,
         width: 15,
         borderRadius: 7.5,
@@ -346,7 +359,25 @@ export const style = {
         marginLeft: -20,
         marginRight: -20,
     },
-    wrapperTabInImage:{
+    wrapperBuyNowButton: {
+        width: wid,
+        height: 50,
+        position: 'absolute',
+        bottom: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: color.none,
+    },
+    buttonBuyNowFullSize: {
+        borderRadius: 50,
+        width: size.wid * 0.9,
+        padding: 8,
+        backgroundColor: color.mainColor,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    wrapperTabInImage: {
         position: 'absolute',
         width: 200,
         height: 30,
@@ -389,10 +420,18 @@ export const style = {
         backgroundColor: color.loadingImage
     },
     imageSquare: {
-        height: wid / 3,
-        width: wid / 3,
+        height: wid / 2,
+        width: wid / 2,
         borderRadius: 15,
         backgroundColor: color.loadingImage
+    },
+    textBigLight: {
+        paddingBottom: 0,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 13,
+        fontWeight: Platform.OS === 'ios' ? '600' : 'normal',
+        color: color.navTitle,
+
     },
     imageSquareSmall: {
         height: (wid - 60) / 3,
@@ -443,7 +482,7 @@ export const style = {
         height: hei / 3,
         width: wid,
     },
-    paddingBorder:{
+    paddingBorder: {
         padding: 20,
     },
     padding: {
@@ -563,11 +602,11 @@ export const style = {
     deadlineProgressJobAssignment: {
         width: 80,
         height: 3,
-        backgroundColor: '#c50000' ,
+        backgroundColor: '#c50000',
     },
     progress: {
         height: 3,
-        backgroundColor: '#c50000' ,
+        backgroundColor: '#c50000',
     },
     wrapperProgressDark: {
         height: 3,
@@ -588,9 +627,9 @@ export const style = {
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor : '#ffffff',
-        borderTopLeftRadius : 10,
-        borderTopRightRadius : 10,
+        backgroundColor: '#ffffff',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
     },
     bottomModal: {
         width: wid * 0.8,
@@ -612,7 +651,7 @@ export const style = {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    wrapperBottomModule:{
+    wrapperBottomModule: {
         height: 50,
     },
     trelloCart: {
@@ -623,7 +662,7 @@ export const style = {
     },
     contentTrello: {
         flex: 1,
-        backgroundColor : 'rgb(192, 198, 209)'
+        backgroundColor: 'rgb(192, 198, 209)'
     },
     wrapperItem: {
         width: wid * 0.9 - 40,
@@ -636,14 +675,14 @@ export const style = {
         padding: 10,
         flex: 1
     },
-    inputTheme:{
+    inputTheme: {
         fontSize: size.titleNormal,
         width: wid * 0.7,
     },
-    colorDark:{
+    colorDark: {
         color: 'black'
     },
-    buttonUser:{
+    buttonUser: {
         padding: 3,
         borderRadius: 5,
     },

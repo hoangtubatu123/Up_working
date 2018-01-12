@@ -25,7 +25,6 @@ export default {
     home: {
         isLoading: false,
         news: [
-
             {
                 "url": "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=334&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
                 "title": "THIS IS SAMPLE TEXT",

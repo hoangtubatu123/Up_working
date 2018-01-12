@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View,} from 'react-native';
+import {Image, Text, TouchableOpacity, View,} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
 import general from '../../Styles/generalStyle';
 import * as size from '../../Styles/size';
+import * as color from '../../Styles/color';
+import Icon from '../../Commons/Icon';
+
 import {connect} from 'react-redux'
 
 
@@ -25,9 +28,14 @@ class HomeContainer extends Component {
         }
     }
 
+    componentWillMount() {
+        this.isLoading();
+    }
+
+
     isLoading() {
         this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 200);
+        setTimeout(() => this.setState({isLoading: false}), 1000);
     }
 
     // ViewDashboard() {
@@ -48,108 +56,53 @@ class HomeContainer extends Component {
     ShowTab() {
         const {news} = this.props;
         const {isLoading} = this.state;
-                return (
-                    <Content
-                        showsVerticalScrollIndicator={false}
-                        style={{flex: 1}}
-                    >
-                        {
-                            isLoading
-                                ?
-                                <Loading/>
-                                :
-                                <View>
-                                    <Content>
-                                        {
+        return (
+            <Content
+                showsVerticalScrollIndicator={false}
+            >
+                {
+                    isLoading
+                        ?
+                        <Loading/>
+                        :
+                        <View>
+                            <Content>
+                                {
+                                    news.map((item, i) =>
+                                        <View>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
-                                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, general.paddingLR, {marginTop: 20}]}>
-                                                <Image
-                                                    resizeMode={'cover'}
-                                                    source={{uri: this.state.feature.url}}
-                                                    style={general.imageFeature}
-                                                />
-                                            </TouchableOpacity>
-                                        }
-                                    </Content>
-                                    <Text style={[general.textIstActive, general.marginTopBottom, general.paddingLR]}>
-                                        Album
-                                    </Text>
-                                    <FlatList
-                                        horizontal={true}
-                                        showsHorizontalScrollIndicator={false}
-                                        news={news}
-                                        renderItem={({item}) =>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={item == news[0] ? [general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar] : [general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeft]}>
+                                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, general.paddingLR, {marginTop: 70}]}>
                                                 <Image
                                                     resizeMode={'cover'}
                                                     source={{uri: item.url}}
-                                                    style={[general.imageFeature]}
+                                                    style={general.imageFeature}
                                                 />
+                                                <View style={{marginTop: 20}}>
+                                                    <Text
+                                                        style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
+                                                    <Text
+                                                        style={general.textDescriptionCard}>{item.description}</Text>
+                                                </View>
+
                                             </TouchableOpacity>
-                                        }
-                                    />
-                                    <Text style={[general.textIstActive, general.marginTopBottom, general.paddingLR]}>
-                                        Update
-                                    </Text>
-                                    <Content style={[{height: size.wid * 3 / 5 + 60}, general.paddingLR]}>
-                                        {
-                                            news.map((item, i) =>
-                                                <TouchableOpacity
-                                                    key={i}
-                                                    activeOpacity={0.8}
-                                                    style={[general.marginTopBottom, general.wrapperCenterLeftToRightRow]}>
-                                                    <View
-                                                        style={[general.imageSquareAvatar, general.shadow]}
-                                                    >
-                                                        <Image
-                                                            resizeMode={'cover'}
-                                                            source={{uri: item.url}}
-                                                            style={general.imageSquareAvatar}
-                                                        />
-                                                    </View>
-                                                    <View
-                                                        style={[general.marginLeft, general.wrapperCenterLeftToRightColumn]}>
-                                                        <Text
-                                                            style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
-                                                        <Text
-                                                            style={general.textDescriptionCard}>{item.description}</Text>
-                                                        <Text style={general.textNoteCard}>{item.created_at}</Text>
-                                                    </View>
-                                                </TouchableOpacity>
-                                            )
-                                        }
+                                            <View style={general.iconInNews}>
+                                                <Icon
+                                                    name="materialCommunity|star"
+                                                    size={30}
+                                                    style={{color:'white'}}
+                                                />
 
-                                    </Content>
-                                    <Text style={[general.textIstActive, general.marginTopBottom, general.paddingLR]}>
-                                        Grid
-                                    </Text>
-                                    <View style={[{marginBottom: 20}, general.paddingLR]}>
-                                        <FlatList
-                                            showsVerticalScrollIndicator={false}
-                                            news={news}
-                                            numColumns={3}
-                                            renderItem={({item}) =>
-                                                <TouchableOpacity
-                                                    activeOpacity={0.8}
-                                                    style={[general.marginTopBottom, general.wrapperCenter, general.noMarginBottom, general.marginRight]}>
-                                                    <Image
-                                                        resizeMode={'cover'}
-                                                        source={{uri: item.url}}
-                                                        style={general.imageSquareSmall}
-                                                    />
-                                                </TouchableOpacity>
-                                            }
-                                        />
-                                    </View>
-                                    <View style={general.wrapperBottomModule}/>
-                                </View>
+                                            </View>
+                                        </View>
+                                    )}
+                            </Content>
 
-                        }
-                    </Content>
-                );
+                            <View style={general.wrapperBottomModule}/>
+                        </View>
+                }
+            </Content>
+        );
     }
 
     render() {
@@ -161,53 +114,13 @@ class HomeContainer extends Component {
                     style={general.linearGradient}>
                     <View style={general.wrapperHeader}>
                         <Text style={[general.textTitleHeader]}>
-                            KEETOOL
+                            TIN MỚI
                         </Text>
                         <Right>
                             <HamburgerButton navigate={navigate}/>
                         </Right>
                     </View>
-                    {/*<View style={general.wrapperMenuHome}>*/}
-                        {/*<TouchableOpacity onPress={() => this.ViewDashboard()}>*/}
-                            {/*<View style={*/}
-                                {/*this.state.tab === 0*/}
-                                    {/*?*/}
-                                    {/*general.wrapperMenuTextIsActive*/}
-                                    {/*:*/}
-                                    {/*general.wrapperMenuTextNotActive*/}
-                            {/*}>*/}
-                                {/*<Text style={this.state.tab === 0 ? general.textIstActive : general.textNotActive}>Dashboard</Text>*/}
-                            {/*</View>*/}
-                        {/*</TouchableOpacity>*/}
-                        {/*<TouchableOpacity onPress={() => this.ViewBlog()}>*/}
-                            {/*<View style={*/}
-                                {/*this.state.tab === 1*/}
-                                    {/*?*/}
-                                    {/*general.wrapperMenuTextIsActive*/}
-                                    {/*:*/}
-                                    {/*general.wrapperMenuTextNotActive*/}
-                            {/*}>*/}
 
-                                {/*<Text*/}
-                                    {/*style={this.state.tab === 1 ? general.textIstActive : general.textNotActive}>Blog</Text>*/}
-
-                            {/*</View>*/}
-                        {/*</TouchableOpacity>*/}
-                        {/*<TouchableOpacity onPress={() => this.ViewCard()}>*/}
-                            {/*<View style={*/}
-                                {/*this.state.tab === 2*/}
-                                    {/*?*/}
-                                    {/*general.wrapperMenuTextIsActive*/}
-                                    {/*:*/}
-                                    {/*general.wrapperMenuTextNotActive*/}
-                            {/*}>*/}
-
-                                {/*<Text*/}
-                                    {/*style={this.state.tab === 2 ? general.textIstActive : general.textNotActive}>Cards</Text>*/}
-
-                            {/*</View>*/}
-                        {/*</TouchableOpacity>*/}
-                    {/*</View>*/}
                     <View style={general.wrapperFullWidth}>
                         {this.ShowTab()}
                     </View>
