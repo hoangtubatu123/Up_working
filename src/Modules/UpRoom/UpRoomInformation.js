@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View,} from 'react-native';
+import {Image, Text, TouchableOpacity, View, Modal, PanResponder} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
@@ -11,6 +11,7 @@ class UpRoomInformation extends Component {
     constructor() {
         super();
         this.state = {
+            modal: false,
             tab: 0,
             isLoading: false,
             data:
@@ -54,6 +55,27 @@ class UpRoomInformation extends Component {
                     },
                 ]
         }
+    }
+
+    componentWillMount() {
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
+    }
+
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            this.setState({
+                modal: false,
+            });
+        }
+    }
+
+    setModal(visible, item) {
+        this.setState({
+            modal: visible,
+        });
     }
 
     isLoading() {
@@ -105,7 +127,9 @@ class UpRoomInformation extends Component {
                                                     <Text style={general.textDescriptionCard}>{item.description}</Text>
                                                 </View>
                                                 <Text/>
-                                                <TouchableOpacity style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginRight: 10}]}>
+                                                <TouchableOpacity
+                                                    onPress={() => this.setModal()}
+                                                    style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginRight: 10}]}>
                                                     <Text style={general.textTitleCardLight}>Đặt chỗ ngay</Text>
                                                 </TouchableOpacity>
                                             </TouchableOpacity>
@@ -135,7 +159,9 @@ class UpRoomInformation extends Component {
                                                     <Text style={general.textDescriptionCard}>{item.description}</Text>
                                                 </View>
                                                 <Text/>
-                                                <TouchableOpacity style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginLeft: 10}]}>
+                                                <TouchableOpacity
+                                                    onPress={() => this.setModal()}
+                                                    style={[general.buttonOrder, general.shadow ,general.marginLR, general.wrapperCenter, {marginLeft: 10}]}>
                                                     <Text style={general.textTitleCardLight}>Đặt chỗ ngay</Text>
                                                 </TouchableOpacity>
 
@@ -143,7 +169,32 @@ class UpRoomInformation extends Component {
                                         )
                                     }
                                 </Col>
+                                <Modal
+                                    presentationStyle="overFullScreen"
+                                    animationType="fade"
+                                    transparent={true}
+                                    visible={this.state.modal}
+                                >
+                                    <View
+                                        style={general.wrapperModal}
+                                        {...this.panResponder.panHandlers}
+                                    >
+                                        <View style={general.wrapperModalStaff}>
+                                            <View style={[general.wrapperRowCenter, general.padding]}>
+
+                                            </View>
+                                            <View style={[general.contentModal, general.wrapperCenter]}>
+                                            </View>
+                                            <View
+                                                style={[general.bottomModal, general.wrapperRowCenter]}
+                                            >
+
+                                            </View>
+                                        </View>
+                                    </View>
+                                </Modal>
                             </Grid>
+
                     }
                 </Content>
             </Container>

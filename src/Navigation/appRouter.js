@@ -40,7 +40,7 @@ export const Start = StackNavigator(
 
         // Login: {screen: LoginContainer},
         // RegisterContainer: {screen: RegisterContainer,},
-           Home : {screen:ReservationContainer,}
+           Home : {screen:UpRoomInformation,}
         // EmailIdentityContainer: {screen: EmailIdentityContainer,},
         // ResetPasswordContainer: {screen: ResetPasswordContainer,},
         // CodeIdentityContainer: {screen: CodeIdentityContainer,},
