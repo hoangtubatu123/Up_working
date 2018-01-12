@@ -8,6 +8,10 @@ export const UPDATE_DATA_LOGIN = 'UPDATE_DATA_LOGIN';
 export const GOT_DATA_LOGIN = 'GOT_DATA_LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN  = 'LOGIN';
+//Register
+export const BEGIN_REGISTER = "BEGIN_REGISTER";
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_ERROR = 'REGISTER_ERROR';
 // News
 export const GET_NEWS = 'GET_NEWS';
 

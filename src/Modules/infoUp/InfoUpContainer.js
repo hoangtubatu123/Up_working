@@ -49,13 +49,40 @@ class InfoUpContainer extends Component {
                             <View>
                             <TouchableOpacity
                                 activeOpacity={0.8}
-                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, {marginTop: 20}]}>
+                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, general.paddingBorder, {marginTop: 20}]}>
                                 <Image
                                     resizeMode={'cover'}
                                     source={{uri: this.state.feature.url}}
                                     style={general.imageFeature}
                                 />
-                                <View style={{marginTop: 20}}>
+                                <View style={[general.iconInfoUp]}>
+                                    <View style={{justifyContent:'center', alignItems:'center',
+                                        flex:1}}>
+                                    <Icon
+                                        name="materialCommunity|star"
+                                        size={15}
+                                        style={{color:'white'}}
+                                    />
+                                    </View>
+                                    <View style={{justifyContent:'center', alignItems:'center',
+                                        flex:1}}>
+                                        <Icon
+                                            name="materialCommunity|star"
+                                            size={15}
+                                            style={{color:'white'}}
+                                        />
+                                    </View>
+                                    <View style={{justifyContent:'center', alignItems:'center',
+                                        flex:1}}>
+                                        <Icon
+                                            name="fontawesome|home"
+                                            size={15}
+                                            style={{color:'white'}}
+                                        />
+                                    </View>
+
+                                </View>
+                                <View style={{marginTop: 50}}>
                                     <Text
                                         style={[general.textTitleCard, general.paddingLR,{padding: 5, fontFamily: 'Montserrat-SemiBold'}]}>{this.state.feature.title.toUpperCase()}</Text>
                                     <Text
@@ -63,11 +90,12 @@ class InfoUpContainer extends Component {
                                 </View>
                             </TouchableOpacity>
                             </View>
-                            <View style={{marginTop: 100}}>
+                            <View style={[{marginTop: 120}, general.paddingBorder]}>
                                 <Text
-                                    style={[general.textIstActive, general.marginTopBottom, general.paddingLR, {fontFamily: 'Montserrat-SemiBold'}]}>
+                                    style={[general.textIstActive, general.marginTopBottom,general.paddingLR, {fontFamily: 'Montserrat-SemiBold'}]}>
                                     Album Ảnh
                                 </Text>
+                            </View>
                                 <FlatList
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
@@ -85,7 +113,7 @@ class InfoUpContainer extends Component {
                                     }
                                 />
                             </View>
-                        </View>
+
 
 
                 }
@@ -99,16 +127,14 @@ class InfoUpContainer extends Component {
         const {colors} = this.props;
         return (
             <Container style={general.wrapperContainer}>
-                <View
-                    style={general.linearGradient}>
-                    <View style={general.wrapperHeader}>
-                        <Text style={[general.textTitleHeader]}>
-                            UP LƯƠNG YÊN
-                        </Text>
-                        <Right>
-                            <HamburgerButton navigate={navigate}/>
-                        </Right>
-                    </View>
+                <View style={[general.wrapperHeader, general.paddingBorder]}>
+                    <Text style={[general.textTitleHeader]}>
+                        UP LƯƠNG YÊN
+                    </Text>
+                    <Right>
+                        <HamburgerButton navigate={navigate}/>
+                    </Right>
+                </View>
 
                     <View style={general.wrapperFullWidth}>
                         {this.showInfo()}
@@ -128,7 +154,6 @@ class InfoUpContainer extends Component {
                             />
                         </TouchableOpacity>
                     </View>
-                </View>
             </Container>
         )
     }
