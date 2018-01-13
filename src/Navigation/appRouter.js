@@ -3,6 +3,7 @@ import * as size from '../Styles/size';
 import HomeContainer from '../Modules/News/HomeContainer';
 import InfoUpContainer from '../Modules/infoUp/InfoUpContainer';
 import LoginContainer from '../Modules/loginAndRegister/LoginContainer';
+import RegisterContainer from '../Modules/loginAndRegister/RegisterContainer';
 import ReservationContainer from '../Modules/Reservation/ReservationContainer';
 import HistoryContainer from '../Modules/History/HistoryContainer';
 import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
@@ -40,7 +41,7 @@ export const Start = StackNavigator(
     {
 
         // Login: {screen: LoginContainer},
-        // RegisterContainer: {screen: RegisterContainer,},
+        RegisterContainer: {screen: RegisterContainer,},
         Login: {screen: LoginContainer},
         // RegisterContainer: {screen: RegisterContainer,},Login: {screen: LoginContainer},
            Home : {screen:InfoUpContainer,}

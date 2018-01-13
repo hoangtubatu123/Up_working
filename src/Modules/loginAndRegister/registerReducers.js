@@ -1,5 +1,5 @@
 import * as registerTypes from '../../Constants/actionTypes';
-import initialState from '../../Constants/initialState';
+import initialState from '../../Reducers/initialState';
 
 export default function registerReducer (state = initialState.register, action) {
     switch (action.type) {

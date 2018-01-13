@@ -357,7 +357,7 @@ export const style = {
     },
     imageLogin:{
         width: 3*wid/4,
-        height: hei/3,
+        height: hei/4,
     },
     imageFullWidth: {
         flex: 1,
