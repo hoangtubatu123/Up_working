@@ -114,8 +114,7 @@ class HomeContainer extends Component {
                                                 </View>
                                             </View>
 
-                                            <View
-                                                style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR]}>
+                                            <View style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
                                                 <Text style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
                                                 <Text/>
                                                 <Text style={general.textDescriptionCard}>{item.description}</Text>

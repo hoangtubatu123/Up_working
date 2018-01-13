@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, StatusBar, Switch, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content} from 'native-base';
-import * as size from '../../styles/size';
-import general from '../../styles/generalStyle';
+import * as size from '../../Styles/size';
+import general from '../../Styles/generalStyle';
 import {connect} from 'react-redux';
-import Icon from '../../commons/Icon';
-import {bindActionCreators} from 'redux';
+import Icon from '../../Commons/Icon';
 
 class DrawerContainer extends Component {
     constructor() {
@@ -16,9 +15,7 @@ class DrawerContainer extends Component {
         }
     }
 
-    componentWillMount() {
-        this.props.homeAction.getData();
-    }
+
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -38,72 +35,67 @@ class DrawerContainer extends Component {
                                 <Icon
                                     name="material|home"
                                     size={size.iconBig}
-                                    style={general.colorDark}
                                 />
                             </View>
                             <Text style={general.textInDrawer}>Home</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('MusicPlay')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|music-note"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Music Player</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('VideoPlay')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|video-library"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Video Player</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('BookStore')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|book"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Book Store</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Calendar')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|perm-contact-calendar"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Calendar</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
+                    <TouchableOpacity
+                        style={general.itemTabInDrawer}
+                        onPress={() => navigate('InfoUp')}
+                    >
+                        <View style={general.wrapperRowCenter}>
+                            <View style={general.wrapperIconDrawer}>
+                                <Icon
+                                    name="material|music-note"
+                                    size={size.iconBig}
+                                />
+                            </View>
+                            <Text style={general.textInDrawer}>Info Up</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={general.itemTabInDrawer}
+                        onPress={() => navigate('Reservation')}
+                    >
+                        <View style={general.wrapperRowCenter}>
+                            <View style={general.wrapperIconDrawer}>
+                                <Icon
+                                    name="material|video-library"
+                                    size={size.iconBig}
+                                />
+                            </View>
+                            <Text style={general.textInDrawer}>Reservation</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={general.itemTabInDrawer}
+                        onPress={() => navigate('History')}
+                    >
+                        <View style={general.wrapperRowCenter}>
+                            <View style={general.wrapperIconDrawer}>
+                                <Icon
+                                    name="material|book"
+                                    size={size.iconBig}
+                                />
+                            </View>
+                            <Text style={general.textInDrawer}>History</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={general.itemTabInDrawer}
+                        onPress={() => navigate('UpRoom')}
+                    >
+                        <View style={general.wrapperRowCenter}>
+                            <View style={general.wrapperIconDrawer}>
+                                <Icon
+                                    name="material|perm-contact-calendar"
+                                    size={size.iconBig}
+                                />
+                            </View>
+                            <Text style={general.textInDrawer}>UpRoom</Text>
+                        </View>
+                    </TouchableOpacity>
                     {/*<TouchableOpacity*/}
                         {/*style={general.itemTabInDrawer}*/}
                         {/*onPress={() => navigate('Dashboard')}*/}
@@ -278,7 +270,6 @@ class DrawerContainer extends Component {
                                 <Icon
                                     name="material|email"
                                     size={size.iconBig}
-                                    style={general.colorDark}
                                 />
                             </View>
                             <Text style={general.textInDrawer}>Email</Text>
@@ -338,8 +329,6 @@ class DrawerContainer extends Component {
 }
 function mapStateToProps(state) {
     return {
-        colors: state.theme.colors,
-        colorsDrawer: state.theme.colorsDrawer
     }
 }
 function mapDispatchToProps(dispatch) {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View, Modal, PanResponder} from 'react-native';
+import {Image, Text, TouchableOpacity, View, Modal, PanResponder, FlatList} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
@@ -179,16 +179,52 @@ class UpRoomInformation extends Component {
                                         style={general.wrapperModal}
                                         {...this.panResponder.panHandlers}
                                     >
-                                        <View style={general.wrapperModalStaff}>
-                                            <View style={[general.wrapperRowCenter, general.padding]}>
-
+                                        <View style={[general.wrapperModalStaff]}>
+                                            <View style={[general.wrapperCenter, general.padding]}>
+                                                <Text/>
+                                                <Text style={general.textTitleBig}>Xác nhận</Text>
                                             </View>
-                                            <View style={[general.contentModal, general.wrapperCenter]}>
+                                            <View style={general.contentModal}>
+                                                <View style={general.paddingLR}>
+                                                    <Text/>
+                                                    <Text style={[general.textDescriptionCard, general.textAlign]}>Chào name</Text>
+                                                    <Text/>
+                                                    <Text style={[general.textSmallDarkGray, general.textAlign]}>Bạn đang tiến hành đặt chỗ tại Up.</Text>
+                                                    <Text style={[general.textSmallDarkGray, general.textAlign]}>Vui lòng chọn gói dịch vụ mà bạn mong muốn nhé.</Text>
+                                                    <Text/>
+                                                </View>
+                                                <View style={{height: 50}}>
+                                                    <Content  horizontal={true}
+                                                              showsHorizontalScrollIndicator={false}
+                                                    >
+                                                        {
+                                                            this.state.data.map((item, i) =>
+                                                                <TouchableOpacity
+                                                                    style={[general.buttonSmall, general.shadow, general.wrapperCenter, general.paddingLR, general.marginLeft]}>
+                                                                    <Text style={general.textTitleCardLight}>Chọn ngày</Text>
+                                                                </TouchableOpacity>
+                                                            )
+                                                        }
+                                                    </Content>
+                                                </View>
+                                                <View style={general.paddingLR}>
+                                                    <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
+                                                    <Text style={general.textSmallDarkGray}>Chỗ ngồi đơn</Text>
+                                                    <Text/>
+                                                    <Text style={general.textTitleCard}>Dịch vụ đi kèm</Text>
+                                                    <Text style={general.textSmallDarkGray}>Đồ uống miễn phí</Text>
+                                                    <Text style={general.textSmallDarkGray}>Tham gia hội thảo của Up Lương Yên</Text>
+                                                    <Text/>
+                                                    <Text style={general.textTitleCard}>Chi phí</Text>
+                                                    <Text style={[general.textDescriptionCard, {color: '#8bd100'}]}>100.000 VND / 1 NGÀY</Text>
+                                                    <Text/>
+                                                </View>
                                             </View>
-                                            <View
-                                                style={[general.bottomModal, general.wrapperRowCenter]}
-                                            >
-
+                                            <View style={[general.bottomModal, general.wrapperRowCenter]}>
+                                                <TouchableOpacity
+                                                    style={[general.buttonOrder, general.shadow, general.wrapperCenter, general.paddingLRFar]}>
+                                                    <Text style={general.textTitleCardLight}>Xác nhận</Text>
+                                                </TouchableOpacity>
                                             </View>
                                         </View>
                                     </View>
