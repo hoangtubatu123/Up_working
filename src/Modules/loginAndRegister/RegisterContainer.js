@@ -7,9 +7,9 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import general from '../../Styles/generalStyle';
 import * as color from '../../Styles/color';
-import {NavigationActions} from 'react-navigation';
+
 import Icon from '../../Commons/Icon';
-import BackButton from '../../Commons/BackButton';
+
 
 class RegisterContainer extends Component {
     constructor() {
@@ -23,7 +23,11 @@ class RegisterContainer extends Component {
         }
     }
     register(value) {
-        if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (reg.test(this.state.email) == false) {
+            Alert.alert("Email không hợp lệ ")
+        }
+        else if (this.state.email === '' || this.state.name === '' || this.state.username === '' || this.state.password === '') {
             Alert.alert('Có lỗi xảy ra', 'Bạn chưa nhập đủ thông tin.');
         }
         else if (!this.state.checkRules) {
@@ -45,7 +49,15 @@ class RegisterContainer extends Component {
                     backgroundColor={color.background}
                 />
           <View style={{marginTop:20}}>
-                <BackButton />
+              <TouchableOpacity
+                  style={[general.padding, general.wrapperBackButton]}
+                  onPress={() => this.props.navigation.goBack()}
+              >
+                  <Icon name="entypo|chevron-thin-left"
+                        size={size.iconBig}
+                        color={color.iconColor}
+                  />
+              </TouchableOpacity>
           </View>
                 <View style={[general.wrapperLogin]}>
 
@@ -72,7 +84,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 20}}>
+                    <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={general.inputTheme02}
@@ -88,7 +100,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 20}}>
+                    <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={general.inputTheme02}
@@ -104,7 +116,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 20}}>
+                    <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={general.inputTheme02}
@@ -112,6 +124,7 @@ class RegisterContainer extends Component {
                                 placeholder="USERNAME"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
+                                secureTextEntry = {'true'}
                                 autoCorrect={false}
                                 onChangeText={(username) => {
                                    this.setState({username})
@@ -129,33 +142,20 @@ class RegisterContainer extends Component {
                                 }}
                             >
                                 {(this.props.isLoading) ? (
-                                    <Container style={{
-                                        padding: 10,
-                                        flex: 1,
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
+
                                         <ActivityIndicator
                                             animated={true}
                                             color={color.navTitle}
                                             style={{
-                                                flex: 1,
-                                                justifyContent: 'center',
-                                                alignItems: 'center',
-                                                height: 40,
+                                                height: 20,
                                             }}
                                             size='small'
                                         />
-                                    </Container>
+
                                 ) : (
                                     <Text style={[general.paddingRight, general.textBigLight]}>REGISTER</Text>
                                 )
                                 }
-
-                                <Icon name="feat|arrow-right"
-                                      size={size.iconBig}
-                                      color={color.navTitle}
-                                />
                             </TouchableOpacity>
                         </View>
                     </View>

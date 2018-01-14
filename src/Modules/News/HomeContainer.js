@@ -5,8 +5,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import HamburgerButton from '../../Commons/HamburgerButton';
 import Loading from '../../Commons/Loading';
 import general from '../../Styles/generalStyle';
-import * as size from '../../Styles/size';
-import * as color from '../../Styles/color';
 import Icon from '../../Commons/Icon';
 
 import {connect} from 'react-redux'
@@ -35,74 +33,7 @@ class HomeContainer extends Component {
 
     isLoading() {
         this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 1000);
-    }
-
-    // ViewDashboard() {
-    //     this.isLoading();
-    //     this.setState({tab: 0});
-    // }
-    //
-    // ViewBlog() {
-    //     this.isLoading();
-    //     this.setState({tab: 1})
-    // }
-    //
-    // ViewCard() {
-    //     this.isLoading();
-    //     this.setState({tab: 2})
-    // }
-
-    ShowTab() {
-        const {news} = this.props;
-        const {isLoading} = this.state;
-        return (
-            <Content
-                showsVerticalScrollIndicator={false}
-            >
-                {
-                    isLoading
-                        ?
-                        <Loading/>
-                        :
-                        <View>
-                            <Content>
-                                {
-                                    news.map((item, i) =>
-                                        <View>
-                                            <TouchableOpacity
-                                                activeOpacity={0.8}
-                                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, general.paddingLR, {marginTop: 70}]}>
-                                                <Image
-                                                    resizeMode={'cover'}
-                                                    source={{uri: item.url}}
-                                                    style={general.imageFeature}
-                                                />
-                                                <View style={{marginTop: 20}}>
-                                                    <Text
-                                                        style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
-                                                    <Text
-                                                        style={general.textDescriptionCard}>{item.description}</Text>
-                                                </View>
-
-                                            </TouchableOpacity>
-                                            <View style={general.iconInNews}>
-                                                <Icon
-                                                    name="materialCommunity|star"
-                                                    size={30}
-                                                    style={{color:'white'}}
-                                                />
-
-                                            </View>
-                                        </View>
-                                    )}
-                            </Content>
-
-                            <View style={general.wrapperBottomModule}/>
-                        </View>
-                }
-            </Content>
-        );
+        setTimeout(() => this.setState({isLoading: false}), 200);
     }
 
     render() {
@@ -112,7 +43,7 @@ class HomeContainer extends Component {
             <Container style={general.wrapperContainer}>
                 <View
                     style={general.linearGradient}>
-                    <View style={general.wrapperHeader}>
+                    <View style={[general.wrapperHeader, general.paddingBorder]}>
                         <Text style={[general.textTitleHeader]}>
                             TIN MỚI
                         </Text>
@@ -122,7 +53,37 @@ class HomeContainer extends Component {
                     </View>
 
                     <View style={general.wrapperFullWidth}>
-                        {this.ShowTab()}
+                        <Content >
+                            {
+                                this.props.news.map((item, i) =>
+                                    <View>
+                                        <TouchableOpacity
+                                            activeOpacity={0.8}
+                                            style={[general.marginTopBottom, general.shadow, general.paddingLR, {marginBottom: 20}]}>
+                                            <Image
+                                                resizeMode={'cover'}
+                                                source={{uri: item.url}}
+                                                style={general.imageFeature}
+                                            />
+
+                                            <View style={{marginTop: 20}}>
+                                                <Text style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
+                                                <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                            </View>
+
+                                        </TouchableOpacity>
+                                        <View style={[general.iconInNews, general.shadow]}>
+                                            <Icon
+                                                name="materialCommunity|star"
+                                                size={30}
+                                                style={{color:'white'}}
+                                            />
+                                        </View>
+                                    </View>
+                                )
+                            }
+                            <View style={general.wrapperBottomModule}/>
+                        </Content>
                     </View>
                 </View>
             </Container>

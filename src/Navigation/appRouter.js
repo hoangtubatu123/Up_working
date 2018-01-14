@@ -7,6 +7,8 @@ import RegisterContainer from '../Modules/loginAndRegister/RegisterContainer';
 import ReservationContainer from '../Modules/Reservation/ReservationContainer';
 import HistoryContainer from '../Modules/History/HistoryContainer';
 import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
+import DrawerContainer from '../Modules/drawer/DrawerContainer';
+import * as React from "react";
 
 const StackNavigatorStyle = {
     navigationOptions: {
@@ -20,16 +22,22 @@ const HomeStackNavigator = StackNavigator({
 
 const Drawer = DrawerNavigator(
     {
-        Home: {screen: HomeStackNavigator},
+        Home: {screen: HomeContainer},
+        InfoUp: {screen: InfoUpContainer},
+        Reservation: {screen: ReservationContainer},
+        History: {screen: HistoryContainer},
+        UpRoom: {screen: UpRoomInformation},
     },
     {
         drawerWidth: size.wid * 3 / 4,
         drawerPosition: 'right',
-        contentComponent: props => <DrawerContainer {...props} />,
+        contentComponent: props => <DrawerContainer {...props}/>,
     }
 );
- const Main = StackNavigator(
+export const Main = StackNavigator(
     {
+        Login:{screen:LoginContainer},
+        Register : {screen:RegisterContainer},
         Drawer: {screen: Drawer},
     },
     {headerMode: 'none'}
@@ -37,21 +45,3 @@ const Drawer = DrawerNavigator(
 
 
 
-export const Start = StackNavigator(
-    {
-
-        // Login: {screen: LoginContainer},
-        RegisterContainer: {screen: RegisterContainer,},
-        Login: {screen: LoginContainer},
-        // RegisterContainer: {screen: RegisterContainer,},Login: {screen: LoginContainer},
-           Home : {screen:InfoUpContainer,}
-        // EmailIdentityContainer: {screen: EmailIdentityContainer,},
-        // ResetPasswordContainer: {screen: ResetPasswordContainer,},
-        // CodeIdentityContainer: {screen: CodeIdentityContainer,},
-        // RulesContainer: {screen: RulesContainer},
-        // AttendGroup: {screen: Group},
-        // Rules: {screen: RulesContainer},
-        // FeedbackAppContainer: {screen: FeedbackAppContainer},
-        // Main: {screen: Main,}
-    }, StackNavigatorStyle
-);

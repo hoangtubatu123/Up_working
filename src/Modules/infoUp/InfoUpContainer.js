@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../Commons/HamburgerButton';
-import Loading from '../../Commons/Loading';
+import IconLight from '../../Commons/IconLight';
 import general from '../../Styles/generalStyle';
 import * as size from '../../Styles/size';
 import * as color from '../../Styles/color';
@@ -18,7 +18,7 @@ class InfoUpContainer extends Component {
             feature: {
                 "url": "https://images.unsplash.com/photo-1505906960586-b2f5793971ad?auto=format&fit=crop&w=707&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
                 "title": "THIS IS SAMPLE TEXT",
-                "description": "Với hơn 100 chỗ ngồi và không gian 1000m2 chắc chắn sẽ làm bạn hài lòng",
+                "description": "Với hơn 100 chỗ ngồi và không gian 1000m2",
                 "created_at": "24h ago"
             },
         }
@@ -33,94 +33,6 @@ class InfoUpContainer extends Component {
         setTimeout(() => this.setState({isLoading: false}), 1000);
     }
 
-    showInfo() {
-        const {news} = this.props;
-        const {isLoading} = this.state;
-        return (
-            <Content
-                showsVerticalScrollIndicator={false}
-            >
-                {
-                    isLoading
-                        ?
-                        <Loading/>
-                        :
-                        <View>
-                            <View>
-                            <TouchableOpacity
-                                activeOpacity={0.8}
-                                style={[general.wrapperImageFeature, general.marginTopBottom, general.shadow, general.paddingBorder, {marginTop: 20}]}>
-                                <Image
-                                    resizeMode={'cover'}
-                                    source={{uri: this.state.feature.url}}
-                                    style={general.imageFeature}
-                                />
-                                <View style={[general.iconInfoUp]}>
-                                    <View style={{justifyContent:'center', alignItems:'center',
-                                        flex:1}}>
-                                    <Icon
-                                        name="materialCommunity|star"
-                                        size={15}
-                                        style={{color:'white'}}
-                                    />
-                                    </View>
-                                    <View style={{justifyContent:'center', alignItems:'center',
-                                        flex:1}}>
-                                        <Icon
-                                            name="materialCommunity|star"
-                                            size={15}
-                                            style={{color:'white'}}
-                                        />
-                                    </View>
-                                    <View style={{justifyContent:'center', alignItems:'center',
-                                        flex:1}}>
-                                        <Icon
-                                            name="fontawesome|home"
-                                            size={15}
-                                            style={{color:'white'}}
-                                        />
-                                    </View>
-
-                                </View>
-                                <View style={{marginTop: 50}}>
-                                    <Text
-                                        style={[general.textTitleCard, general.paddingLR,{padding: 5, fontFamily: 'Montserrat-SemiBold'}]}>{this.state.feature.title.toUpperCase()}</Text>
-                                    <Text
-                                        style={[general.textDescriptionCard, general.paddingLR,{padding: 5}]}>{this.state.feature.description}</Text>
-                                </View>
-                            </TouchableOpacity>
-                            </View>
-                            <View style={[{marginTop: 120}, general.paddingBorder]}>
-                                <Text
-                                    style={[general.textIstActive, general.marginTopBottom,general.paddingLR, {fontFamily: 'Montserrat-SemiBold'}]}>
-                                    Album Ảnh
-                                </Text>
-                            </View>
-                                <FlatList
-                                    horizontal={true}
-                                    showsHorizontalScrollIndicator={false}
-                                    data={news}
-                                    renderItem={({item}) =>
-                                        <TouchableOpacity
-                                            activeOpacity={0.8}
-                                            style={item == news[0] ? [general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar] : [general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeft]}>
-                                            <Image
-                                                resizeMode={'cover'}
-                                                source={{uri: item.url}}
-                                                style={[general.imageSquare]}
-                                            />
-                                        </TouchableOpacity>
-                                    }
-                                />
-                            </View>
-
-
-
-                }
-            </Content>
-
-        );
-    }
 
     render() {
         const {navigate} = this.props.navigation;
@@ -136,24 +48,81 @@ class InfoUpContainer extends Component {
                     </Right>
                 </View>
 
-                    <View style={general.wrapperFullWidth}>
-                        {this.showInfo()}
+                <Content style={general.wrapperFullWidth}>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={[general.marginTopBottom, general.shadow]}>
+                        <Image
+                            resizeMode={'cover'}
+                            source={{uri: this.state.feature.url}}
+                            style={general.imageFullWidth}
+                        />
+                        <View
+                            style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow, {
+                                right: 30,
+                                bottom: 65,
+                            }]}>
+                            <IconLight name={"entypo|user"}/>
+                            <Text style={general.textDescriptionCardLight}>12</Text>
+                            <Text>&nbsp;</Text>
+                            <IconLight name={"entypo|aircraft"}/>
+                            <Text style={general.textDescriptionCardLight}>12</Text>
+                            <Text>&nbsp;</Text>
+                            <IconLight name={"entypo|archive"}/>
+                            <Text style={general.textDescriptionCardLight}>12</Text>
+                        </View>
+                        <View style={[general.marginTop, general.wrapperTextDownImage]}>
+                            <Text/>
+                            <Text
+                                style={[general.textTitleCard, general.paddingLR]}>{this.state.feature.title.toUpperCase()}</Text>
+                            <Text/>
+                            <Text
+                                style={[general.textDescriptionCard, general.paddingLR]}>{this.state.feature.description}</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <View style={[{marginTop: 50}, general.paddingBorder]}>
+                        <Text style={[general.textTitleCard]}>
+                            Album Ảnh
+                        </Text>
+                    </View>
+                    <View>
+                        <FlatList
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            data={this.props.news}
+                            renderItem={({item}) =>
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    style={[general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar]}
+                                >
+                                    <Image
+                                        resizeMode={'cover'}
+                                        source={{uri: item.url}}
+                                        style={[general.imageSquare]}
+                                    />
+                                </TouchableOpacity>
+                            }
+                        />
                     </View>
 
-                    <View style={general.wrapperBuyNowButton}>
-                        <TouchableOpacity
-                            style={general.buttonBuyNowFullSize}
-                            onPress={() => {
-                            }}
-                        >
-                            <Text style={[general.paddingRight, general.textBigLight]}>Đặt chỗ
-                                ngay</Text>
-                            <Icon name="feat|arrow-right"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                            />
-                        </TouchableOpacity>
-                    </View>
+                    <View style={general.wrapperBottomModule}/>
+                    <View style={general.wrapperBottomModule}/>
+                </Content>
+
+                <View style={general.wrapperBuyNowButton}>
+                    <TouchableOpacity
+                        style={general.buttonBuyNowFullSize}
+                        onPress={() => {
+                        }}
+                    >
+                        <Text style={[general.paddingRight, general.textBigLight]}>Đặt chỗ
+                            ngay</Text>
+                        <Icon name="feat|arrow-right"
+                              size={size.iconBig}
+                              color={color.navTitle}
+                        />
+                    </TouchableOpacity>
+                </View>
             </Container>
         )
     }
