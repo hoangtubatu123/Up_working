@@ -1,6 +1,6 @@
 import {TabNavigator, StackNavigator, DrawerNavigator} from 'react-navigation';
 import * as size from '../styles/size';
-import HomeContainer from '../modules/News/HomeContainer';
+import HomeContainer from '../modules/news/HomeContainer';
 import InfoUpContainer from '../modules/infoUp/InfoUpContainer';
 import LoginContainer from '../modules/loginAndRegister/LoginContainer';
 import RegisterContainer from '../modules/loginAndRegister/RegisterContainer';
@@ -20,13 +20,14 @@ const HomeStackNavigator = StackNavigator({
 
 }, StackNavigatorStyle);
 
+
 const Drawer = DrawerNavigator(
     {
         Home: {screen: HomeContainer},
-        InfoUp: {screen: InfoUpContainer},
         Reservation: {screen: ReservationContainer},
         History: {screen: HistoryContainer},
         UpRoom: {screen: UpRoomInformation},
+        infoUp : {screen : InfoUpContainer}
     },
     {
         drawerWidth: size.wid * 3 / 4,

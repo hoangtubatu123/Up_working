@@ -1,67 +1,61 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View,} from 'react-native';
+import {Image, Modal, PanResponder, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
 import IconLight from '../../commons/IconLight';
 import IconDark from '../../commons/IconDark';
 import general from '../../styles/generalStyle';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import * as reservationAction from '../reservation/reservationAction';
+import {bindActionCreators} from 'redux'
 
 
-class HomeContainer extends Component {
+class ReservationContainer extends Component {
     constructor() {
         super();
         this.state = {
             tab: 0,
+            province: "HÀ NỘI",
+            modalProvince: false,
             isLoading: false,
-            data:
-                [
 
-                    {
-                        "url": "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=334&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Electric VR suit shocks gamers",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1507537362848-9c7e70b7b5c1?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Smart gadgets for safety conscious bikers",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1501159873713-dc65286617cc?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "A new way to study the night sky",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1485436442739-c12c6e3673af?auto=format&fit=crop&w=553&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Zuckerberg's resolution: 'Fix' Facebook",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1485893226355-9a1c32a0c81e?auto=format&fit=crop&w=500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "FCC chairman cancels attendance at CES",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Nintendo Switch boasts speedy US sales",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                ]
         }
+    }
+
+    componentWillMount() {
+        this.props.reservationAction.getBases(this.props.token, "01");
+        this.props.reservationAction.getProvinces(this.props.token);
+        this.panResponder = PanResponder.create({
+            onStartShouldSetPanResponder: (event, gestureState) => true,
+            onPanResponderGrant: this._onPanResponderGrant.bind(this),
+        })
+        this.isLoading();
     }
 
     isLoading() {
         this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 200);
+        setTimeout(() => this.setState({isLoading: false}), 1000);
     }
+    onChangeValue(item){
+        this.setState({province : item.name})
+        this.props.reservationAction.getBases(this.props.token, item.id);
+        this.isLoading();
+        this.setModalProvinces(false);
+    }
+
+    setModalProvinces(visible) {
+        this.setState({modalProvince: visible});
+    }
+
+    _onPanResponderGrant(event, gestureState) {
+        if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
+            this.setState({
+                modalProvince: false,
+            });
+        }
+    }
+
 
     render() {
         const {navigate} = this.props.navigation;
@@ -75,29 +69,41 @@ class HomeContainer extends Component {
                         <HamburgerButton navigate={navigate}/>
                     </Right>
                 </View>
-                <TouchableOpacity style={[general.paddingLR, general.wrapperRowCenter,{marginTop: - 30, marginBottom: 10}]}>
-                    <Text style={general.textTitleBoldNormal}>HÀ NỘI</Text>
-                    <IconDark name={"entypo|chevron-down"}/>
+
+                <TouchableOpacity
+                    style={[general.paddingLR, general.wrapperRowCenter, {marginTop: -30, marginBottom: 10}]}
+                    onPress={() => this.setModalProvinces(true)}>
+                    <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
+                    <IconDark name={"entypo|chevron-down"} />
                 </TouchableOpacity>
+
                 <Content
                     showsVerticalScrollIndicator={false}
                     style={{flex: 1}}>
                     {
-                        this.state.isLoading
+                        this.props.isLoadingUp || this.state.isLoading
                             ?
                             <Loading/>
                             :
                             <View>
                                 {
-                                    this.state.data.map((item, i) =>
+                                    this.props.bases.map((item, i) =>
                                         <TouchableOpacity
+                                            onPress={() => navigate('infoUp', {
+                                                feature: {
+                                                    url: item.avatar_url,
+                                                    title: item.name,
+                                                    description: item.address,
+                                                    bonusImage: item.images_url.split(",")
+                                                }
+                                            })}
                                             key={i}
                                             activeOpacity={0.8}
                                             style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
                                             <View style={general.paddingLR}>
                                                 <Image
                                                     resizeMode={'cover'}
-                                                    source={{uri: item.url}}
+                                                    source={{uri: item.avatar_url}}
                                                     style={general.imageFeature}
                                                 />
                                                 <View
@@ -114,16 +120,45 @@ class HomeContainer extends Component {
                                                 </View>
                                             </View>
 
-                                            <View style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
-                                                <Text style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
+                                            <View
+                                                style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
+                                                <Text style={general.textTitleCard}>{item.name}</Text>
                                                 <Text/>
-                                                <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                                <Text style={general.textDescriptionCard}>{item.address}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     )
                                 }
+                                <Modal
+                                    presentationStyle="overFullScreen"
+                                    animationType="fade"
+                                    transparent={true}
+                                    visible={this.state.modalProvince}
+                                >
+                                    <View
+                                        style={general.wrapperModal}
+                                        {...this.panResponder.panHandlers}
+                                    >
+                                        <View style={[general.wrapperModalStaff, {height : 200}]}>
+                                            <Content style={{flex: 1}}>
 
+                                                {
+                                                    this.state.isLoading ? <Loading/>
+                                                        :
+                                                    this.props.provinces.map((item, i) => {
+                                                    return (
+                                                        <TouchableOpacity style = {{ padding : 10}}onPress = {() => this.onChangeValue(item)}>
+                                                             <Text>{item.name}</Text>
+                                                        </TouchableOpacity>
+                                                    )
+                                                })
+                                                }
+                                            </Content>
+                                        </View>
+                                    </View>
+                                </Modal>
                             </View>
+
                     }
                 </Content>
             </Container>
@@ -133,8 +168,20 @@ class HomeContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        data: state.home.data,
+        isLoadingProvinces: state.reservation.isLoadingProvinces,
+        errorProvinces: state.reservation.errorProvinces,
+        errorUp: state.reservation.errorUp,
+        isLoadingUp: state.reservation.isLoadingUp,
+        provinces: state.reservation.provinces,
+        bases: state.reservation.bases,
+        token: state.login.token,
     }
 }
 
-export default connect(mapStateToProps)(HomeContainer);
+function mapDispatchToProps(dispatch) {
+    return {
+        reservationAction: bindActionCreators(reservationAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReservationContainer);

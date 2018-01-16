@@ -54,20 +54,6 @@ class DrawerContainer extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={general.itemTabInDrawer}
-                        onPress={() => navigate('InfoUp')}
-                    >
-                        <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|music-note"
-                                    size={size.iconBig}
-                                />
-                            </View>
-                            <Text style={general.textInDrawer}>Info Up</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={general.itemTabInDrawer}
                         onPress={() => navigate('Reservation')}
                     >
                         <View style={general.wrapperRowCenter}>

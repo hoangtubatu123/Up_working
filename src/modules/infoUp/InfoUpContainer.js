@@ -9,18 +9,14 @@ import * as color from '../../styles/color';
 import Icon from '../../commons/Icon';
 
 import {connect} from 'react-redux';
+import Loading from "../../commons/Loading";
 
 class InfoUpContainer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             isLoading: false,
-            feature: {
-                "url": "https://images.unsplash.com/photo-1505906960586-b2f5793971ad?auto=format&fit=crop&w=707&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                "title": "THIS IS SAMPLE TEXT",
-                "description": "Với hơn 100 chỗ ngồi và không gian 1000m2",
-                "created_at": "24h ago"
-            },
+            feature: this.props.navigation.state.params.feature,
         }
     }
 
@@ -36,7 +32,7 @@ class InfoUpContainer extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
-        const {colors} = this.props;
+        const {isLoaing} = this.state;
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
@@ -48,65 +44,73 @@ class InfoUpContainer extends Component {
                     </Right>
                 </View>
 
-                <Content style={general.wrapperFullWidth}>
-                    <TouchableOpacity
-                        activeOpacity={0.8}
-                        style={[general.marginTopBottom, general.shadow]}>
-                        <Image
-                            resizeMode={'cover'}
-                            source={{uri: this.state.feature.url}}
-                            style={general.imageFullWidth}
-                        />
-                        <View
-                            style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow, {
-                                right: 30,
-                                bottom: 65,
-                            }]}>
-                            <IconLight name={"entypo|user"}/>
-                            <Text style={general.textDescriptionCardLight}>12</Text>
-                            <Text>&nbsp;</Text>
-                            <IconLight name={"entypo|aircraft"}/>
-                            <Text style={general.textDescriptionCardLight}>12</Text>
-                            <Text>&nbsp;</Text>
-                            <IconLight name={"entypo|archive"}/>
-                            <Text style={general.textDescriptionCardLight}>12</Text>
-                        </View>
-                        <View style={[general.marginTop, general.wrapperTextDownImage]}>
-                            <Text/>
-                            <Text
-                                style={[general.textTitleCard, general.paddingLR]}>{this.state.feature.title.toUpperCase()}</Text>
-                            <Text/>
-                            <Text
-                                style={[general.textDescriptionCard, general.paddingLR]}>{this.state.feature.description}</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <View style={[{marginTop: 50}, general.paddingBorder]}>
-                        <Text style={[general.textTitleCard]}>
-                            Album Ảnh
-                        </Text>
-                    </View>
-                    <View>
-                        <FlatList
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            data={this.props.news}
-                            renderItem={({item}) =>
-                                <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    style={[general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar]}
-                                >
-                                    <Image
-                                        resizeMode={'cover'}
-                                        source={{uri: item.url}}
-                                        style={[general.imageSquare]}
-                                    />
-                                </TouchableOpacity>
-                            }
-                        />
-                    </View>
 
-                    <View style={general.wrapperBottomModule}/>
-                    <View style={general.wrapperBottomModule}/>
+                <Content style={general.wrapperFullWidth}>
+                    {this.state.isLoading ?
+                        <Loading/>
+                        :
+                        <View>
+                            <TouchableOpacity
+                                activeOpacity={0.8}
+                                style={[general.marginTopBottom, general.shadow]}>
+                                <Image
+                                    resizeMode={'cover'}
+                                    source={{uri: this.state.feature.url}}
+                                    style={general.imageFullWidth}
+                                />
+                                <View
+                                    style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow, {
+                                        right: 30,
+                                        bottom: 65,
+                                    }]}>
+                                    <IconLight name={"entypo|user"}/>
+                                    <Text style={general.textDescriptionCardLight}>12</Text>
+                                    <Text>&nbsp;</Text>
+                                    <IconLight name={"entypo|aircraft"}/>
+                                    <Text style={general.textDescriptionCardLight}>12</Text>
+                                    <Text>&nbsp;</Text>
+                                    <IconLight name={"entypo|archive"}/>
+                                    <Text style={general.textDescriptionCardLight}>12</Text>
+                                </View>
+                                <View style={[general.marginTop, general.wrapperTextDownImage]}>
+                                    <Text/>
+                                    <Text
+                                        style={[general.textTitleCard, general.paddingLR]}>{this.state.feature.title.toUpperCase()}</Text>
+                                    <Text/>
+                                    <Text
+                                        style={[general.textDescriptionCard, general.paddingLR]}>{this.state.feature.description}</Text>
+                                </View>
+                            </TouchableOpacity>
+                            <View style={[{marginTop: 50}, general.paddingBorder]}>
+                                <Text style={[general.textTitleCard]}>
+                                    Album Ảnh
+                                </Text>
+                            </View>
+                            <View>
+                                <FlatList
+                                    horizontal={true}
+                                    showsHorizontalScrollIndicator={false}
+                                    data={this.state.feature.bonusImage}
+                                    renderItem={({item}) =>
+                                        <TouchableOpacity
+                                            activeOpacity={0.8}
+                                            style={[general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar]}
+                                        >
+                                            <Image
+                                                resizeMode={'cover'}
+                                                source={{uri: item}}
+                                                style={[general.imageSquare]}
+                                            />
+                                        </TouchableOpacity>
+                                    }
+                                />
+                            </View>
+
+                            <View style={general.wrapperBottomModule}/>
+                            <View style={general.wrapperBottomModule}/>
+                        </View>
+                    }
+
                 </Content>
 
                 <View style={general.wrapperBuyNowButton}>
