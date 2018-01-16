@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Platform, StatusBar, Switch, Text, TouchableOpacity, View, Image} from 'react-native';
 import {Container, Content} from 'native-base';
-import * as size from '../../Styles/size';
-import general from '../../Styles/generalStyle';
+import * as size from '../../styles/size';
+import general from '../../styles/generalStyle';
 import {connect} from 'react-redux';
-import Icon from '../../Commons/Icon';
+import Icon from '../../commons/Icon';
 import  * as logoutAction from '../loginAndRegister/logoutAction';
 import {bindActionCreators} from 'redux'
 class DrawerContainer extends Component {
@@ -32,7 +32,7 @@ class DrawerContainer extends Component {
                     <View style={[general.wrapperLogoInDrawer]}>
                         <Image
                             resizeMode={'contain'}
-                            source={{uri: 'http://startupnation.vn/pic/News/images/636168321372630328.png'}}
+                            source={require('../../../assets/image/384x176logo.png')}
                             style={general.imageLogin}
                         />
                     </View>
