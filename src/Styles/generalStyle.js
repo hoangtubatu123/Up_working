@@ -62,7 +62,7 @@ export const style = {
         height: 30,
         padding: 0,
         margin: 0,
-        fontSize: 13,
+        fontSize: 11,
         lineHeight: 10,
         color: color.darkGray,
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
@@ -120,7 +120,7 @@ export const style = {
     },
     wrapperLogoInDrawer: {
         width: wid * 3 / 4,
-        height: hei / 3,
+        height: hei / 3 - 20,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -358,7 +358,7 @@ export const style = {
     },
     imageLogin:{
         width: 3*wid/4,
-        height: hei/3,
+        height: hei/4,
     },
     imageFullWidth: {
         height: hei /3,
@@ -425,7 +425,7 @@ export const style = {
     buttonBuyNowFullSize: {
         borderRadius: 50,
         width: size.wid * 0.8,
-        padding: 8,
+        padding:8,
         backgroundColor: color.mainColor,
         alignItems: 'center',
         justifyContent: 'center',

@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {Platform, StatusBar, Switch, Text, TouchableOpacity, View} from 'react-native';
+import {Platform, StatusBar, Switch, Text, TouchableOpacity, View, Image} from 'react-native';
 import {Container, Content} from 'native-base';
 import * as size from '../../Styles/size';
 import general from '../../Styles/generalStyle';
 import {connect} from 'react-redux';
 import Icon from '../../Commons/Icon';
-
+import  * as logoutAction from '../loginAndRegister/logoutAction';
+import {bindActionCreators} from 'redux'
 class DrawerContainer extends Component {
     constructor() {
         super();
@@ -13,6 +14,10 @@ class DrawerContainer extends Component {
             text: '',
             setThemeDark: false
         }
+    }
+    logout(){
+        this.props.logoutAction.logout();
+        this.props.navigation.navigate('Login');
     }
 
 
@@ -24,6 +29,13 @@ class DrawerContainer extends Component {
                     barStyle={"dark-content"}
                     backgroundColor={"#FFFFFF"}
                 />
+                    <View style={[general.wrapperLogoInDrawer]}>
+                        <Image
+                            resizeMode={'contain'}
+                            source={{uri: 'http://startupnation.vn/pic/News/images/636168321372630328.png'}}
+                            style={general.imageLogin}
+                        />
+                    </View>
                 <Content style={general.padding}>
 
                     <TouchableOpacity
@@ -275,21 +287,21 @@ class DrawerContainer extends Component {
                             <Text style={general.textInDrawer}>Email</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Contact')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|textsms"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Contact</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
+                    <TouchableOpacity
+                        style={general.itemTabInDrawer}
+                        onPress={() => this.logout()}
+                    >
+                        <View style={general.wrapperRowCenter}>
+                            <View style={general.wrapperIconDrawer}>
+                                <Icon
+                                    name="fontawesome|sign-out"
+                                    size={size.iconBig}
+                                    style={general.colorDark}
+                                />
+                            </View>
+                            <Text style={general.textInDrawer}>Đăng xuất</Text>
+                        </View>
+                    </TouchableOpacity>
                     {/*<TouchableOpacity*/}
                         {/*style={general.itemTabInDrawer}*/}
                         {/*onPress={() => navigate('Event')}*/}
@@ -305,21 +317,7 @@ class DrawerContainer extends Component {
                             {/*<Text style={general.textInDrawer}>Events</Text>*/}
                         {/*</View>*/}
                     {/*</TouchableOpacity>*/}
-                    <TouchableOpacity
-                        style={general.itemTabInDrawer}
-                        onPress={() => navigate('Register')}
-                    >
-                        <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|dns"
-                                    size={size.iconBig}
-                                    style={general.colorDark}
-                                />
-                            </View>
-                            <Text style={general.textInDrawer}>Register</Text>
-                        </View>
-                    </TouchableOpacity>
+
                     <View style={general.wrapperBottomModule}/>
                 </Content>
 
@@ -333,6 +331,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
+        logoutAction : bindActionCreators(logoutAction, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContainer)

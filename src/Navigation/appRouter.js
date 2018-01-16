@@ -3,10 +3,11 @@ import * as size from '../Styles/size';
 import HomeContainer from '../Modules/News/HomeContainer';
 import InfoUpContainer from '../Modules/infoUp/InfoUpContainer';
 import LoginContainer from '../Modules/loginAndRegister/LoginContainer';
+import RegisterContainer from '../Modules/loginAndRegister/RegisterContainer';
 import ReservationContainer from '../Modules/Reservation/ReservationContainer';
 import HistoryContainer from '../Modules/History/HistoryContainer';
 import UpRoomInformation from '../Modules/UpRoom/UpRoomInformation';
-import DrawerContainer from '../Modules/Drawer/DrawerContainer';
+import DrawerContainer from '../Modules/drawer/DrawerContainer';
 import * as React from "react";
 
 const StackNavigatorStyle = {
@@ -35,9 +36,12 @@ const Drawer = DrawerNavigator(
 );
 export const Main = StackNavigator(
     {
+        Login:{screen:LoginContainer},
+        Register : {screen:RegisterContainer},
         Drawer: {screen: Drawer},
     },
     {headerMode: 'none'}
 );
+
 
 

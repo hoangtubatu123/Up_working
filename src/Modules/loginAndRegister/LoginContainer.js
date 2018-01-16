@@ -1,5 +1,15 @@
 import React, {Component} from 'react'
-import {Image, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View,ActivityIndicator} from 'react-native';
+import {
+    ActivityIndicator,
+    Alert,
+    Image,
+    KeyboardAvoidingView,
+    Platform,
+    StatusBar,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import * as size from '../../Styles/size';
 import {CheckBox, Container, Content, Form, Header, Input, Item, Left} from 'native-base';
 import * as loginAction from '../../Modules/loginAndRegister/loginActions';
@@ -8,7 +18,6 @@ import {connect} from 'react-redux'
 import general from '../../Styles/generalStyle';
 import * as color from '../../Styles/color';
 import {NavigationActions} from 'react-navigation';
-import Icon from '../../Commons/Icon'
 
 class LoginContainer extends Component {
     constructor(props) {
@@ -24,8 +33,17 @@ class LoginContainer extends Component {
     }
 
     signIn() {
-        this.props.loginAction.loginUser(this.props.login);
-        this.saveData();
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+        if (reg.test(this.props.login.email) == false) {
+            Alert.alert("Email không hợp lệ ")
+        }
+        else if (this.props.login.email == '' || this.props.login.password == '') {
+            Alert.alert("Bạn cần nhập đầy đủ thông tin ");
+        } else {
+            this.props.loginAction.loginUser(this.props.login);
+            this.saveData();
+        }
+
     }
 
     updateData(name, value) {
@@ -39,7 +57,7 @@ class LoginContainer extends Component {
             const resetAction = NavigationActions.reset({
                 index: 0,
                 actions: [
-                    NavigationActions.navigate({routeName: 'Main'})
+                    NavigationActions.navigate({routeName: 'Drawer'})
                 ]
             })
             this.props.navigation.dispatch(resetAction)
@@ -51,11 +69,11 @@ class LoginContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
-                style={general.wrapperContainer}
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
+                                  style={general.wrapperContainer}
             >
+
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor={color.background}
@@ -66,10 +84,9 @@ class LoginContainer extends Component {
                         source={{uri: 'http://startupnation.vn/pic/News/images/636168321372630328.png'}}
                         style={general.imageLogin}
                     />
-                    <View>
                         <Item style={general.itemInput}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02]}
                                 underlineColorAndroid={color.none}
                                 placeholder="EMAIL"
                                 keyboardType={'email-address'}
@@ -81,8 +98,7 @@ class LoginContainer extends Component {
                                 value={this.props.login.email}
                             />
                         </Item>
-                    </View>
-                    <View style={{marginTop: 20}}>
+                    <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={general.inputTheme02}
@@ -90,63 +106,59 @@ class LoginContainer extends Component {
                                 placeholder="PASSWORD"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
+                                secureTextEntry={'true'}
                                 autoCorrect={false}
-                                onChangeText={(email) => {
-                                    this.updateData('email', email);
+                                onChangeText={(password) => {
+                                    this.updateData('password', password);
                                 }}
                                 value={this.props.login.password}
                             />
                         </Item>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
-                    <View style={general.wrapperLoginButton}>
-                        <TouchableOpacity
-                            style={general.buttonBuyNowFullSize}
-                            onPress={() => {
-                                this.signIn()
-                            }}
-                        >
-                            {(this.props.isLoading) ? (
-                                <Container style={{
-                                    padding: 10,
-                                    flex: 1,
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <View style={general.wrapperLoginButton}>
+                            <TouchableOpacity
+                                style={general.buttonBuyNowFullSize}
+                                onPress={() => {
+                                    this.signIn()
+                                }}
+                            >
+                                {(this.props.isLoading) ? (
                                     <ActivityIndicator
                                         animated={true}
                                         color={color.navTitle}
                                         style={{
-                                            flex: 1,
-                                            justifyContent: 'center',
-                                           alignItems: 'center',
-                                            height: 40,
+                                            height: 20,
                                         }}
                                         size='small'
                                     />
-                                </Container>
-                            ) : (
-                                <Text style={[general.paddingRight, general.textBigLight]}>LOG IN</Text>
-                            )
-                            }
+                                ) : (
 
-                            <Icon name="feat|arrow-right"
-                                  size={size.iconBig}
-                                  color={color.navTitle}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                        <View style={{marginTop:20}}>
-                    <Text style ={[general.textLogin]}>DON'T  HAVE AN ACCOUNT? REGISTER</Text>
+                                    <Text style={[general.paddingRight, general.textBigLight]}>LOG IN</Text>
+
+
+
+                                )
+
+                                }
+
+
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{marginTop: 20}}>
+                            <Text style={[general.textLogin, {fontSize: 11}]}
+                                  onPress={() => this.props.navigation.navigate('Register')}>DON'T HAVE AN ACCOUNT?
+                                REGISTER</Text>
                         </View>
                     </View>
-                    <View style={{justifyContent:'center', alignItems : 'center', bottom:-size.hei/6}}>
-                        <Text style ={[general.textLogin, ]}>FORGOT PASSWORD</Text>
+                    <View style={{justifyContent: 'center', alignItems: 'center', bottom: -size.hei / 6}}>
+                        <Text style={[general.textLogin, {fontSize: 11}]}>FORGOT PASSWORD</Text>
                     </View>
                 </View>
-
-
             </KeyboardAvoidingView>
+
+
+
         )
     }
 }
