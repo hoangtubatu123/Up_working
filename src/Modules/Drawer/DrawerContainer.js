@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StatusBar, Switch, Text, TouchableOpacity, View} from 'react-native';
+import {Platform, StatusBar, Switch, Text, TouchableOpacity, View, Image} from 'react-native';
 import {Container, Content} from 'native-base';
 import * as size from '../../Styles/size';
 import general from '../../Styles/generalStyle';
@@ -29,6 +29,13 @@ class DrawerContainer extends Component {
                     barStyle={"dark-content"}
                     backgroundColor={"#FFFFFF"}
                 />
+                    <View style={[general.wrapperLogoInDrawer]}>
+                        <Image
+                            resizeMode={'contain'}
+                            source={{uri: 'http://startupnation.vn/pic/News/images/636168321372630328.png'}}
+                            style={general.imageLogin}
+                        />
+                    </View>
                 <Content style={general.padding}>
 
                     <TouchableOpacity

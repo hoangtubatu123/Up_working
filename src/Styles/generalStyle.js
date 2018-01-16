@@ -120,7 +120,7 @@ export const style = {
     },
     wrapperLogoInDrawer: {
         width: wid * 3 / 4,
-        height: hei / 3,
+        height: hei / 3 - 20,
         justifyContent: 'center',
         alignItems: 'center',
     },
