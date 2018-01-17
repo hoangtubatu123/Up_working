@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as env from '../../constants/env';
 
 export function getProvincesApi(token){
-     let url = env.API_COLORME + "/v2/base/districts?token=" + token;
+     let url = env.API_COLORME + "/v2/base/provinces?token=" + token;
      return axios.get(url);
 }
 
