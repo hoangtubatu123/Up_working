@@ -8,6 +8,7 @@ import ReservationContainer from '../modules/reservation/ReservationContainer';
 import HistoryContainer from '../modules/history/HistoryContainer';
 import UpRoomInformation from '../modules/upRoom/UpRoomInformation';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import InfoNewContainer from '../modules/news/InfoNewContainer';
 import * as React from "react";
 
 const StackNavigatorStyle = {
@@ -27,7 +28,8 @@ const Drawer = DrawerNavigator(
         Reservation: {screen: ReservationContainer},
         History: {screen: HistoryContainer},
         UpRoom: {screen: UpRoomInformation},
-        infoUp : {screen : InfoUpContainer}
+        infoUp : {screen : InfoUpContainer},
+        infoNew : {screen : InfoNewContainer}
     },
     {
         drawerWidth: size.wid * 3 / 4,

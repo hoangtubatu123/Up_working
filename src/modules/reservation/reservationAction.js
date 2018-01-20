@@ -12,7 +12,7 @@ export function getProvincesSuccess(res){
     return {
         type : types.GET_PROVINCES_SUCCESS,
         isLoadingProvinces: false,
-        provinces: Object.keys(res.data.data.provinces).map((k) => res.data.data.provinces[k]), // res.data.data.provinces
+        provinces:  res.data.data.provinces,
     }
 }
 export function getProvincesError(){

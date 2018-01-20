@@ -33,7 +33,7 @@ class DrawerContainer extends Component {
                         <Image
                             resizeMode={'contain'}
                             source={require('../../../assets/image/384x176logo.png')}
-                            style={general.imageLogin}
+                            style={[general.imageLogin, {marginLeft: 10}]}
                         />
                     </View>
                 <Content style={general.padding}>

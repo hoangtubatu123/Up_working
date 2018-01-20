@@ -59,21 +59,18 @@ class RegisterContainer extends Component {
                   />
               </TouchableOpacity>
           </View>
-                <View style={[general.wrapperLogin]}>
-
-
-
+                <View style={[general.wrapperLogin, {padding : 20}]}>
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={general.imageLogin}
+                        style={[general.imageLogin, {margin : 20}]}
                     />
                     <View>
                         <Item style={general.itemInput}>
                             <Input
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
-                                placeholder="EMAIL"
+                                placeholder="Email"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
@@ -89,7 +86,7 @@ class RegisterContainer extends Component {
                             <Input
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
-                                placeholder="PASSWORD"
+                                placeholder="Password"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
@@ -105,7 +102,7 @@ class RegisterContainer extends Component {
                             <Input
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
-                                placeholder="NAME"
+                                placeholder="Name"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
@@ -121,7 +118,7 @@ class RegisterContainer extends Component {
                             <Input
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
-                                placeholder="USERNAME"
+                                placeholder="Username"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 secureTextEntry = {'true'}

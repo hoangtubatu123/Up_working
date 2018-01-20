@@ -1,40 +1,74 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View,} from 'react-native';
+import {Image, Text, TouchableOpacity, View,FlatList,RefreshControl} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
-import LinearGradient from 'react-native-linear-gradient';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
+import * as homeAction from '../news/homeAction';
+import {bindActionCreators} from 'redux';
 import general from '../../styles/generalStyle';
 import Icon from '../../commons/Icon';
-
 import {connect} from 'react-redux'
-
-
+import SearchBar from 'react-native-searchbar';
+import SearchButton from '../../commons/SearchButton'
+import ListView from '../news/ListView';
 class HomeContainer extends Component {
     constructor() {
         super();
         this.state = {
             tab: 0,
             isLoading: false,
-            feature: {
-                "url": "https://images.unsplash.com/photo-1505906960586-b2f5793971ad?auto=format&fit=crop&w=707&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                "title": "THIS IS SAMPLE TEXT",
-                "description": "Sample description goes here",
-                "created_at": "24h ago"
-            },
-
+            id : 0,
+            showSearch : false,
+            page : 2,
         }
     }
 
     componentWillMount() {
+        this.props.homeAction.getNews();
         this.isLoading();
+    }
+    toggleSearch() {
+        if (this.state.showSearch == false) {
+            this.setState({showSearch: true});
+            this.searchBar.show();
+        } else {
+            this.setState({showSearch: false});
+            this.searchBar.hide();
+        }
+    }
+    onBack(){
+        if (this.state.showSearch == false) {
+            this.setState({showSearch: true});
+            this.searchBar.show();
+        } else {
+            this.setState({showSearch: false});
+            this.searchBar.hide();
+        }
+    }
+    loadMore() {
+        if (this.props.isLoadingMore)
+            return (<Loading/>)
+        else
+            return (<View/>)
     }
 
 
     isLoading() {
         this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 200);
+        setTimeout(() => this.setState({isLoading: false}), 1000);
     }
+    handleChangText(input){
+        this.isLoading();
+        this.props.homeAction.getSearchNew(input);
+    }
+    getMoreNews() {
+        const {news, homeAction} = this.props;
+        if (news.length >=6) {
+            this.setState({page: this.state.page + 1});
+            homeAction.getMoreNews(this.state.page);
+        }
+    }
+
 
     render() {
         const {navigate} = this.props.navigation;
@@ -51,40 +85,42 @@ class HomeContainer extends Component {
                             <HamburgerButton navigate={navigate}/>
                         </Right>
                     </View>
-
+                    <SearchBar
+                        ref={(ref) => this.searchBar = ref}
+                        onBack={() => this.onBack()}
+                        handleChangeText={(input) => this.handleChangText(input)}
+                />
                     <View style={general.wrapperFullWidth}>
-                        <Content >
-                            {
-                                this.props.news.map((item, i) =>
-                                    <View>
-                                        <TouchableOpacity
-                                            activeOpacity={0.8}
-                                            style={[general.marginTopBottom, general.shadow, general.paddingLR, {marginBottom: 20}]}>
-                                            <Image
-                                                resizeMode={'cover'}
-                                                source={{uri: item.url}}
-                                                style={general.imageFeature}
-                                            />
+                        {this.props.isLoading || this.state.isLoading?
+                         <Loading/>
+                            :
+                           <FlatList
+                               showsVerticalScrollIndicator={false}
+                               data={this.props.news}
+                               onEndReachedThreshold={5}
+                               onEndReached={
+                                   () => this.getMoreNews()
+                               }
+                               refreshControl={
+                                   <RefreshControl
+                                       refreshing={this.props.isRefreshing}
+                                       onRefresh={
+                                           () => this.props.homeAction.refreshNews()
+                                       }
+                                   />
+                               }
+                               ListFooterComponent={
+                                   this.loadMore()
+                               }
+                               renderItem={({item}) =>
+                               { return (<ListView item = {item} navigation = {this.props.navigation}/>)}
+                               }
+                                   />
+                        }
 
-                                            <View style={{marginTop: 20}}>
-                                                <Text style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
-                                                <Text style={general.textDescriptionCard}>{item.description}</Text>
-                                            </View>
-
-                                        </TouchableOpacity>
-                                        <View style={[general.iconInNews, general.shadow]}>
-                                            <Icon
-                                                name="materialCommunity|star"
-                                                size={30}
-                                                style={{color:'white'}}
-                                            />
-                                        </View>
-                                    </View>
-                                )
-                            }
-                            <View style={general.wrapperBottomModule}/>
-                        </Content>
                     </View>
+                    <SearchButton
+                        function={() => this.toggleSearch()}/>
                 </View>
             </Container>
         );
@@ -93,8 +129,16 @@ class HomeContainer extends Component {
 
 function mapStateToProps(state) {
     return {
+        isLoading : state.home.isLoading,
         news: state.home.news,
+        isLoadingMore : state.home.isLoadingMore,
+        isRefreshing : state.home.isRefreshing,
+    }
+}
+function mapDispatchToProps(dispatch){
+    return {
+        homeAction : bindActionCreators(homeAction, dispatch)
     }
 }
 
-export default connect(mapStateToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

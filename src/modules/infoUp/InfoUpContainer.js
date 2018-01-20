@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
-import HamburgerButton from '../../commons/HamburgerButton';
+
 import IconLight from '../../commons/IconLight';
 import general from '../../styles/generalStyle';
 import * as size from '../../styles/size';
 import * as color from '../../styles/color';
 import Icon from '../../commons/Icon';
-
+import HamburgerButton from '../../commons/HamburgerButton'
 import {connect} from 'react-redux';
 import Loading from "../../commons/Loading";
 
@@ -16,7 +16,6 @@ class InfoUpContainer extends Component {
         super(props);
         this.state = {
             isLoading: false,
-            feature: this.props.navigation.state.params.feature,
         }
     }
 
@@ -31,16 +30,15 @@ class InfoUpContainer extends Component {
 
 
     render() {
-        const {navigate} = this.props.navigation;
-        const {isLoaing} = this.state;
+        const{navigate} = this.props.navigation;
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
                     <Text style={[general.textTitleHeader]}>
-                        UP LƯƠNG YÊN
+                        {this.props.feature.name}
                     </Text>
                     <Right>
-                        <HamburgerButton navigate={navigate}/>
+                        <HamburgerButton navigate={this.props.navigation.navigate}/>
                     </Right>
                 </View>
 
@@ -55,7 +53,7 @@ class InfoUpContainer extends Component {
                                 style={[general.marginTopBottom, general.shadow]}>
                                 <Image
                                     resizeMode={'cover'}
-                                    source={{uri: this.state.feature.url}}
+                                    source={{uri: this.props.feature.url}}
                                     style={general.imageFullWidth}
                                 />
                                 <View
@@ -75,10 +73,10 @@ class InfoUpContainer extends Component {
                                 <View style={[general.marginTop, general.wrapperTextDownImage]}>
                                     <Text/>
                                     <Text
-                                        style={[general.textTitleCard, general.paddingLR]}>{this.state.feature.title.toUpperCase()}</Text>
+                                        style={[general.textTitleCard, general.paddingLR]}>{this.props.feature.title.toUpperCase()}</Text>
                                     <Text/>
                                     <Text
-                                        style={[general.textDescriptionCard, general.paddingLR]}>{this.state.feature.description}</Text>
+                                        style={[general.textDescriptionCard, general.paddingLR]}>{this.props.feature.description}</Text>
                                 </View>
                             </TouchableOpacity>
                             <View style={[{marginTop: 50}, general.paddingBorder]}>
@@ -90,7 +88,7 @@ class InfoUpContainer extends Component {
                                 <FlatList
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
-                                    data={this.state.feature.bonusImage}
+                                    data={this.props.feature.bonusImage}
                                     renderItem={({item}) =>
                                         <TouchableOpacity
                                             activeOpacity={0.8}
@@ -132,10 +130,5 @@ class InfoUpContainer extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        news: state.home.news,
-    }
-}
 
-export default connect(mapStateToProps)(InfoUpContainer);
+export default (InfoUpContainer);

@@ -8,18 +8,20 @@ import IconDark from '../../commons/IconDark';
 import general from '../../styles/generalStyle';
 import {connect} from 'react-redux';
 import * as reservationAction from '../reservation/reservationAction';
+import InfoUpContainer from '../infoUp/InfoUpContainer';
 import {bindActionCreators} from 'redux'
-
+import * as size from '../../styles/size';
 
 class ReservationContainer extends Component {
     constructor() {
         super();
         this.state = {
             tab: 0,
+            feature : {},
             province: "HÀ NỘI",
             modalProvince: false,
             isLoading: false,
-
+            modalUp : false,
         }
     }
 
@@ -47,6 +49,9 @@ class ReservationContainer extends Component {
     setModalProvinces(visible) {
         this.setState({modalProvince: visible});
     }
+    setModalUp(visible){
+        this.setState({modalUp : visible})
+    }
 
     _onPanResponderGrant(event, gestureState) {
         if (event.nativeEvent.locationX === event.nativeEvent.pageX) {
@@ -54,6 +59,16 @@ class ReservationContainer extends Component {
                 modalProvince: false,
             });
         }
+    }
+    openModalInfoUp(item){
+        this.setModalUp(true);
+        this.setState({feature: {
+            name : item.name,
+            url: item.avatar_url,
+            title: item.name,
+            description: item.description,
+            bonusImage: item.images_url.split(",")
+        }});
     }
 
 
@@ -71,7 +86,7 @@ class ReservationContainer extends Component {
                 </View>
 
                 <TouchableOpacity
-                    style={[general.paddingLR, general.wrapperRowCenter, {marginTop: -30, marginBottom: 10}]}
+                    style={[general.paddingLR, general.wrapperRowCenter, {marginTop: 0}]}
                     onPress={() => this.setModalProvinces(true)}>
                     <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
                     <IconDark name={"entypo|chevron-down"} />
@@ -89,23 +104,16 @@ class ReservationContainer extends Component {
                                 {
                                     this.props.bases.map((item, i) =>
                                         <TouchableOpacity
-                                            onPress={() => navigate('infoUp', {
-                                                feature: {
-                                                    url: item.avatar_url,
-                                                    title: item.name,
-                                                    description: item.address,
-                                                    bonusImage: item.images_url.split(",")
-                                                }
-                                            })}
+                                            onPress={() => {this.openModalInfoUp(item)}}
                                             key={i}
                                             activeOpacity={0.8}
                                             style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
                                             <View style={general.paddingLR}>
                                                 <Image
-                                                    resizeMode={'cover'}
-                                                    source={{uri: item.avatar_url}}
-                                                    style={general.imageFeature}
-                                                />
+                                                resizeMode={'cover'}
+                                                source={{uri: item.avatar_url}}
+                                                style={general.imageFeature}
+                                            />
                                                 <View
                                                     style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
                                                     <IconLight name={"entypo|user"}/>
@@ -124,7 +132,7 @@ class ReservationContainer extends Component {
                                                 style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
                                                 <Text style={general.textTitleCard}>{item.name}</Text>
                                                 <Text/>
-                                                <Text style={general.textDescriptionCard}>{item.address}</Text>
+                                                <Text style={general.textDescriptionCard}>{item.description}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     )
@@ -155,6 +163,20 @@ class ReservationContainer extends Component {
                                                 }
                                             </Content>
                                         </View>
+                                    </View>
+                                </Modal>
+                                <Modal  presentationStyle="overFullScreen"
+                                        animationType="slide"
+                                        transparent={true}
+                                        visible={this.state.modalUp}>
+                                    <View
+                                        style={general.wrapperModal}
+                                        {...this.panResponder.panHandlers}
+                                    >
+                                        <View style={[general.wrapperModalStaff, {height : size.hei, width : size.wid}]}>
+                                            <InfoUpContainer navigation = {this.props.navigation} feature = {this.state.feature}/>
+                                        </View>
+
                                     </View>
                                 </Modal>
                             </View>

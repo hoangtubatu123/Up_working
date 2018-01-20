@@ -83,13 +83,13 @@ class LoginContainer extends Component {
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={general.imageLogin}
+                        style={[general.imageLogin, {width : 3*size.wid/4}]}
                     />
                         <Item style={general.itemInput}>
                             <Input
                                 style={[general.inputTheme02]}
                                 underlineColorAndroid={color.none}
-                                placeholder="EMAIL"
+                                placeholder="Email"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
@@ -104,7 +104,7 @@ class LoginContainer extends Component {
                             <Input
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
-                                placeholder="PASSWORD"
+                                placeholder="Password"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 secureTextEntry={'true'}

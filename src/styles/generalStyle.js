@@ -68,9 +68,13 @@ export const style = {
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
 
     },
+    imageInHeader:{
+        height: 30,
+        width: 170,
+    },
     wrapperHeader: {
-        height: 100,
-        paddingTop: Platform.OS === 'ios' ? 20 : 0,
+        height: Platform.OS === 'android' ? 70 : 90,
+        paddingTop: Platform.OS === 'ios' ? 40 : 20,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -119,10 +123,14 @@ export const style = {
         flexDirection: 'row',
     },
     wrapperLogoInDrawer: {
-        width: wid * 3 / 4,
-        height: hei / 3 - 20,
+        width: wid * 3 / 4 - 20,
+        height: hei / 3,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    imageInDrawer: {
+        width: wid * 3 / 4 - 80,
+        height: hei / 3,
     },
     wrapperButtonPlay: {
         marginLeft: 30,
@@ -156,10 +164,17 @@ export const style = {
     wrapperRowSpaceBetween: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center'
     },
     wrapperRowCenter: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    wrapperSearchForm: {
+        width: wid - 40,
+        borderWidth: 1,
+        borderColor: color.textColorNotActive,
+        height: 50,
     },
     wrapperIconDrawer: {
         height: 30,
@@ -170,6 +185,14 @@ export const style = {
     wrapperFeatureBook: {
         alignItems: 'center',
         flexDirection: 'row',
+    },
+    wrapperCardBook: {
+        borderWidth: 1,
+        borderColor: color.textColorNotActive,
+        flexDirection: 'row',
+        flex: 1,
+
+
     },
     wrapperPeople: {
         height: 70,
@@ -191,6 +214,7 @@ export const style = {
         fontSize: size.titleHeader,
         color: color.textColor,
     },
+
     textTitleBoldNormal: {
         backgroundColor: color.none,
         fontFamily: 'Montserrat-Bold',
@@ -211,6 +235,12 @@ export const style = {
         color: color.textColor,
         fontFamily: 'Montserrat-Medium',
         fontSize: size.defaultText,
+    },
+    wrapperIconFixedHeader:{
+        width: wid,
+        flexDirection: 'row',
+        backgroundColor: color.none,
+        position: 'absolute',
     },
     textTitleCardLight: {
         color: '#FFFFFF',
@@ -336,6 +366,11 @@ export const style = {
     wrapperImageRectangle: {
         width: wid / 3,
     },
+    wrapperTextInCardBook: {
+        width: wid * 2 / 3 - 40,
+        paddingRight: 20,
+        marginBottom: 30
+    },
     imageFeature: {
         borderRadius: 15,
         height: hei / 3,
@@ -357,8 +392,8 @@ export const style = {
         backgroundColor: color.mainColor
     },
     imageLogin:{
-        width: 3*wid/4,
-        height: hei/4,
+        width: 3*wid/4 - 30,
+        height: hei/3,
     },
     imageFullWidth: {
         height: hei /3,
@@ -425,8 +460,16 @@ export const style = {
     buttonBuyNowFullSize: {
         borderRadius: 50,
         width: size.wid * 0.8,
-        padding:8,
+        padding: 8,
         backgroundColor: color.mainColor,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    buttonDownload: {
+        borderRadius: 5,
+        padding: 10,
+        backgroundColor: color.blue,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
@@ -461,8 +504,6 @@ export const style = {
         height: wid - 40,
         borderRadius: 15,
         backgroundColor: color.loadingImage
-
-
     },
     imageCircleTiny: {
         height: 20,
@@ -474,6 +515,12 @@ export const style = {
         height: 50,
         width: 50,
         borderRadius: 25,
+        backgroundColor: color.loadingImage
+    },
+    imageCircleBig: {
+        height: 100,
+        width: 100,
+        borderRadius: 50,
         backgroundColor: color.loadingImage
     },
     imageSquare: {
@@ -490,11 +537,11 @@ export const style = {
         color: color.navTitle,
     },
     textLogin:{
-            paddingBottom: 0,
-            fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
-            fontSize: 13,
-            fontWeight: Platform.OS === 'ios' ? '400' : 'normal',
-            color: color.darkGray,
+        paddingBottom: 0,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 13,
+        fontWeight: Platform.OS === 'ios' ? '400' : 'normal',
+        color: color.darkGray,
     },
     imageSquareSmall: {
         height: (wid - 60) / 3,
@@ -646,7 +693,6 @@ export const style = {
         marginBottom: 10
     },
     shadow: {
-        elevation: 1,
         shadowColor: color.shadowColor,
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.3,
@@ -663,6 +709,35 @@ export const style = {
         height: 5,
         borderRadius: 5,
         backgroundColor: color.textColor,
+    },
+    categoryInImage:{
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
+    categoryAbsolute:{
+        position: 'absolute',
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
+
+    category:{
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
     wrapperDeadline: {
         width: wid - 40,
@@ -717,6 +792,9 @@ export const style = {
         borderTopWidth: 0.5,
         borderColor: 'rgba(214,214,214, 0.6)',
     },
+    textInputSearch:{
+        flex: 1
+    },
     wrapperItemTrello: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -761,7 +839,22 @@ export const style = {
         height: 30,
         borderRadius: 20,
     },
-
+    buttonSearch:{
+        position: 'absolute',
+        bottom: 20,
+        right: 10,
+        backgroundColor:color.mainColor,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 30,
+    },
+    buttonSelect:{
+        height: 48,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    },
     buttonSmall:{
         backgroundColor:color.mainColor,
         height: 30,
