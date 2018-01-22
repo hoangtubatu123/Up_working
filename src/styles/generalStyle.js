@@ -62,7 +62,7 @@ export const style = {
         height: 30,
         padding: 0,
         margin: 0,
-        fontSize: 13,
+        fontSize: 17,
         lineHeight: 10,
         color: color.darkGray,
         fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
@@ -374,7 +374,6 @@ export const style = {
     imageFeature: {
         borderRadius: 15,
         height: hei / 3,
-        backgroundColor: color.loadingImage
     },
     imageFeatureInCol: {
         height: hei / 5,
@@ -537,7 +536,6 @@ export const style = {
         height: 100,
         width: 100,
         borderRadius: 50,
-        backgroundColor: color.loadingImage
     },
     imageSquare: {
         height: wid / 2,

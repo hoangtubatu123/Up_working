@@ -105,7 +105,6 @@ class LoginContainer extends Component {
                                 style={general.inputTheme02}
                                 underlineColorAndroid={color.none}
                                 placeholder="Password"
-                                keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 secureTextEntry={true}
                                 autoCorrect={false}

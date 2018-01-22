@@ -156,6 +156,8 @@ class ReservationContainer extends Component {
                             :
                             <View>
                                 {
+                                    this.props.bases.length != 0 ?
+
                                     this.props.bases.map((item, i) =>
                                         <TouchableOpacity
                                             onPress={() => {
@@ -191,6 +193,12 @@ class ReservationContainer extends Component {
                                             </View>
                                         </TouchableOpacity>
                                     )
+                                        :
+                                        <View style={[general.wrapperCenter, general.paddingLR]}>
+                                            <Text style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
+                                                Không tìm thấy kết quả nào.
+                                            </Text>
+                                        </View>
                                 }
 
                             </View>

@@ -104,6 +104,8 @@ class HomeContainer extends Component {
                         {this.props.isLoading || this.state.isLoading ?
                             <Loading/>
                             :
+                            this.props.news.length != 0
+                            ?
                             <FlatList
                                 showsVerticalScrollIndicator={false}
                                 data={this.props.news}
@@ -127,6 +129,12 @@ class HomeContainer extends Component {
                                 }
                                 }
                             />
+                                :
+                                <View style={[general.wrapperCenter, general.paddingLR]}>
+                                    <Text style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
+                                        Không tìm thấy kết quả nào .
+                                    </Text>
+                                </View>
                         }
 
                     </View>
