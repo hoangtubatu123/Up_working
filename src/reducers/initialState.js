@@ -35,6 +35,8 @@ export default {
         errorLoadMore : false,
         isRefreshing: false,
         errorRefresh: false,
+        isLoadingMoreSearch : false,
+        errorLoadMoreSearch : false
     },
     reservation : {
         isLoadingProvinces : false,

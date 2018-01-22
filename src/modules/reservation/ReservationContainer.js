@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Modal, PanResponder, Text, TouchableOpacity, View} from 'react-native';
+import {Image, PanResponder, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
@@ -11,18 +11,26 @@ import * as reservationAction from '../reservation/reservationAction';
 import InfoUpContainer from '../infoUp/InfoUpContainer';
 import {bindActionCreators} from 'redux'
 import * as size from '../../styles/size';
+import SearchBar from 'react-native-searchbar';
+import SearchButton from '../../commons/SearchButton';
+import Modal from 'react-native-modalbox';
+import Icon from '../../commons/Icon'
 
 class ReservationContainer extends Component {
     constructor() {
         super();
         this.state = {
             tab: 0,
-            feature : {},
+            feature: {},
             province: "HÀ NỘI",
             modalProvince: false,
             isLoading: false,
-            modalUp : false,
+            modalUp: false,
+            showSearch: false,
+            id: "01",
         }
+        this.setModalUp = this.setModalUp.bind(this);
+        // this.handleSearch = this.handleSearch.bind(this);
     }
 
     componentWillMount() {
@@ -35,22 +43,45 @@ class ReservationContainer extends Component {
         this.isLoading();
     }
 
+    // componentWillReceiveProps(nextProps){
+    //     if(nextProps.isLoadingUp !== this.props.isLoadingUp){
+    //         this.setState({bases : nextProps.bases})
+    //     }
+    // }
+    // handleSearch(bases){
+    //     this.isLoading();
+    //     this.setState({bases});
+    // }
+
     isLoading() {
         this.setState({isLoading: true});
         setTimeout(() => this.setState({isLoading: false}), 1000);
     }
-    onChangeValue(item){
-        this.setState({province : item.name})
+
+    onChangeValue(item) {
+        this.setState({province: item.name})
+        this.setState({id: item.id});
         this.props.reservationAction.getBases(this.props.token, item.id);
         this.isLoading();
-        this.setModalProvinces(false);
+       this.refs.modal2.close();
     }
 
     setModalProvinces(visible) {
         this.setState({modalProvince: visible});
     }
-    setModalUp(visible){
-        this.setState({modalUp : visible})
+
+    setModalUp(visible) {
+        this.setState({modalUp: visible})
+    }
+
+    toggleSearch() {
+        if (this.state.showSearch == false) {
+            this.setState({showSearch: true});
+            this.searchBar.show();
+        } else {
+            this.setState({showSearch: false});
+            this.searchBar.hide();
+        }
     }
 
     _onPanResponderGrant(event, gestureState) {
@@ -60,19 +91,37 @@ class ReservationContainer extends Component {
             });
         }
     }
-    openModalInfoUp(item){
+
+    openModalInfoUp(item) {
+        this.refs.modal1.open()
         this.setModalUp(true);
-        this.setState({feature: {
-            name : item.name,
-            url: item.avatar_url,
-            title: item.name,
-            description: item.description,
-            bonusImage: item.images_url.split(",")
-        }});
+        this.setState({
+            feature: {
+                name: item.name,
+                url: item.avatar_url,
+                title: item.name,
+                description: item.description,
+                bonusImage: item.images_url.split(",")
+            }
+        });
+    }
+
+    handleChangeText(input) {
+        this.isLoading();
+        this.props.reservationAction.getSearchBase(this.state.id, input, this.props.token)
     }
 
 
     render() {
+        let bCont = <TouchableOpacity
+            onPress={() => this.refs.modal2.close()}>
+            <Icon
+                name="fontawesome|times"
+                size={20}
+                style={{marginLeft: size.wid * 0.9, padding: 5, marginTop : 20}}
+                color={'#eff1f4'}
+            />
+        </TouchableOpacity>;
         const {navigate} = this.props.navigation;
         return (
             <Container style={general.wrapperContainer}>
@@ -84,12 +133,17 @@ class ReservationContainer extends Component {
                         <HamburgerButton navigate={navigate}/>
                     </Right>
                 </View>
+                <SearchBar
+                    ref={(ref) => this.searchBar = ref}
+                    onBack={() => this.toggleSearch()}
+                    handleChangeText={(input) => this.handleChangeText(input)}
+                />
 
                 <TouchableOpacity
                     style={[general.paddingLR, general.wrapperRowCenter, {marginTop: 0}]}
-                    onPress={() => this.setModalProvinces(true)}>
+                    onPress={() => this.refs.modal2.open()}>
                     <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
-                    <IconDark name={"entypo|chevron-down"} />
+                    <IconDark name={"entypo|chevron-down"}/>
                 </TouchableOpacity>
 
                 <Content
@@ -104,16 +158,18 @@ class ReservationContainer extends Component {
                                 {
                                     this.props.bases.map((item, i) =>
                                         <TouchableOpacity
-                                            onPress={() => {this.openModalInfoUp(item)}}
+                                            onPress={() => {
+                                                this.openModalInfoUp(item)
+                                            }}
                                             key={i}
                                             activeOpacity={0.8}
                                             style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
                                             <View style={general.paddingLR}>
                                                 <Image
-                                                resizeMode={'cover'}
-                                                source={{uri: item.avatar_url}}
-                                                style={general.imageFeature}
-                                            />
+                                                    resizeMode={'cover'}
+                                                    source={{uri: item.avatar_url}}
+                                                    style={general.imageFeature}
+                                                />
                                                 <View
                                                     style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
                                                     <IconLight name={"entypo|user"}/>
@@ -124,7 +180,6 @@ class ReservationContainer extends Component {
                                                     <Text>&nbsp;</Text>
                                                     <IconLight name={"entypo|archive"}/>
                                                     <Text style={general.textDescriptionCardLight}>12</Text>
-
                                                 </View>
                                             </View>
 
@@ -137,52 +192,58 @@ class ReservationContainer extends Component {
                                         </TouchableOpacity>
                                     )
                                 }
-                                <Modal
-                                    presentationStyle="overFullScreen"
-                                    animationType="fade"
-                                    transparent={true}
-                                    visible={this.state.modalProvince}
-                                >
-                                    <View
-                                        style={general.wrapperModal}
-                                        {...this.panResponder.panHandlers}
-                                    >
-                                        <View style={[general.wrapperModalStaff, {height : 200}]}>
-                                            <Content style={{flex: 1}}>
 
-                                                {
-                                                    this.state.isLoading ? <Loading/>
-                                                        :
-                                                    this.props.provinces.map((item, i) => {
-                                                    return (
-                                                        <TouchableOpacity style = {{ padding : 10}}onPress = {() => this.onChangeValue(item)}>
-                                                             <Text>{item.name}</Text>
-                                                        </TouchableOpacity>
-                                                    )
-                                                })
-                                                }
-                                            </Content>
-                                        </View>
-                                    </View>
-                                </Modal>
-                                <Modal  presentationStyle="overFullScreen"
-                                        animationType="slide"
-                                        transparent={true}
-                                        visible={this.state.modalUp}>
-                                    <View
-                                        style={general.wrapperModal}
-                                        {...this.panResponder.panHandlers}
-                                    >
-                                        <View style={[general.wrapperModalStaff, {height : size.hei, width : size.wid}]}>
-                                            <InfoUpContainer navigation = {this.props.navigation} feature = {this.state.feature}/>
-                                        </View>
-
-                                    </View>
-                                </Modal>
                             </View>
 
                     }
                 </Content>
+                <SearchButton
+                    function={() => this.toggleSearch()}/>
+                <Modal
+                    isOpen={this.state.modalProvince}
+                    ref={"modal2"}
+                    style={[{justifyContent: "flex-end", margin: 0, backgroundColor:'transparent'},general.wrapperModalBottom]}
+                    backdropContent={bCont}
+                    position={"bottom"}
+                >
+                    <View style = {general.wrapperModalBottom} {...this.panResponder.panHandlers}>
+                        <TouchableOpacity style={[general.wrapperModalTypeBottom, {backgroundColor: '#f7f7f7'}]}>
+                            <Text style={general.textTitleCardBlue}>Chọn tỉnh</Text>
+                        </TouchableOpacity>
+                        <View style={general.line}/>
+                        <Content showsVerticalScrollIndicator={false}
+                        >{
+                            this.state.isLoading ? <Loading/> :
+                                <View style={general.wrapperCenter}>
+                                    {
+                                        this.props.provinces.map((item, i) => {
+                                            return (
+                                                <TouchableOpacity style={{padding: 10}}
+                                                                  onPress={() => this.onChangeValue(item)}>
+                                                    <Text style={general.textTitleBoldNormal}>{item.name}</Text>
+                                                </TouchableOpacity>
+                                            )
+                                        })
+                                    }
+                                </View>
+                        }
+                        </Content>
+                        <TouchableOpacity style={[general.wrapperModalTypeBottom, {backgroundColor: '#f7f7f7'}]}
+                                          onPress={() => this.refs.modal2.close()}>
+                            <Text style={[general.textTitleCardBlue, {color: '#c50000'}]}>Thoát</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
+                <Modal swipeToClose={true}
+                       isOpen={this.state.modalUp}
+                       style={[general.wrapperModal, {position: 'absolute'}]}
+                       ref={"modal1"}
+                >
+                    <View style={[general.wrapperModalStaff, {height: size.hei, width: size.wid}]}>
+                        <InfoUpContainer setModalUp={this.setModalUp} navigation={this.props.navigation}
+                                         feature={this.state.feature}/>
+                    </View>
+                </Modal>
             </Container>
         );
     }
@@ -207,3 +268,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReservationContainer);
+

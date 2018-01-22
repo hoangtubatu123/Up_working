@@ -1,15 +1,12 @@
 import React from 'react';
 import {WebView, View, Text, Dimensions} from "react-native";
 import PropTypes from 'prop-types';
-
-
 const BODY_TAG_PATTERN = /\<\/ *body\>/;
 
 var script = `
 ;(function() {
 var wrapper = document.createElement("div");
 wrapper.id = "height-wrapper";
-
 while (document.body.firstChild) {
     wrapper.appendChild(document.body.firstChild);
 }
@@ -31,10 +28,16 @@ window.addEventListener("resize", updateHeight);
 
 const style = `
 <style>
-body, html, #height-wrapper {
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../../assets/fonts/Montserrat-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+body, html {
     margin: 0;
     padding: 0;
-    font-family: Montserrat;
+    font-family: Montserrat !important;
 }
 #height-wrapper {
     position: absolute;
@@ -43,14 +46,16 @@ body, html, #height-wrapper {
     right: 0;
 }
 p{
-    font-size: 13px;
-    padding-left: 10px;
-    padding-right: 10px;
+    font-family: Montserrat !important;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 h1, h2, h3, h4, h5, h6{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-weight: 500;
+    font-family: Montserrat !important;
 }
 h1, h2 {
     font-size: 20px;
@@ -61,14 +66,19 @@ h3, h4 {
 h5, h6 {
     font-size: 16px;
 }
-strong:{
-    font-size: 13px;
-}
 ul li:{
-    font-size: 13px;
+    font-family: Montserrat !important;
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
-
+ol li:{
+    font-family: Montserrat !important;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 table, th, td{
+    font-family: Montserrat !important;
     margin: 5px;
     padding: 5px;
     border: 1px solid black;
@@ -80,6 +90,7 @@ p.wrapperImg{
     padding-right: 0;
 }
 table:{
+    font-family: Montserrat !important;
     margin: 10px;
     padding: 10px;
 }
@@ -88,7 +99,7 @@ iframe{
     height: 150px;
 }
 </style>
-<script>
+<script >
 ${script}
 </script>
 `;
@@ -119,7 +130,7 @@ class WebViewAutoHeight extends React.Component {
     render() {
         const {source, style, ...otherProps} = this.props;
         let sourceData = source.replace(/width: 100%px/g, 'width: 100%');
-        const html = '<!DOCTYPE html><html><body>'
+        const html = '<!DOCTYPE html><html><head><meta charset=UTF-8"/></head><body>'
             +
             sourceData.replace(/<p><img/g, '<p class="wrapperImg"><img')
             +
@@ -140,7 +151,7 @@ class WebViewAutoHeight extends React.Component {
                     {...otherProps}
                     source={{html: codeInject(html)}}
                     scrollEnabled={false}
-                    style={{...style, ...{height: this.state.realContentHeight, width: width}}}
+                    style={{...style, ...{height: this.state.realContentHeight, width: width, fontFamily: 'Montserrat-Regular'}}}
                     javaScriptEnabled
                     onNavigationStateChange={this.handleNavigationChange}
                 />

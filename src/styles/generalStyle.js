@@ -226,7 +226,7 @@ export const style = {
         fontFamily: 'Montserrat-Regular',
         fontSize: size.defaultText,
     },
-    textIstActive: {
+    textIsActive: {
         color: color.textColor,
         fontFamily: 'Montserrat-Regular',
         fontSize: size.defaultText,
@@ -360,7 +360,7 @@ export const style = {
         paddingLeft: 5
     },
     line: {
-        height: 1,
+        height: 0.75,
         backgroundColor: color.textColorNotActive,
     },
     wrapperImageRectangle: {
@@ -392,7 +392,7 @@ export const style = {
         backgroundColor: color.mainColor
     },
     imageLogin:{
-        width: 3*wid/4 - 30,
+        width: 3*wid/4,
         height: hei/3,
     },
     imageFullWidth: {
@@ -406,6 +406,22 @@ export const style = {
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    wrapperModalBottom: {
+        width: wid,
+        height: hei / 2 - 50,
+        backgroundColor: "#FFF",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 5,
+    },
+    wrapperModalTypeBottom: {
+        width: wid,
+        padding: 20,
+        height: 30,
+        backgroundColor: "#FFF",
+        justifyContent: "center",
+        alignItems: "center",
     },
     wrapperBadge: {
         height: 15,
@@ -758,6 +774,13 @@ export const style = {
         height: 3,
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
+    wrapperSearch: {
+        height: 40,
+        position: 'absolute',
+        width: wid - 40,
+        backgroundColor: '#FFF',
+        zIndex: 100,
+    },
     wrapperProgressLight: {
         height: 3,
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
@@ -792,9 +815,7 @@ export const style = {
         borderTopWidth: 0.5,
         borderColor: 'rgba(214,214,214, 0.6)',
     },
-    textInputSearch:{
-        flex: 1
-    },
+
     wrapperItemTrello: {
         alignItems: 'center',
         justifyContent: 'center',
@@ -827,6 +848,13 @@ export const style = {
         fontSize: size.titleNormal,
         width: wid * 0.7,
     },
+    buttonSearchInSearchInput:{
+        width: 40,
+        height: 40,
+        backgroundColor: color.mainColor,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     colorDark: {
         color: 'black'
     },
@@ -851,6 +879,7 @@ export const style = {
         borderRadius: 30,
     },
     buttonSelect:{
+        width: wid/2,
         height: 48,
         justifyContent: 'center',
         alignItems: 'flex-start',

@@ -145,6 +145,28 @@ export function refreshNews(){
 
     }
 }
+// get More News When Search
+export function getMoreNewsSearch(page, txt){
+    return (dispatch) =>{
+        dispatch({
+            type : types.BEGIN_MORE_NEWS_SEARCH,
+        })
+        homeApi.getMoreNewSearchApi(page, txt)
+            .then(function (res){
+                dispatch({
+                    type : types.GET_MORE_NEWS_SEARCH_SUCCESS,
+                    news : res.data.blogs
+                });
+
+            })
+            .catch(function(){
+                dispatch({
+                    type : types.GET_MORE_NEWS_SEARCH_ERROR,
+                });
+            })
+
+    }
+}
 
 
 

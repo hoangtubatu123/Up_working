@@ -12,10 +12,15 @@ export function getDetailNewApi(newId){
 }
 
 export function getNewsSearchApi(txt){
-    let url = env.API_UP + "/v2/blogs?search=" + txt;
+    let url = env.API_UP + "/v2/blogs?page=1&search=" + txt;
     return axios.get(url);
 }
 export function getMoreNews(page){
     let url = env.API_UP + "/v2/blogs?page=" +page;
+    return axios.get(url);
+}
+
+export function getMoreNewSearchApi(page, txt){
+    let url = env.API_UP + "/v2/blogs?page=" +page + "&search=" + txt;
     return axios.get(url);
 }

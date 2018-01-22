@@ -63,7 +63,7 @@ class RegisterContainer extends Component {
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={[general.imageLogin, {margin : 20}]}
+                        style={[general.imageLogin, {margin : 20, width:3* size.wid/4}]}
                     />
                     <View>
                         <Item style={general.itemInput}>
@@ -90,6 +90,7 @@ class RegisterContainer extends Component {
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
+                                secureTextEntry={true}
                                 onChangeText={(password) => {
                                     this.setState({password})
                                 }}
@@ -121,7 +122,6 @@ class RegisterContainer extends Component {
                                 placeholder="Username"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
-                                secureTextEntry = {'true'}
                                 autoCorrect={false}
                                 onChangeText={(username) => {
                                    this.setState({username})

@@ -107,7 +107,7 @@ class LoginContainer extends Component {
                                 placeholder="Password"
                                 keyboardType={'email-address'}
                                 returnKeyType={'next'}
-                                secureTextEntry={'true'}
+                                secureTextEntry={true}
                                 autoCorrect={false}
                                 onChangeText={(password) => {
                                     this.updateData('password', password);

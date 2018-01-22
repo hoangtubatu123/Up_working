@@ -90,6 +90,21 @@ export default function homeAction(state = initialState.home, action) {
             return {
                 ...state,
                 ...{isRefreshing : false, errorRefresh : true}
+            };
+        case types.BEGIN_MORE_NEWS_SEARCH:
+            return {
+                ...state,
+                ...{isLoadingMoreSearch: true}
+            };
+        case types.GET_MORE_NEWS_SEARCH_SUCCESS:
+            return {
+                ...state,
+                ...{isLoadingMoreSearch: false, news : [...state.news, ...action.news]}
+            };
+        case types.GET_MORE_NEWS_SEARCH_ERROR:
+            return {
+                ...state,
+                ...{isLoadingMoreSearch : false, errorLoadMoreSearch: true}
             }
         default:
             return state

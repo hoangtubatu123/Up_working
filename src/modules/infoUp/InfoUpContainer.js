@@ -22,10 +22,9 @@ class InfoUpContainer extends Component {
     componentWillMount() {
         this.isLoading();
     }
-
     isLoading() {
         this.setState({isLoading: true})
-        setTimeout(() => this.setState({isLoading: false}), 1000);
+        setTimeout(() => this.setState({isLoading: false}), 2000);
     }
 
 
@@ -38,7 +37,15 @@ class InfoUpContainer extends Component {
                         {this.props.feature.name}
                     </Text>
                     <Right>
-                        <HamburgerButton navigate={this.props.navigation.navigate}/>
+                        <TouchableOpacity
+                            style={[general.padding, general.wrapperBackButton, {marginRight: -20}]}
+                            onPress={() => {this.props.setModalUp(false)}}
+                        >
+                            <Icon name="fontawesome|times"
+                                  size={size.iconBig}
+                                  color={color.iconColor}
+                            />
+                        </TouchableOpacity>
                     </Right>
                 </View>
 

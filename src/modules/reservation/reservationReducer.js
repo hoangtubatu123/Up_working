@@ -35,7 +35,22 @@ export default function getReservationReducer(state = initialState.reservation, 
             return {
                 ...state,
                 ...{isLoadingUp : action.isLoadingUp, errorUp : action.errorUp}
+            };
+        case types.BEGIN_SEARCH_BASES :
+            return{
+                ...state,
+                ...{isLoadingUp : action.isLoadingUp}
             }
+        case types.GET_SEARCH_BASES_SUCCESS :
+            return {
+                ...state,
+                ...{isLoadingUp: action.isLoadingUp, bases: action.bases}
+            }
+        case types.GET_SEARCH_BASES_ERROR:
+            return {
+                ...state,
+                ...{isLoadingUp : action.isLoadingUp, errorUp : action.errorUp}
+            };
         default:
             return state;
     }

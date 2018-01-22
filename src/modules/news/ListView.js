@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View,FlatList,RefreshControl} from 'react-native';
-import {Container, Content,Item, Left, Right, Spinner} from 'native-base';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import general from '../../styles/generalStyle';
 import Icon from '../../commons/Icon';
 
@@ -11,6 +11,7 @@ class ListView extends Component {
         }
         return false;
     }
+
     render() {
         return (
             <View>
@@ -19,7 +20,7 @@ class ListView extends Component {
                         this.props.navigation.navigate('infoNew', {id: this.props.item.id})
                     }}
                     activeOpacity={0.8}
-                    style={[general.marginTopBottom, general.shadow, general.paddingLR, {marginBottom: 20}]}>
+                    style={[general.marginTopBottom, general.paddingLR, {marginBottom: 20}]}>
                     <Image
                         resizeMode={'cover'}
                         source={{uri: "http://" + this.props.item.url}}
@@ -41,7 +42,9 @@ class ListView extends Component {
                     />
                 </View>
             </View>
+
         )
     }
 }
+
 export default ListView;

@@ -68,3 +68,25 @@ export function getBases(token, provinceId){
             })
     }
 }
+
+export function getSearchBase(provinceId, txt, token){
+    return (dispatch) =>{
+        dispatch({
+            type : types.BEGIN_SEARCH_BASES,
+        })
+        reservationApi.getSearchBaseApi(provinceId,txt, token)
+            .then(function (res){
+                dispatch({
+                    type : types.GET_SEARCH_BASES_SUCCESS,
+                    bases : res.data.data.bases
+                });
+
+            })
+            .catch(function(){
+                dispatch({
+                    type : types.GET_SEARCH_BASES_ERROR,
+                });
+            })
+
+    }
+}
