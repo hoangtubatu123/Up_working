@@ -55,7 +55,7 @@ class ReservationContainer extends Component {
 
     isLoading() {
         this.setState({isLoading: true});
-        setTimeout(() => this.setState({isLoading: false}), 1000);
+        setTimeout(() => this.setState({isLoading: false}), 1500);
     }
 
     onChangeValue(item) {
