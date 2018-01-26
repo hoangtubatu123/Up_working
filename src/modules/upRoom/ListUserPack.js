@@ -221,10 +221,10 @@ class ListUserPack extends Component {
                                     XÁC NHẬN ĐĂNG KÍ
                                 </Text>
                             </View>
-                            <View style={{flex: 1}}>
+                            <View style={{flex: 1, justifyContent : 'flex-start', alignItems : 'center'}}>
                                 <Item style={general.itemInput}>
                                     <Input
-                                        style={[general.inputTheme02, {fontSize: 15, marginTop : 20}]}
+                                        style={[general.inputTheme02, general.textDescriptionCard, { marginTop : 20}]}
                                         underlineColorAndroid={color.none}
                                         placeholder="Số điện thoại của bạn"
                                         returnKeyType={'next'}
@@ -236,7 +236,7 @@ class ListUserPack extends Component {
                                 </Item>
                                 <Item style={[general.itemInput, {marginTop: 30}]}>
                                     <Input
-                                        style={[general.inputTheme02, {fontSize: 15}]}
+                                        style={[general.inputTheme02,general.textDescriptionCard]}
                                         underlineColorAndroid={color.none}
                                         placeholder="Email"
                                         returnKeyType={'next'}

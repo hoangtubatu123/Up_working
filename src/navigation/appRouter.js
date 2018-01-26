@@ -8,6 +8,7 @@ import ReservationContainer from '../modules/reservation/ReservationContainer';
 import HistoryContainer from '../modules/history/HistoryContainer';
 import UpRoomContainer from '../modules/upRoom/UpRoomContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
+import NotificationContainer from '../modules/notification/NotificationContainer'
 import InfoNewContainer from '../modules/news/InfoNewContainer';
 import * as React from "react";
 
@@ -29,7 +30,8 @@ const Drawer = DrawerNavigator(
         History: {screen: HistoryContainer},
         UpRoom: {screen: UpRoomContainer},
         infoUp : {screen : InfoUpContainer},
-        infoNew : {screen : InfoNewContainer}
+        infoNew : {screen : InfoNewContainer},
+        noti : {screen : NotificationContainer}
     },
     {
         drawerWidth: size.wid * 3 / 4,

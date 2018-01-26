@@ -56,6 +56,10 @@ export default {
         status : 0,
     },
     history : {
-         
-    }
+
+    },
+    notification : {
+        loadingNotification : false,
+
+    },
 }

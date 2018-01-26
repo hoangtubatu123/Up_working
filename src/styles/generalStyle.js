@@ -718,6 +718,7 @@ export const style = {
         height: 40,
         backgroundColor: color.none,
         borderBottomWidth: 0,
+        marginLeft : 20
     },
     deadlineProgress: {
         height: 5,
@@ -925,6 +926,37 @@ export const style = {
         backgroundColor: 'rgb(0, 128, 214)',
         alignItems: 'center',
         flexDirection: 'row',
+    },
+    backgroundNone: {
+        backgroundColor: color.none,
+    },
+    backgroundGray: {
+        backgroundColor: '#f2f2f2',
+    },
+    avatarUserNormalSquare: {
+        borderRadius : 25,
+        width: 50,
+        height: 50,
+        backgroundColor: color.none,
+    },
+    titleSmallDarkGrayBold: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: size.titleSmall,
+        color: color.darkGray,
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+    },
+    describeItalicDark: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 12,
+        color: 'rgb(178, 178, 178)',
+        fontWeight: (Platform.OS === 'ios') ? '400' : 'normal',
+
+    },
+    titleSmallDarkGray: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: size.titleNormal,
+        color: color.darkGray,
+        fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
     },
 };
 

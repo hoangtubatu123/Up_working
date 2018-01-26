@@ -43,9 +43,7 @@ class DrawerContainer extends Component {
                         onPress={() => navigate('Home')}
                     >
                         <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                            </View>
-                            <Text style={general.textInDrawer}>Home</Text>
+                            <Text style={general.textTitleCard}>Trang chủ</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -53,204 +51,31 @@ class DrawerContainer extends Component {
                         onPress={() => navigate('History')}
                     >
                         <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                            </View>
-                            <Text style={general.textInDrawer}>History</Text>
+                            <Text style={general.textTitleCard}>Lịch sử</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={general.itemTabInDrawer}
-                        onPress={() => navigate('UpRoom')}
+                        onPress={() => navigate('Reservation')}
                     >
                         <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                            </View>
-                            <Text style={general.textInDrawer}>UpRoom</Text>
+                            <Text style={general.textTitleCard}>Đặt chỗ</Text>
                         </View>
                     </TouchableOpacity>
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Dashboard')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|dashboard"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Dashboard</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Map')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|map"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Map</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('QRCode')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="fontawesome|qrcode"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>QRCODE</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Trello')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="entypo|calendar"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Jobs</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('PersonnelManagement')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|supervisor-account"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Personnel Management</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Teach')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|work"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Teach</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Cart')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="materialCommunity|cart"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Cart</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('MarketingManagement')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|donut-small"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Marketing Management</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('FinanceManagement')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|monetization-on"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Finance Management</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('Base')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|account-balance"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Bases</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
-                    {/*<TouchableOpacity*/}
-                        {/*style={general.itemTabInDrawer}*/}
-                        {/*onPress={() => navigate('ExerciseAndPost')}*/}
-                    {/*>*/}
-                        {/*<View style={general.wrapperRowCenter}>*/}
-                            {/*<View style={general.wrapperIconDrawer}>*/}
-                                {/*<Icon*/}
-                                    {/*name="material|dashboard"*/}
-                                    {/*size={size.iconBig}*/}
-                                    {/*style={general.colorDark}*/}
-                                {/*/>*/}
-                            {/*</View>*/}
-                            {/*<Text style={general.textInDrawer}>Exercise And Post</Text>*/}
-                        {/*</View>*/}
-                    {/*</TouchableOpacity>*/}
                     <TouchableOpacity
                         style={general.itemTabInDrawer}
-                        onPress={() => navigate('Email')}
+                        onPress={() => navigate('noti')}
                     >
                         <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                            </View>
-                            <Text style={general.textInDrawer}>Email</Text>
+                            <Text style={general.textTitleCard}>Thông báo</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={general.itemTabInDrawer}
+                        style={[general.itemTabInDrawer]}
                         onPress={() => this.logout()}
                     >
                         <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                            </View>
-                            <Text style={general.textInDrawer}>Đăng xuất</Text>
+                            <Text style={general.textTitleCard}>Đăng xuất</Text>
                         </View>
                     </TouchableOpacity>
                     {/*<TouchableOpacity*/}
