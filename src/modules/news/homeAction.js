@@ -1,5 +1,5 @@
 import * as types from '../../constants/actionTypes'
-import * as homeApi from '../../modules/news/homeApi'
+import * as homeApi from '..//news/homeApi'
 //get all new
 export function beginGetNews(){
     return{

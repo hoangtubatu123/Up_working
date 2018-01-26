@@ -706,10 +706,12 @@ export const style = {
         marginTop: 10,
         marginBottom: 10
     },
-    shadow: {
+    shadow: Platform.OS === 'ios' ? {
         shadowColor: color.shadowColor,
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.3,
+    } : {
+        elevation: 2,
     },
     itemTabInDrawer: {
         alignItems: 'center',

@@ -105,9 +105,12 @@ class HistoryContainer extends Component {
                                         <TouchableOpacity
                                             key={i}
                                             activeOpacity={0.8}
-                                            style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
-                                            <View style={general.paddingLR}>
+                                            style={general.marginTopBottom}
+                                         >
+                                            <View
+                                                style={[general.shadow, general.imageFeatureHeightLow, general.marginLR]}>
                                                 <Image
+                                                    borderRadius={10}
                                                     resizeMode={'cover'}
                                                     source={{uri: item.url}}
                                                     style={general.imageFeatureHeightLow}
