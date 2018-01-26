@@ -8,7 +8,9 @@ import {connect} from 'react-redux';
 import * as upRoomAction from './upRoomAction';
 import {bindActionCreators} from 'redux'
 import ListUserPack from './ListUserPack';
-import BackButton from '../../commons/BackButton'
+import * as color from '../../styles/color';
+import * as size from '../../styles/size';
+import Icon from '../../commons/Icon'
 
 class UpRoomContainer extends Component {
     constructor() {
@@ -32,11 +34,23 @@ class UpRoomContainer extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        const {goBack} = this.props.navigation;
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
+                    <Left>
+                        <TouchableOpacity
+                            style={[general.padding, general.wrapperBackButton]}
+                            onPress={() => this.props.navigation.navigate("Reservation")}
+                        >
+                            <Icon name="entypo|chevron-thin-left"
+                                  size={size.iconBig}
+                                  color={color.iconColor}
+                            />
+                        </TouchableOpacity>
+                    </Left>
                     <Text style={[general.textTitleHeader]}>
-                        UP LƯƠNG YÊN
+                        {this.props.navigation.state.params.baseName}
                     </Text>
                     <Right>
                         <HamburgerButton navigate={navigate}/>
