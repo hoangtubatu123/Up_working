@@ -5,6 +5,7 @@ import general from '../../styles/generalStyle';
 import Icon from '../../commons/Icon';
 
 class ListView extends Component {
+
     shouldComponentUpdate(nextProps) {
         if (nextProps.item !== this.props.item) {
             return true;
@@ -23,7 +24,7 @@ class ListView extends Component {
                     style={[general.marginTopBottom, general.paddingLR, {marginBottom: 20}]}>
                     <Image
                         resizeMode={'cover'}
-                        source={{uri: "http://" + this.props.item.url}}
+                        source={{uri:  "http://" + this.props.item.url}}
                         style={general.imageFeature}
                     />
 

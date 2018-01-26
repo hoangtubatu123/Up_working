@@ -309,7 +309,7 @@ export const style = {
     textSmallDarkGray: {
         color: color.darkGray,
         fontFamily: 'Montserrat-Regular',
-        fontSize: 11,
+        fontSize: 13,
     },
     textInDrawer: {
         fontFamily: 'Montserrat-Light',
@@ -886,9 +886,49 @@ export const style = {
         backgroundColor:color.mainColor,
         height: 30,
         borderRadius: 5,
-    }
-
+    },
+// code cuong
+    titleBigDarkBold: {
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Bold',
+        fontSize: 18,
+        fontWeight: Platform.OS === 'ios' ? 'bold' : 'normal',
+        color: 'rgb(0,0,0)',
+    },
+    modalCartStatus: {
+        borderRadius: 15,
+        width: wid * 0.9,
+        height: hei * 0.5,
+        backgroundColor: 'rgb(255, 255, 255)',
+    },
+    wrapperForm: {
+        marginTop: 10,
+        marginBottom: 10,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    wrapperTextInputInfoUser: {
+        width: wid * 0.7,
+        margin: 5,
+    },
+    textPrice2: {
+        color: color.darkGray,
+        fontFamily: (Platform.OS === 'ios') ? 'Montserrat' : 'Montserrat-Medium',
+        fontSize: 12,
+        fontWeight: Platform.OS === 'ios' ? '400' : 'normal',
+    },
+    buttonOrderInModal: {
+        borderRadius: 15,
+        padding: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        backgroundColor: 'rgb(0, 128, 214)',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
 };
+
+
 
 const general = StyleSheet.create(style);
 

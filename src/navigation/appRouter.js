@@ -6,7 +6,7 @@ import LoginContainer from '../modules/loginAndRegister/LoginContainer';
 import RegisterContainer from '../modules/loginAndRegister/RegisterContainer';
 import ReservationContainer from '../modules/reservation/ReservationContainer';
 import HistoryContainer from '../modules/history/HistoryContainer';
-import UpRoomInformation from '../modules/upRoom/UpRoomInformation';
+import UpRoomContainer from '../modules/upRoom/UpRoomContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
 import InfoNewContainer from '../modules/news/InfoNewContainer';
 import * as React from "react";
@@ -27,7 +27,7 @@ const Drawer = DrawerNavigator(
         Home: {screen: HomeContainer},
         Reservation: {screen: ReservationContainer},
         History: {screen: HistoryContainer},
-        UpRoom: {screen: UpRoomInformation},
+        UpRoom: {screen: UpRoomContainer},
         infoUp : {screen : InfoUpContainer},
         infoNew : {screen : InfoNewContainer}
     },

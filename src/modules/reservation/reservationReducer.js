@@ -14,23 +14,23 @@ export default function getReservationReducer(state = initialState.reservation, 
             return {
                 ...state,
                 ...{provinces : action.provinces, isLoadingProvinces: action.isLoadingProvinces}
-            }
+            };
         case types.GET_PROVINCES_ERROR :
             return {
                 ...state,
                 ...{isLoadingProvinces : action.isLoadingProvinces, error : action.errorProvinces}
-            }
+            };
 
         case types.BEGIN_GET_RESERVATION :
             return{
                 ...state,
                 ...{isLoadingUp : action.isLoadingUp}
-            }
+            };
         case types.GET_REVERVATION_SUCCESS :
             return {
                 ...state,
                 ...{isLoadingUp: action.isLoadingUp, bases: action.bases}
-            }
+            };
         case types.GET_REVERVATION_ERROR:
             return {
                 ...state,
@@ -40,12 +40,12 @@ export default function getReservationReducer(state = initialState.reservation, 
             return{
                 ...state,
                 ...{isLoadingUp : action.isLoadingUp}
-            }
+            };
         case types.GET_SEARCH_BASES_SUCCESS :
             return {
                 ...state,
                 ...{isLoadingUp: action.isLoadingUp, bases: action.bases}
-            }
+            };
         case types.GET_SEARCH_BASES_ERROR:
             return {
                 ...state,

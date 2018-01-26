@@ -58,7 +58,7 @@ class InfoNewContainer extends Component {
                                 <Text/>
                                 <View style={general.wrapperCenter}>
                                     <Image
-                                        source={{uri: detailNew.author ? 'http://' + detailNew.author.avatar_url : ''}}
+                                        source={{uri: detailNew.author ? "http://" +  detailNew.author.avatar_url : ''}}
                                         style={general.imageCircleBig}/>
                                 </View>
                                 <Text/>
@@ -69,7 +69,7 @@ class InfoNewContainer extends Component {
                                             ?
                                             'Đang tải...'
                                             :
-                                            detailNew.author ? detailNew.author.name : 'Sociology Hue'
+                                            detailNew.author ? detailNew.author.name : 'Up Co-working'
                                     }
                                 </Text>
                                 </Text>

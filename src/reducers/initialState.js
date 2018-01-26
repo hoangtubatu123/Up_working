@@ -45,5 +45,17 @@ export default {
         isLoadingUp : false,
         provinces : [],
         bases : [],
+    },
+    upRoom : {
+        isLoadingUserPack : false,
+        user_packs : [],
+        errorUserPack : false,
+        isLoadingRegister : false,
+        message : "",
+        errorRegister : false,
+        status : 0,
+    },
+    history : {
+        
     }
 }
