@@ -44,26 +44,8 @@ class DrawerContainer extends Component {
                     >
                         <View style={general.wrapperRowCenter}>
                             <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|home"
-                                    size={size.iconBig}
-                                />
                             </View>
                             <Text style={general.textInDrawer}>Home</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={general.itemTabInDrawer}
-                        onPress={() => navigate('Reservation')}
-                    >
-                        <View style={general.wrapperRowCenter}>
-                            <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|video-library"
-                                    size={size.iconBig}
-                                />
-                            </View>
-                            <Text style={general.textInDrawer}>Reservation</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -72,10 +54,6 @@ class DrawerContainer extends Component {
                     >
                         <View style={general.wrapperRowCenter}>
                             <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|book"
-                                    size={size.iconBig}
-                                />
                             </View>
                             <Text style={general.textInDrawer}>History</Text>
                         </View>
@@ -86,10 +64,6 @@ class DrawerContainer extends Component {
                     >
                         <View style={general.wrapperRowCenter}>
                             <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|perm-contact-calendar"
-                                    size={size.iconBig}
-                                />
                             </View>
                             <Text style={general.textInDrawer}>UpRoom</Text>
                         </View>
@@ -265,10 +239,6 @@ class DrawerContainer extends Component {
                     >
                         <View style={general.wrapperRowCenter}>
                             <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="material|email"
-                                    size={size.iconBig}
-                                />
                             </View>
                             <Text style={general.textInDrawer}>Email</Text>
                         </View>
@@ -279,11 +249,6 @@ class DrawerContainer extends Component {
                     >
                         <View style={general.wrapperRowCenter}>
                             <View style={general.wrapperIconDrawer}>
-                                <Icon
-                                    name="fontawesome|sign-out"
-                                    size={size.iconBig}
-                                    style={general.colorDark}
-                                />
                             </View>
                             <Text style={general.textInDrawer}>Đăng xuất</Text>
                         </View>

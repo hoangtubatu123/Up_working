@@ -107,7 +107,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         manifestPlaceholders = [onesignal_app_id: "35c652ce-ee22-4090-8c06-2c8221dae909",
-                                        onesignal_google_project_number: ""]
+                                        onesignal_google_project_number: "467640746743"]
     }
     splits {
         abi {

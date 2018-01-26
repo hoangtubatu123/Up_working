@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import {Spinner} from 'native-base';
 import general from '../styles/generalStyle';
-
+import * as color from '../styles/color'
 class Loading extends Component{
     render(){
         return(
@@ -12,7 +12,7 @@ class Loading extends Component{
                 style={general.wrapperCenter}
                 onPress={() => this.props.goBack(null)}
             >
-                <Spinner color="#8bd100"/>
+                <Spinner color={color.textColorNotActive}/>
             </View>
         );
     }
