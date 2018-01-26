@@ -76,7 +76,7 @@ class LoginContainer extends Component {
             >
 
                 <StatusBar
-                    barStyle="light-content"
+                    barStyle="dark-content"
                     backgroundColor={color.background}
                 />
                 <View style={[general.wrapperLogin]}>
@@ -87,7 +87,7 @@ class LoginContainer extends Component {
                     />
                         <Item style={general.itemInput}>
                             <Input
-                                style={[general.inputTheme02]}
+                                style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Email"
                                 keyboardType={'email-address'}
@@ -102,7 +102,7 @@ class LoginContainer extends Component {
                     <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Password"
                                 returnKeyType={'next'}
