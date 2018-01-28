@@ -71,8 +71,7 @@ class LoginContainer extends Component {
         const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                                    keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
-                                  style={general.wrapperContainer}
+                                                                  style={general.wrapperContainer}
             >
 
                 <StatusBar
@@ -83,22 +82,22 @@ class LoginContainer extends Component {
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={[general.imageLogin, {width : 3*size.wid/4}]}
+                        style={[general.imageLogin, {width: 3 * size.wid / 4}]}
                     />
-                        <Item style={general.itemInput}>
-                            <Input
-                                style={[general.inputTheme02, general.textDescriptionCard]}
-                                underlineColorAndroid={color.none}
-                                placeholder="Email"
-                                keyboardType={'email-address'}
-                                returnKeyType={'next'}
-                                autoCorrect={false}
-                                onChangeText={(email) => {
-                                    this.updateData('email', email);
-                                }}
-                                value={this.props.login.email}
-                            />
-                        </Item>
+                    <Item style={general.itemInput}>
+                        <Input
+                            style={[general.inputTheme02, general.textDescriptionCard]}
+                            underlineColorAndroid={color.none}
+                            placeholder="Email"
+                            keyboardType={'email-address'}
+                            returnKeyType={'next'}
+                            autoCorrect={false}
+                            onChangeText={(email) => {
+                                this.updateData('email', email);
+                            }}
+                            value={this.props.login.email}
+                        />
+                    </Item>
                     <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
@@ -133,30 +132,22 @@ class LoginContainer extends Component {
                                         size='small'
                                     />
                                 ) : (
-
                                     <Text style={[general.paddingRight, general.textBigLight]}>LOG IN</Text>
-
-
-
                                 )
-
                                 }
-
-
                             </TouchableOpacity>
                         </View>
                         <View style={{marginTop: 20}}>
-                            <Text style={[general.textLogin, {fontSize: 11}]}
+                            <Text style={general.textLogin}
                                   onPress={() => this.props.navigation.navigate('Register')}>DON'T HAVE AN ACCOUNT?
                                 REGISTER</Text>
                         </View>
                     </View>
-                    <View style={{justifyContent: 'center', alignItems: 'center', bottom: -size.hei / 6}}>
-                        <Text style={[general.textLogin, {fontSize: 11}]}>FORGOT PASSWORD</Text>
+                    <View style={general.wrapperBottomLogin}>
+                        <Text style={general.textLogin}>FORGOT PASSWORD</Text>
                     </View>
                 </View>
             </KeyboardAvoidingView>
-
 
 
         )

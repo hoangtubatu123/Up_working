@@ -37,9 +37,13 @@ export const style = {
         right: 50
     },
 
+    wrapperBottomLogin : {
+        height: 0.05 * hei,
+        justifyContent:'center',
+        alignItems:'center'
+    },
     wrapperLogin : {
-        width:wid,
-        flex:7/8,
+        height: 0.95 * hei,
         justifyContent:'center',
         alignItems:'center'
     },
