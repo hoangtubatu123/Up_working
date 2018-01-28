@@ -1,3 +1,9 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
+    <string moduleConfig="true" name="appcenterCrashes_whenToSendCrashes">ALWAYS_SEND</string>
+    <string moduleConfig="true" name="appcenterAnalytics_whenToEnableAnalytics">ALWAYS_SEND</string>
     <string name="app_name">UpWorking</string>
+    <string name="CodePushPublicKey">
+        amiNPF5WRaoK6G2gAl18FtbH3rYQ91a6f11c-8611-4707-bff5-9033ff68ea8f
+    </string>
 </resources>

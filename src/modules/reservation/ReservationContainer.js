@@ -150,7 +150,7 @@ class ReservationContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     style={{flex: 1}}>
                     {
-                        this.props.isLoadingUp || this.state.isLoading
+                        this.props.isLoadingUp || this.state.isLoading || (this.props.isLoading && this.props.bases.length === 0)
                             ?
                             <Loading/>
                             :

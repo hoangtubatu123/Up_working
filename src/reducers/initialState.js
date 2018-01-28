@@ -59,6 +59,26 @@ export default {
 
     },
     notification : {
+        notifications : [
+            {
+                avatar_url : "https://i.pinimg.com/564x/88/4c/52/884c52a8d5778dd514a29a57ce307639.jpg",
+                content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
+                created_at: "4 minutes ago",
+                seen : true
+            },
+            {
+                avatar_url : "https://i.pinimg.com/564x/29/0d/17/290d176e15e9e6995667687faa14f8d3.jpg",
+                content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
+                created_at: "4 minutes ago",
+                seen : false
+            },
+            {
+                avatar_url : "https://i.pinimg.com/564x/29/0d/17/290d176e15e9e6995667687faa14f8d3.jpg",
+                content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
+                created_at: "4 minutes ago",
+                seen : false
+            },
+        ],
         loadingNotification : false,
 
     },

@@ -14,27 +14,6 @@ class NotificationContainer extends Component {
         super();
         this.state = {
             isLoading : false,
-            data : [
-                {
-                    avatar_url : "https://i.pinimg.com/564x/88/4c/52/884c52a8d5778dd514a29a57ce307639.jpg",
-                    content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
-                    created_at: "4 minutes ago",
-                    seen : true
-                },
-                {
-                    avatar_url : "https://i.pinimg.com/564x/29/0d/17/290d176e15e9e6995667687faa14f8d3.jpg",
-                    content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
-                    created_at: "4 minutes ago",
-                    seen : false
-                },
-                {
-                    avatar_url : "https://i.pinimg.com/564x/29/0d/17/290d176e15e9e6995667687faa14f8d3.jpg",
-                    content : "Nguyễn Việt Hùng đã thêm một ảnh trong ColorMe Family ",
-                    created_at: "4 minutes ago",
-                    seen : false
-                },
-
-            ]
         }
     }
     isLoading(){
@@ -73,13 +52,21 @@ class NotificationContainer extends Component {
                             :
                             <FlatList
                                 showsVerticalScrollIndicator={false}
-                                data={this.state.data}
+                                data={this.props.notifications}
                                 onEndThreshold={5}
                                 renderItem={({item}) => {
                                     return (
                                         <CardItem
                                             avatar
                                             style={[item.seen ? general.backgroundNone : general.backgroundGray, general.noMarginLeft, general.padding, general.haveBorderBottom]}>
+                                            <View style={{position: 'absolute', top : 5, left : 5}}>
+                                                <Icon
+                                                    name="fontawesome|circle"
+                                                    size={5}
+                                                    color="#c50000"
+                                                    style={{display : item.seen ? "none" : "flex"}}
+                                                />
+                                            </View>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={{flex: 1}}
@@ -126,7 +113,9 @@ class NotificationContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    return {}
+    return {
+        notifications : state.notification.notifications
+    }
 }
 
 function mapDispatchToProps(dispatch) {
