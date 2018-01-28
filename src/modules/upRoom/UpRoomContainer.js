@@ -40,7 +40,7 @@ class UpRoomContainer extends Component {
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
                     <Left>
                         <TouchableOpacity
-                            style={[general.padding, general.wrapperBackButton]}
+                            style={[ general.wrapperBackButton]}
                             onPress={() => this.props.navigation.navigate("Reservation")}
                         >
                             <Icon name="entypo|chevron-thin-left"

@@ -101,9 +101,10 @@ class HomeContainer extends Component {
                         handleChangeText={(input) => this.handleChangText(input)}
                     />
                     <View style={general.wrapperFullWidth}>
-                        {this.props.isLoading || this.state.isLoading ?
+                        {this.props.isLoading || this.state.isLoading || (this.props.isLoading && this.props.news.length === 0)?
                             <Loading/>
                             :
+
                             this.props.news.length != 0
                             ?
                             <FlatList

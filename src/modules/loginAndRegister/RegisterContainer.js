@@ -68,7 +68,7 @@ class RegisterContainer extends Component {
                     <View>
                         <Item style={general.itemInput}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Email"
                                 keyboardType={'email-address'}
@@ -82,9 +82,9 @@ class RegisterContainer extends Component {
                         </Item>
                     </View>
                     <View style={{marginTop: 30}}>
-                        <Item style={general.itemInput}>
+                        <Item style={[general.itemInput, ]}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Password"
                                 returnKeyType={'next'}
@@ -98,9 +98,9 @@ class RegisterContainer extends Component {
                         </Item>
                     </View>
                     <View style={{marginTop: 30}}>
-                        <Item style={general.itemInput}>
+                        <Item style={[general.itemInput, ]}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02 ,general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Name"
                                 keyboardType={'email-address'}
@@ -116,7 +116,7 @@ class RegisterContainer extends Component {
                     <View style={{marginTop: 30}}>
                         <Item style={general.itemInput}>
                             <Input
-                                style={general.inputTheme02}
+                                style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Username"
                                 keyboardType={'email-address'}
