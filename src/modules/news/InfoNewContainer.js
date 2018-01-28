@@ -46,7 +46,7 @@ class InfoNewContainer extends Component {
                     renderForeground={() => (
                         <View key="parallax-header" style={[parallaxStyle.parallaxHeaderTitle]}>
                             <View style={general.paddingLR}>
-                                <Text style={[general.textTitleHeader, {textAlign: 'center', paddingLeft: 20, paddingRight: 20}]} numberOfLines={3}>
+                                <Text  style={[general.textTitleHeader, {textAlign: 'center', paddingLeft: 20, paddingRight: 20}]} numberOfLines={3}>
                                     {
                                         isLoadingDetail
                                             ?

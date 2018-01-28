@@ -28,16 +28,6 @@ class NotificationContainer extends Component {
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
-                    <Left>
-                        <TouchableOpacity
-                            style={[general.wrapperBackButton]}
-                        >
-                            <Icon name="fontawesome|bell-o"
-                                  size={size.iconBig}
-                                  color={color.iconColor}
-                            />
-                        </TouchableOpacity>
-                    </Left>
                     <Text style={[general.textTitleHeader]}>
                         NOTIFICATIONS
                     </Text>
@@ -59,14 +49,6 @@ class NotificationContainer extends Component {
                                         <CardItem
                                             avatar
                                             style={[item.seen ? general.backgroundNone : general.backgroundGray, general.noMarginLeft, general.padding, general.haveBorderBottom]}>
-                                            <View style={{position: 'absolute', top : 5, left : 5}}>
-                                                <Icon
-                                                    name="fontawesome|circle"
-                                                    size={5}
-                                                    color="#c50000"
-                                                    style={{display : item.seen ? "none" : "flex"}}
-                                                />
-                                            </View>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={{flex: 1}}
@@ -86,7 +68,7 @@ class NotificationContainer extends Component {
                                                         <Icon
                                                             name="fontawesome|check-circle"
                                                             size={15}
-                                                            color="green"
+                                                            color= {color.mainColor}
                                                         />
                                                     <Text
                                                         style={[general.describeItalicDark, {marginLeft: 10}]}>
