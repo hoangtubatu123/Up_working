@@ -15,7 +15,7 @@ export function getNewsSearchApi(txt){
     let url = env.API_UP + "/v2/blogs?page=1&search=" + txt;
     return axios.get(url);
 }
-export function getMoreNews(page){
+export function getMoreNewsApi(page){
     let url = env.API_UP + "/v2/blogs?page=" +page;
     return axios.get(url);
 }
