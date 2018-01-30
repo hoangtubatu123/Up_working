@@ -1,5 +1,5 @@
 import * as types from '../../constants/actionTypes'
-import * as homeApi from '..//news/homeApi'
+import * as homeApi from '../news/homeApi'
 //get all new
 export function beginGetNews(){
     return{
@@ -107,7 +107,7 @@ export function getMoreNews(page){
         dispatch({
             type : types.BEGIN_GET_MORE_NEWS,
         })
-        homeApi.getMoreNews(page)
+        homeApi.getMoreNewsApi(page)
             .then(function (res){
                 dispatch({
                     type : types.GET_MORE_NEWS_SUCCESS,

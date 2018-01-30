@@ -28,6 +28,9 @@ class ListView extends Component {
                             source={{uri: "http://" + this.props.item.url}}
                             style={general.imageFeature}
                         />
+                        <Text style={[general.categoryInImage, general.textDescriptionCardLight]}>
+                            {this.props.item.category ? this.props.item.category : 'Category'}
+                        </Text>
                     </View>
                     <View style={{marginTop: 20}}>
                         <Text numberOfLines={1}

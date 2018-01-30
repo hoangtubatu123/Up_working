@@ -724,7 +724,7 @@ export const style = {
         height: 40,
         backgroundColor: color.none,
         borderBottomWidth: 0,
-        marginLeft : 20
+        marginLeft : 15
     },
     deadlineProgress: {
         height: 5,
@@ -963,6 +963,35 @@ export const style = {
         fontSize: size.titleNormal,
         color: color.darkGray,
         fontWeight: (Platform.OS === 'ios') ? '600' : 'normal',
+    },
+    categoryInImage: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
+    categoryAbsolute: {
+        position: 'absolute',
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
+    },
+
+    category: {
+        backgroundColor: color.mainColor,
+        padding: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        borderRadius: 13,
+        overflow: "hidden"
     },
 };
 

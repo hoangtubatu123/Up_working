@@ -19,13 +19,13 @@ class HomeContainer extends Component {
             isLoading: false,
             id: 0,
             showSearch: false,
-            page: 2,
+            page: 1,
             txt : ""
         }
     }
 
     componentWillMount() {
-        this.props.homeAction.getNews();
+        this.props.homeAction.getMoreNews(1);
         this.isLoading();
     }
 
@@ -68,15 +68,24 @@ class HomeContainer extends Component {
         this.props.homeAction.getSearchNew(input);
     }
 
-    getMoreNews() {
-        const {news, homeAction} = this.props;
-        if (news.length >= 6) {
-            this.setState({page: this.state.page + 1});
+    getMore() {
+        const {news} = this.props;
+        if (news.length === this.state.page * 6) {
+            let page = this.state.page + 1;
             if(this.state.txt !== ""){
-                homeAction.getMoreNewsSearch(this.state.page, this.state.txt);
+                this.props.homeAction.getMoreNewsSearch(page, this.state.txt);
+            }else{
+
+             this.props.homeAction.getMoreNews(page);
             }
-            homeAction.getMoreNews(this.state.page);
+           this.setState({page : page})
         }
+
+        console.log(this.state.page, this.props.isLoadingMore)
+    }
+    refreshList(){
+        this.props.homeAction.refreshNews();
+        this.setState({page : 1});
     }
 
 
@@ -110,15 +119,15 @@ class HomeContainer extends Component {
                             <FlatList
                                 showsVerticalScrollIndicator={false}
                                 data={this.props.news}
-                                onEndReachedThreshold={5}
+                                onEndReachedThreshold={10}
                                 onEndReached={
-                                    () => this.getMoreNews()
+                                    () => this.getMore()
                                 }
                                 refreshControl={
                                     <RefreshControl
                                         refreshing={this.props.isRefreshing}
                                         onRefresh={
-                                            () => this.props.homeAction.refreshNews()
+                                            () => this.refreshList()
                                         }
                                     />
                                 }

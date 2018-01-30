@@ -12,7 +12,7 @@ class Loading extends Component{
                 style={general.wrapperCenter}
                 onPress={() => this.props.goBack(null)}
             >
-                <Spinner color={color.textColorNotActive}/>
+                <Spinner  color={color.textColorNotActive}/>
             </View>
         );
     }
