@@ -127,13 +127,14 @@ export const style = {
         flexDirection: 'row',
     },
     wrapperLogoInDrawer: {
-        width: wid * 3 / 4 - 20,
+        width: wid * 3 / 4,
         height: hei / 3,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
     },
     imageInDrawer: {
-        width: wid * 3 / 4 - 80,
+        width: hei/wid > 1.6 ? (0.75*wid) / 1.5  : (0.75*wid) / 2,
+        maxWidth: 400,
         height: hei / 3,
     },
     wrapperButtonPlay: {
@@ -395,7 +396,8 @@ export const style = {
         backgroundColor: color.mainColor
     },
     imageLogin:{
-        width: 3*wid/4,
+        width: hei/wid > 1.6 ? wid / 1.5  : wid / 2,
+        maxWidth: 400,
         height: hei/3,
     },
     imageFullWidth: {

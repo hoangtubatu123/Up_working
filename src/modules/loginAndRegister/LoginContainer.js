@@ -82,7 +82,7 @@ class LoginContainer extends Component {
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={[general.imageLogin, {width: 3 * size.wid / 4}]}
+                        style={[general.imageLogin]}
                     />
                     <Item style={general.itemInput}>
                         <Input

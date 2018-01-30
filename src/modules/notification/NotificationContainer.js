@@ -29,7 +29,7 @@ class NotificationContainer extends Component {
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
                     <Text style={[general.textTitleHeader]}>
-                        NOTIFICATIONS
+                        THÔNG BÁO
                     </Text>
                     <Right>
                         <HamburgerButton navigate={navigate}/>
@@ -84,10 +84,7 @@ class NotificationContainer extends Component {
                                 }
                             />
                     }
-
                 </Content>
-
-
             </Container>
         )
     }
