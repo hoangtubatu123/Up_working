@@ -86,7 +86,7 @@ class HistoryContainer extends Component {
                             <View>
                                 <View style={general.paddingLR}>
                                     <View style={general.wrapperFeatureHeightLow}>
-                                        <View style={[general.wrapperRowSpaceBetween, general.padding]}>
+                                        <View style={[general.wrapperRowSpaceBetween, general.padding, general.shadow]}>
                                             <Text style={general.textTitleCardLight}>Số lượt còn lại</Text>
                                             <IconLight name={'entypo|dots-three-horizontal'}/>
                                         </View>

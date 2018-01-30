@@ -143,10 +143,10 @@ class LoginContainer extends Component {
                                 REGISTER</Text>
                         </View>
                     </View>
-                    <View style={general.wrapperBottomLogin}>
-                        <Text style={general.textLogin}>FORGOT PASSWORD</Text>
-                    </View>
                 </View>
+                {/*<View style={[general.wrapperBottomLogin]}>*/}
+                    {/*<Text style={general.textLogin}>FORGOT PASSWORD</Text>*/}
+                {/*</View>*/}
             </KeyboardAvoidingView>
 
 

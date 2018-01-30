@@ -36,13 +36,7 @@ class ListView extends Component {
                     </View>
 
                 </TouchableOpacity>
-                {/*<View style={[general.iconInNews, general.shadow]}>*/}
-                {/*<Icon*/}
-                {/*name="materialCommunity|star"*/}
-                {/*size={30}*/}
-                {/*style={{color: 'white'}}*/}
-                {/*/>*/}
-                {/*</View>*/}
+
             </View>
 
         )

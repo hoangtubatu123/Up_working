@@ -38,12 +38,12 @@ export const style = {
     },
 
     wrapperBottomLogin : {
-        height: 0.05 * hei,
+        height: 0.1 * hei,
         justifyContent:'center',
         alignItems:'center'
     },
     wrapperLogin : {
-        height: 0.95 * hei,
+        height: 0.9 * hei,
         justifyContent:'center',
         alignItems:'center'
     },
