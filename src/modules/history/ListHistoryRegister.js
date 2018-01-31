@@ -20,24 +20,30 @@ class ListHistoryRegister extends Component {
                 <TouchableOpacity
                     activeOpacity={0.8}
                     style={general.marginTopBottom}
-                    onPress = {() => this.props.openModalHistory(item)}
+                    onPress = {() => this.props.openModalHistory(this.props.item)}
                 >
                     <View
-                        style={[general.shadow, general.imageFeatureHeightLow, {marginLeft: 2, marginRight: 2}]}>
+                        style={[ {marginLeft: 2, marginRight: 2}]}>
                         <Image
                             borderRadius={10}
                             resizeMode={'cover'}
                             source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
-                            style={general.imageFeatureHeightLow}
+                            style={[general.imageFeatureHeightLow ,general.shadow, general.imageFeatureHeightLow,]}
                         />
+                        <View
+                            style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR, {
+                                position: "absolute",
+                                bottom: 0
+                            }]}>
+                            <Text style={[general.textTitleCardLight]}>{item.created_at.split(" ")[1]}</Text>
+                            <Text/>
+
+                        </View>
                     </View>
+
                     <View
-                        style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR, {
-                            position: "absolute",
-                            bottom: 0
-                        }]}>
-                        <Text style={[general.textTitleCardLight]}>{item.created_at.split(" ")[1]}</Text>
-                        <Text/>
+                        style={[general.paddingLR, {height : 30, marginTop: 10}]}>
+                        <Text style={general.textTitleCard}>BKUP</Text>
                     </View>
                 </TouchableOpacity>
 

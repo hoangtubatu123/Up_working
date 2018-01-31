@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View,Image} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
@@ -21,7 +21,7 @@ class HistoryContainer extends Component {
             tab: 0,
             isLoading: false,
             item: {},
-            modalHistory : false
+            modalHistory: false
         }
         this.openModalHistory = this.openModalHistory.bind(this);
     }
@@ -37,8 +37,17 @@ class HistoryContainer extends Component {
     }
 
     openModalHistory(item) {
-        this.setState({item: item, modalHistory: true})
+        this.setState({item: item})
         this.refs.modal1.open();
+    }
+
+
+    isEmpty(obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
     }
 
     render() {
@@ -62,41 +71,49 @@ class HistoryContainer extends Component {
                             ?
                             <Loading/>
                             :
-                            <View>
-                                <View style={general.paddingLR}>
-                                    <View style={general.wrapperFeatureHeightLow}>
-                                        <View style={[general.wrapperRowSpaceBetween, general.padding]}>
-                                            <Text style={general.textTitleCardLight}>Số lượt còn lại</Text>
-                                            <IconLight name={'entypo|dots-three-horizontal'}/>
+                            this.props.history_registers !== 0 ?
+                                <View>
+                                    <View style={general.paddingLR}>
+                                        <View style={general.wrapperFeatureHeightLow}>
+                                            <View style={[general.wrapperRowSpaceBetween, general.padding]}>
+                                                <Text style={general.textTitleCardLight}>Số lượt còn lại</Text>
+                                                <IconLight name={'entypo|dots-three-horizontal'}/>
+                                            </View>
+                                            <View style={general.paddingLeft}>
+                                                <Text style={general.textTitleGiantThin}>12</Text>
+                                            </View>
                                         </View>
-                                        <View style={general.paddingLeft}>
-                                            <Text style={general.textTitleGiantThin}>12</Text>
-                                        </View>
+                                        <Text/>
+                                        <Text/>
+                                        <Text/>
+                                        <Text style={[general.marginTop, general.textTitleBig]}>Lịch sử</Text>
                                     </View>
-                                    <Text/>
-                                    <Text/>
-                                    <Text/>
-                                    <Text style={[general.marginTop, general.textTitleBig]}>Lịch sử</Text>
+
+                                    <FlatList
+                                        showsVerticalScrollIndicator={false}
+                                        data={this.props.history_registers}
+                                        onEndReachedThreshold={10}
+                                        renderItem={({item}) => {
+                                            return (
+                                                <ListHistoryRegister item={item}
+                                                                     modalHistory = {this.state.modalHistory}
+                                                                     openModalHistory={this.openModalHistory}/>)
+                                        }
+                                        }
+                                    />
+
                                 </View>
-
-                                <FlatList
-                                    showsVerticalScrollIndicator={false}
-                                    data={this.props.history_registers}
-                                    onEndReachedThreshold={10}
-                                    renderItem={({item}) => {
-                                        return (
-                                            <ListHistoryRegister item={item} openModalHistory={this.openModalHistory}/>)
-                                    }
-                                    }
-                                />
-
-                            </View>
+                                :
+                                <View style={[general.wrapperCenter, general.paddingLR]}>
+                                    <Text style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
+                                        Hiện bạn chưa đăng kí chỗ ngồi nào
+                                    </Text>
+                                </View>
                     }
                 </Content>
                 <Modal swipeToClose={true}
-                       isOpen = {this.state.modalHistory}
                        style={[general.wrapperModal]}
-                       ref={"modal1"}
+                       ref = {"modal1"}
                 >
                     <View style={[general.wrapperModalStaff, {height: size.hei, width: size.wid}]}>
                         <Container style={general.wrapperContainer}>
@@ -123,13 +140,13 @@ class HistoryContainer extends Component {
                                     activeOpacity={0.8}
                                     style={[general.marginTopBottom, general.shadow]}>
                                     <Image
-                                        resizeMode={'cover'}
-                                        source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
-                                        style={general.imageFullWidth}
+                                    resizeMode={'cover'}
+                                    source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
+                                    style={general.imageFullWidth}
                                     />
                                 </TouchableOpacity>
                                 {
-                                    this.state.item !== null ?
+                                    this.isEmpty(this.state.item) == false ?
                                         <View style={{marginTop: 30, marginLeft: 20}}>
                                             <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
                                             <Text
