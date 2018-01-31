@@ -71,6 +71,7 @@ class HistoryContainer extends Component {
                             ?
                             <Loading/>
                             :
+
                             this.props.history_registers !== 0 ?
                                 <View>
                                     <View style={general.paddingLR}>

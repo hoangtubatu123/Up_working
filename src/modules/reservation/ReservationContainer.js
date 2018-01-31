@@ -140,7 +140,7 @@ class ReservationContainer extends Component {
                 />
 
                 <TouchableOpacity
-                    style={[general.paddingLR, general.wrapperRowCenter, {marginTop: 0}]}
+                    style={[general.paddingLR, general.wrapperRowCenter, {marginTop: -20}]}
                     onPress={() => this.refs.modal2.open()}>
                     <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
                     <IconDark name={"entypo|chevron-down"}/>
