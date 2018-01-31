@@ -89,7 +89,7 @@ class ListUserPack extends Component {
                     </View>
                     <Image
                         resizeMode={'cover'}
-                        source={{uri: "https://images.unsplash.com/photo-1507537362848-9c7e70b7b5c1?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"}}
+                        source={{uri: this.props.item.avatar_url}}
                         style={general.imageFeature}
                     />
                     <View style={{marginTop: 20}}>
@@ -187,7 +187,8 @@ class ListUserPack extends Component {
                                                 <Text/>
                                                 <Text style={general.textTitleCard}>Chi phí</Text>
                                                 <Text
-                                                    style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.props.item.subscriptions[this.state.id].price}
+                                                    style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.props.item.subscriptions[this.state.id].price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                                                }
                                                     VND / 1
                                                     NGÀY</Text>
                                                 <Text/>
@@ -221,10 +222,10 @@ class ListUserPack extends Component {
                                     XÁC NHẬN ĐĂNG KÍ
                                 </Text>
                             </View>
-                            <View style={{flex: 1, justifyContent : 'flex-start', alignItems : 'center'}}>
+                            <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
                                 <Item style={general.itemInput}>
                                     <Input
-                                        style={[general.inputTheme02, general.textDescriptionCard, { marginTop : 20}]}
+                                        style={[general.inputTheme02, general.textDescriptionCard, {marginTop: 20}]}
                                         underlineColorAndroid={color.none}
                                         placeholder="Số điện thoại của bạn"
                                         returnKeyType={'next'}
@@ -236,7 +237,7 @@ class ListUserPack extends Component {
                                 </Item>
                                 <Item style={[general.itemInput, {marginTop: 30}]}>
                                     <Input
-                                        style={[general.inputTheme02,general.textDescriptionCard]}
+                                        style={[general.inputTheme02, general.textDescriptionCard]}
                                         underlineColorAndroid={color.none}
                                         placeholder="Email"
                                         returnKeyType={'next'}
@@ -248,9 +249,9 @@ class ListUserPack extends Component {
                                     />
                                 </Item>
                             </View>
-                            <View style={{alignItems : 'center', justifyContent : 'center'}}>
+                            <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <TouchableOpacity
-                                    style={[general.buttonBuyNowFullSize, {bottom : 20, width : size.wid * 0.6}]}
+                                    style={[general.buttonBuyNowFullSize, {bottom: 20, width: size.wid * 0.6}]}
                                     onPress={() => {
                                         this.registerUserPack(this.state.email, this.state.phone, this.props.item.subscriptions[this.state.id].id)
                                     }}

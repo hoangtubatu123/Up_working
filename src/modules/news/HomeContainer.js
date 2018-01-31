@@ -25,7 +25,7 @@ class HomeContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.homeAction.getMoreNews(1);
+        this.props.homeAction.getNews();
         this.isLoading();
     }
 

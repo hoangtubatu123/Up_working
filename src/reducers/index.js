@@ -5,6 +5,7 @@ import registerReducer from '../modules/loginAndRegister/registerReducers';
 import upRoomReducer from '../modules/upRoom/upRoomReducer';
 import getReservationReducer from '../modules/reservation/reservationReducer';
 import notificationReducer from '../modules/notification/notificationReducer';
+import historyReducer from '../modules/history/historyReducer';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     register                    : registerReducer,
     reservation                 : getReservationReducer,
     upRoom                      : upRoomReducer,
-    notification                : notificationReducer
+    notification                : notificationReducer,
+    history                     : historyReducer
 });
 export default rootReducer;

@@ -56,7 +56,9 @@ export default {
         status : 0,
     },
     history : {
-
+        isLoadingHistory : false,
+        history_registers : [],
+        errorHistory : false
     },
     notification : {
         notifications : [

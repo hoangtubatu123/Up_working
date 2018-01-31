@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View,} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
 import IconLight from '../../commons/IconLight';
-import IconDark from '../../commons/IconDark';
+import * as historyAction from '../history/historyAction'
 import general from '../../styles/generalStyle';
 import {connect} from 'react-redux'
-
+import {bindActionCreators} from 'redux';
+import ListHistoryRegister from './ListHistoryRegister'
+import Modal from 'react-native-modalbox';
+import * as size from '../../styles/size';
+import * as color from '../../styles/color';
+import Icon from '../../commons/Icon';
 
 class HistoryContainer extends Component {
     constructor() {
@@ -15,47 +20,10 @@ class HistoryContainer extends Component {
         this.state = {
             tab: 0,
             isLoading: false,
-            data:
-                [
-
-                    {
-                        "url": "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?auto=format&fit=crop&w=334&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Electric VR suit shocks gamers",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1507537362848-9c7e70b7b5c1?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Smart gadgets for safety conscious bikers",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1501159873713-dc65286617cc?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "A new way to study the night sky",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1485436442739-c12c6e3673af?auto=format&fit=crop&w=553&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Zuckerberg's resolution: 'Fix' Facebook",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1485893226355-9a1c32a0c81e?auto=format&fit=crop&w=500&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "FCC chairman cancels attendance at CES",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                    {
-                        "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=750&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
-                        "title": "Nintendo Switch boasts speedy US sales",
-                        "description": "Technology",
-                        "created_at": "24h ago"
-                    },
-                ]
+            item: {},
+            modalHistory : false
         }
+        this.openModalHistory = this.openModalHistory.bind(this);
     }
 
     isLoading() {
@@ -63,8 +31,19 @@ class HistoryContainer extends Component {
         setTimeout(() => this.setState({isLoading: false}), 200);
     }
 
+    componentWillMount() {
+        this.props.historyAction.getHistoryRegister(this.props.token)
+        this.isLoading();
+    }
+
+    openModalHistory(item) {
+        this.setState({item: item, modalHistory: true})
+        this.refs.modal1.open();
+    }
+
     render() {
         const {navigate} = this.props.navigation;
+        const {item} = this.state;
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
@@ -79,7 +58,7 @@ class HistoryContainer extends Component {
                     showsVerticalScrollIndicator={false}
                     style={{flex: 1}}>
                     {
-                        this.state.isLoading
+                        this.state.isLoading || this.props.isLoadingHistory
                             ?
                             <Loading/>
                             :
@@ -100,34 +79,87 @@ class HistoryContainer extends Component {
                                     <Text style={[general.marginTop, general.textTitleBig]}>Lịch sử</Text>
                                 </View>
 
-                                {
-                                    this.state.data.map((item, i) =>
-                                        <TouchableOpacity
-                                            key={i}
-                                            activeOpacity={0.8}
-                                            style={general.marginTopBottom}
-                                         >
-                                            <View
-                                                style={[general.shadow, general.imageFeatureHeightLow, general.marginLR]}>
-                                                <Image
-                                                    borderRadius={10}
-                                                    resizeMode={'cover'}
-                                                    source={{uri: item.url}}
-                                                    style={general.imageFeatureHeightLow}
-                                                />
-                                            </View>
-                                            <View
-                                                style={[general.marginTop, general.wrapperCenterLeftToRightColumn, general.paddingLR]}>
-                                                <Text style={general.textTitleCard}>{item.title.toUpperCase()}</Text>
-                                                <Text/>
-                                            </View>
-                                        </TouchableOpacity>
-                                    )
-                                }
+                                <FlatList
+                                    showsVerticalScrollIndicator={false}
+                                    data={this.props.history_registers}
+                                    onEndReachedThreshold={10}
+                                    renderItem={({item}) => {
+                                        return (
+                                            <ListHistoryRegister item={item} openModalHistory={this.openModalHistory}/>)
+                                    }
+                                    }
+                                />
 
                             </View>
                     }
                 </Content>
+                <Modal swipeToClose={true}
+                       isOpen = {this.state.modalHistory}
+                       style={[general.wrapperModal]}
+                       ref={"modal1"}
+                >
+                    <View style={[general.wrapperModalStaff, {height: size.hei, width: size.wid}]}>
+                        <Container style={general.wrapperContainer}>
+                            <View style={[general.wrapperHeader, general.paddingBorder]}>
+                                <Text style={[general.textTitleHeader]}>
+                                    LỊCH SỬ ĐẶT CHỖ
+                                </Text>
+                                <Right>
+                                    <TouchableOpacity
+                                        style={[general.padding, general.wrapperBackButton, {marginRight: -20}]}
+                                        onPress={() => {
+                                            this.refs.modal1.close()
+                                        }}
+                                    >
+                                        <Icon name="fontawesome|times"
+                                              size={size.iconBig}
+                                              color={color.iconColor}
+                                        />
+                                    </TouchableOpacity>
+                                </Right>
+                            </View>
+                            <Content style={general.wrapperFullWidth}>
+                                <TouchableOpacity
+                                    activeOpacity={0.8}
+                                    style={[general.marginTopBottom, general.shadow]}>
+                                    <Image
+                                        resizeMode={'cover'}
+                                        source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
+                                        style={general.imageFullWidth}
+                                    />
+                                </TouchableOpacity>
+                                {
+                                    this.state.item !== null ?
+                                        <View style={{marginTop: 30, marginLeft: 20}}>
+                                            <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
+                                            <Text
+                                                style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]}</Text>
+                                            <Text/>
+                                            <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
+                                            <Text
+                                                style={general.textSmallDarkGray}>{this.state.item.subscription.subscription_kind_name}</Text>
+                                            <Text/>
+                                            <Text style={general.textTitleCard}>Mô tả</Text>
+                                            <Text numberOfLines={6}
+                                                  style={general.textSmallDarkGray}>{this.state.item.subscription.description}</Text>
+                                            <Text/>
+                                            <Text style={general.textTitleCard}>Chi phí</Text>
+                                            <Text
+                                                style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.state.item.subscription.price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
+                                            } VND / 1
+                                                NGÀY</Text>
+                                            <Text/>
+                                        </View>
+                                        :
+                                        <View/>
+                                }
+                            </Content>
+
+
+                        </Container>
+                    </View>
+                </Modal>
             </Container>
         );
     }
@@ -135,8 +167,17 @@ class HistoryContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        data: state.home.data,
+        isLoadingHistory: state.history.isLoadingHistory,
+        history_registers: state.history.history_registers,
+        errorHistory: state.history.errorHistory,
+        token: state.login.token
     }
 }
 
-export default connect(mapStateToProps)(HistoryContainer);
+function mapDispatchToProps(dispatch) {
+    return {
+        historyAction: bindActionCreators(historyAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryContainer);
