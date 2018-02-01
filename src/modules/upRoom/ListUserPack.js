@@ -291,11 +291,11 @@ class ListUserPack extends Component {
                             </View>
                             <View style={general.contentModal}>
                                 <View style={[general.wrapperForm, {} ]}>
+                                    <View style = {{flex : 1, justifyContent : 'center', alignItems : 'center'}}>
                                     <View style={{
                                         borderRadius : 50,
-                                        height : 30,
+                                        height : 80,
                                         width : 80,
-                                        flex : 0.5,
                                         backgroundColor: "#8bd100",
                                         justifyContent: 'center',
                                         alignItems: 'center'
@@ -303,8 +303,9 @@ class ListUserPack extends Component {
                                         <Icon
                                             name="material|done"
                                             color={"#fff"}
-                                            size={80}
+                                            size={50}
                                         />
+                                    </View>
                                     </View>
                                     <View style={general.wrapperTextInputInfoUser}>
                                         <Text style={general.textPrice2}>
