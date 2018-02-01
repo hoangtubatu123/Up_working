@@ -165,13 +165,15 @@ class ReservationContainer extends Component {
                                             }}
                                             key={i}
                                             activeOpacity={0.8}
-                                            style={[general.marginTopBottom, general.shadow, {marginTop: 20}]}>
+                                            style={[general.marginTopBottom, {marginTop: 20}]}>
                                             <View style={general.paddingLR}>
+                                                <View style={[general.shadow, general.imageFeature]}>
                                                 <Image
                                                     resizeMode={'cover'}
                                                     source={{uri: item.avatar_url}}
                                                     style={general.imageFeature}
                                                 />
+                                                </View>
                                                 <View
                                                     style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
                                                     <IconLight name={"entypo|user"}/>

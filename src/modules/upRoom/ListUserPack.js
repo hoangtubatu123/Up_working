@@ -310,7 +310,7 @@ class ListUserPack extends Component {
                                     <View style={general.wrapperTextInputInfoUser}>
                                         <Text style={general.textPrice2}>
                                             Chúc mừng bạn đã đặt chỗ thành công.
-                                            Vui lòng check email để kiểm tra lại dơn hàng.
+                                            Vui lòng check email để kiểm tra lại đơn hàng.
                                             Chúng tôi sẽ liên hệ với bạn trong thời gian sớm
                                             nhất
                                         </Text>
