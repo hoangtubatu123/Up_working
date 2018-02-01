@@ -88,8 +88,8 @@ table:{
     padding: 10px;
 }
 iframe{
-    width: 100%;
-    height: 150px;
+    width: 50%;
+    height: 100px;
 }
 </style>
 <script >

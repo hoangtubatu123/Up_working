@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import {Image, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View,ActivityIndicator, Alert} from 'react-native';
+import {Image, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View,ActivityIndicator, Alert,} from 'react-native';
 import * as size from '../../styles/size';
 import {CheckBox, Container, Content, Form, Header, Input, Item, Left} from 'native-base';
-import * as registerAction from '..//loginAndRegister/registerAction';
+import * as registerAction from '../loginAndRegister/registerAction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import general from '../../styles/generalStyle';
 import * as color from '../../styles/color';
-
+import * as loginAction from '../loginAndRegister/loginActions';
 import Icon from '../../commons/Icon';
-
+import {NavigationActions} from 'react-navigation'
 
 class RegisterContainer extends Component {
     constructor() {
@@ -20,6 +20,22 @@ class RegisterContainer extends Component {
             username: '',
             password: '',
             checkRules: true,
+        }
+    }
+    saveData(login){
+        this.props.loginAction.setDataLogin(login);
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.status === 200){
+            let login = {"email": this.state.email, "password": this.state.password}
+            this.saveData(login);
+            const resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({routeName: 'Drawer'})
+                ]
+            })
+            this.props.navigation.dispatch(resetAction);
         }
     }
     register(value) {
@@ -41,7 +57,7 @@ class RegisterContainer extends Component {
         const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
                 keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
                 style={general.wrapperContainer}
             >
@@ -175,7 +191,8 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch) {
     return {
-        registerAction: bindActionCreators(registerAction, dispatch)
+        registerAction: bindActionCreators(registerAction, dispatch),
+        loginAction : bindActionCreators(loginAction, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);

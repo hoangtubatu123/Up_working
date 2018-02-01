@@ -28,14 +28,14 @@ export function registerUserPack(email, phone, subscription_id){
         dispatch({
             type : types.BEGIN_REGISTER_USER_PACK,
         })
-        upRoomApi.getUserPack(email, phone, subscription_id)
+        upRoomApi.registerUserPack(email, phone, subscription_id)
             .then(function (res){
                 dispatch({
                     type : types.REGISTER_USER_PACK_SUCCESS,
                     message : res.data.data.message,
                     status : res.data.status
                 });
-
+               console.log(res);
             })
             .catch(function(){
                 dispatch({

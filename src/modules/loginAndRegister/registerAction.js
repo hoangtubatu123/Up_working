@@ -32,7 +32,6 @@ export function registerUser(register){
         registerApi.register(register)
             .then( async function(response) {
                 dispatch(registerSuccess(response));
-                Alert.alert('Đăng kí thành công')
             })
             .catch(function (error) {
                 if (error.response.data.error) {

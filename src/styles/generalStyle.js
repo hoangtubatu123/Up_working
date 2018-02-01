@@ -400,6 +400,11 @@ export const style = {
         maxWidth: 400,
         height: hei/3,
     },
+    iconNews : {
+        width: 120,
+        maxWidth: 400,
+        height: 200,
+    },
     imageFullWidth: {
         height: hei /3,
         flex: 1,
@@ -613,7 +618,7 @@ export const style = {
         width: wid,
     },
     paddingBorder: {
-        padding: 20,
+        padding : 15,
     },
     padding: {
         padding: 10
@@ -931,7 +936,7 @@ export const style = {
         padding: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        backgroundColor: 'rgb(0, 128, 214)',
+        backgroundColor: color.mainColor,
         alignItems: 'center',
         flexDirection: 'row',
     },

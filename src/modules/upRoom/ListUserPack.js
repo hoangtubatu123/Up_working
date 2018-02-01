@@ -143,7 +143,7 @@ class ListUserPack extends Component {
                                 <View style={general.paddingLR}>
                                     <Text/>
                                     <Text
-                                        style={[general.textDescriptionCard, general.textAlign]}>Chào {this.props.name}</Text>
+                                        style={[general.textDescriptionCard, general.textAlign]}>Chào {this.props.name ? this.props.name : "Admin"}</Text>
                                     <Text/>
                                     <Text style={[general.textSmallDarkGray, general.textAlign]}>Bạn đang tiến hành đặt
                                         chỗ tại Up.</Text>
@@ -188,8 +188,7 @@ class ListUserPack extends Component {
                                                 <Text style={general.textTitleCard}>Chi phí</Text>
                                                 <Text
                                                     style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.props.item.subscriptions[this.state.id].price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-                                                }
-                                                    VND / 1
+                                                } VND / 1
                                                     NGÀY</Text>
                                                 <Text/>
                                             </View>
@@ -291,12 +290,22 @@ class ListUserPack extends Component {
                                 </Text>
                             </View>
                             <View style={general.contentModal}>
-                                <View style={general.wrapperForm}>
-                                    <Icon
-                                        name="material|done"
-                                        color={color.mainColor}
-                                        size={80}
-                                    />
+                                <View style={[general.wrapperForm, {} ]}>
+                                    <View style={{
+                                        borderRadius : 50,
+                                        height : 30,
+                                        width : 80,
+                                        flex : 0.5,
+                                        backgroundColor: "#8bd100",
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}>
+                                        <Icon
+                                            name="material|done"
+                                            color={"#fff"}
+                                            size={80}
+                                        />
+                                    </View>
                                     <View style={general.wrapperTextInputInfoUser}>
                                         <Text style={general.textPrice2}>
                                             Chúc mừng bạn đã đặt chỗ thành công.

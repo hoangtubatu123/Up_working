@@ -70,7 +70,7 @@ class LoginContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : undefined}
                                                                   style={general.wrapperContainer}
             >
 
