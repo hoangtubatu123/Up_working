@@ -60,6 +60,7 @@ export function getDetailNew(newId){
         homeApi.getDetailNewApi(newId)
             .then(function(res){
                 dispatch(getDetailSuccess(res));
+                console.log(res.data.data.product)
             })
             .catch(function () {
                 dispatch(getDetailError());

@@ -52,6 +52,7 @@ class NotificationContainer extends Component {
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={{flex: 1}}
+                                                onPress={() => navigate('detailNotification')}
                                             >
                                                 <Left>
                                                     <TouchableOpacity

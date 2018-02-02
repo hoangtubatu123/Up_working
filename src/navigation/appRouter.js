@@ -9,6 +9,7 @@ import HistoryContainer from '../modules/history/HistoryContainer';
 import UpRoomContainer from '../modules/upRoom/UpRoomContainer';
 import DrawerContainer from '../modules/drawer/DrawerContainer';
 import NotificationContainer from '../modules/notification/NotificationContainer'
+import DetailNotifcationContainer from '../modules/notification/DetailNotificationContainer'
 import InfoNewContainer from '../modules/news/InfoNewContainer';
 import * as React from "react";
 
@@ -22,6 +23,10 @@ const HomeStackNavigator = StackNavigator({
 
 }, StackNavigatorStyle);
 
+const notification = StackNavigator({
+    notification : {screen : NotificationContainer},
+    detailNotification : {screen : DetailNotifcationContainer}
+}, {headerMode: 'none'})
 
 const Drawer = DrawerNavigator(
     {
@@ -31,7 +36,7 @@ const Drawer = DrawerNavigator(
         UpRoom: {screen: UpRoomContainer},
         infoUp : {screen : InfoUpContainer},
         infoNew : {screen : InfoNewContainer},
-        noti : {screen : NotificationContainer}
+        noti : {screen : notification}
     },
     {
         drawerWidth: size.wid * 3 / 4,
