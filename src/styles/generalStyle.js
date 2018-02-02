@@ -476,8 +476,7 @@ export const style = {
         backgroundColor: color.none,
     },
     wrapperLoginButton:{
-        marginTop:50,
-        width: wid*0.9,
+        marginTop:20,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -618,7 +617,7 @@ export const style = {
         width: wid,
     },
     paddingBorder: {
-        padding : 15,
+        padding : 20,
     },
     padding: {
         padding: 10
@@ -719,7 +718,7 @@ export const style = {
     },
     shadow: Platform.OS === 'ios' ? {
         shadowColor: color.shadowColor,
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.3,
     } : {
         elevation: 2,
@@ -884,11 +883,11 @@ export const style = {
         bottom: 20,
         right: 10,
         backgroundColor:color.mainColor,
-        width: 60,
-        height: 60,
+        width: 50,
+        height: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 30,
+        borderRadius: 25,
     },
     buttonSelect:{
         width: wid/2,

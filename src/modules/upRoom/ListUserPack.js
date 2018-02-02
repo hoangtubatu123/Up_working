@@ -87,15 +87,17 @@ class ListUserPack extends Component {
                         <Text numberOfLines={1}
                               style={general.textTitleCard}>{this.props.item.name.toUpperCase()}</Text>
                     </View>
-                    <Image
-                        resizeMode={'cover'}
-                        source={{uri: this.props.item.avatar_url}}
-                        style={general.imageFeature}
-                    />
-                    <View style={{marginTop: 20}}>
+                    <View style={[general.imageFeature, general.shadow]}>
+                        <Image
+                            resizeMode={'cover'}
+                            source={{uri: this.props.item.avatar_url}}
+                            style={general.imageFeature}
+                        />
+                    </View>
+                    <View style={general.marginTopFar}>
                         <Text numberOfLines={1}
                               style={general.textTitleCard}>Thông tin</Text>
-                        <Text numberOfLines={2} style={[general.textDescriptionCard, {padding: 5}]}>Với hơn 1000 chỗ
+                        <Text numberOfLines={2} style={[general.textDescriptionCard, general.paddingLine]}>Với hơn 1000 chỗ
                             ngồi trong không
                             gian 1000m2, chắc chắn sẽ khiến bạn hài lòng và thăng hoa khi làm việc</Text>
                     </View>
@@ -290,22 +292,22 @@ class ListUserPack extends Component {
                                 </Text>
                             </View>
                             <View style={general.contentModal}>
-                                <View style={[general.wrapperForm, {} ]}>
-                                    <View style = {{flex : 1, justifyContent : 'center', alignItems : 'center'}}>
-                                    <View style={{
-                                        borderRadius : 50,
-                                        height : 80,
-                                        width : 80,
-                                        backgroundColor: "#8bd100",
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <Icon
-                                            name="material|done"
-                                            color={"#fff"}
-                                            size={50}
-                                        />
-                                    </View>
+                                <View style={[general.wrapperForm, {}]}>
+                                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                        <View style={{
+                                            borderRadius: 50,
+                                            height: 80,
+                                            width: 80,
+                                            backgroundColor: "#8bd100",
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}>
+                                            <Icon
+                                                name="material|done"
+                                                color={"#fff"}
+                                                size={50}
+                                            />
+                                        </View>
                                     </View>
                                     <View style={general.wrapperTextInputInfoUser}>
                                         <Text style={general.textPrice2}>

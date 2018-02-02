@@ -22,6 +22,7 @@ class InfoUpContainer extends Component {
     componentWillMount() {
         this.isLoading();
     }
+
     isLoading() {
         this.setState({isLoading: true})
         setTimeout(() => this.setState({isLoading: false}), 2000);
@@ -29,7 +30,7 @@ class InfoUpContainer extends Component {
 
 
     render() {
-        const{navigate} = this.props.navigation;
+        const {navigate} = this.props.navigation;
         return (
             <Container style={general.wrapperContainer}>
                 <View style={[general.wrapperHeader, general.paddingBorder]}>
@@ -39,10 +40,12 @@ class InfoUpContainer extends Component {
                     <Right>
                         <TouchableOpacity
                             style={[general.padding, general.wrapperBackButton, {marginRight: -20}]}
-                            onPress={() => {this.props.setModalUp(false)}}
+                            onPress={() => {
+                                this.props.setModalUp(false)
+                            }}
                         >
-                            <Icon name="fontawesome|times"
-                                  size={size.iconBig}
+                            <Icon name="ion|ios-close-outline"
+                                  size={40}
                                   color={color.iconColor}
                             />
                         </TouchableOpacity>
@@ -50,19 +53,23 @@ class InfoUpContainer extends Component {
                 </View>
 
 
-                <Content style={general.wrapperFullWidth}>
+                <Content style={general.wrapperFullWidth} showsVerticalScrollIndicator={false}
+                >
                     {this.state.isLoading ?
                         <Loading/>
                         :
                         <View>
                             <TouchableOpacity
                                 activeOpacity={0.8}
-                                style={[general.marginTopBottom, general.shadow]}>
-                                <Image
-                                    resizeMode={'cover'}
-                                    source={{uri: this.props.feature.url}}
-                                    style={general.imageFullWidth}
-                                />
+                                style={[general.marginTopBottom]}>
+                                <View style={[general.imageFullWidth, general.shadow]}>
+                                    <Image
+                                        resizeMode={'cover'}
+                                        source={{uri: this.props.feature.url}}
+                                        style={general.imageFullWidth}
+                                    />
+                                </View>
+
                                 <View
                                     style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow, {
                                         right: 30,
@@ -95,17 +102,20 @@ class InfoUpContainer extends Component {
                                 <FlatList
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
-                                    data={this.props.feature.bonusImage}
+                                    data={JSON.parse(this.props.feature.bonusImage)}
                                     renderItem={({item}) =>
                                         <TouchableOpacity
                                             activeOpacity={0.8}
-                                            style={[general.wrapperImageSquare, general.marginTopBottom, general.shadow, general.marginLeftFar]}
+                                            style={[general.wrapperImageSquare, general.marginTopBottom, general.marginLeftFar]}
                                         >
-                                            <Image
-                                                resizeMode={'cover'}
-                                                source={{uri: item}}
-                                                style={[general.imageSquare]}
-                                            />
+                                            <View style={[general.imageSquare, general.shadow]}>
+                                                <Image
+                                                    resizeMode={'cover'}
+                                                    source={{uri: item}}
+                                                    style={[general.imageSquare]}
+                                                />
+                                            </View>
+
                                         </TouchableOpacity>
                                     }
                                 />
@@ -122,7 +132,7 @@ class InfoUpContainer extends Component {
                     <TouchableOpacity
                         style={general.buttonBuyNowFullSize}
                         onPress={() => {
-                            this.props.navigation.navigate("UpRoom", {baseName : this.props.feature.name})
+                            this.props.navigation.navigate("UpRoom", {baseName: this.props.feature.name})
                         }}
                     >
                         <Text style={[general.paddingRight, general.textBigLight]}>Đặt chỗ

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, Text, TouchableOpacity, View,Image} from 'react-native';
+import {FlatList, Text, TouchableOpacity, View, Image} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
@@ -75,13 +75,14 @@ class HistoryContainer extends Component {
                             this.props.history_registers !== 0 ?
                                 <View>
                                     <View style={general.paddingLR}>
-                                        <View style={general.wrapperFeatureHeightLow}>
+                                        <View style={[general.wrapperFeatureHeightLow, general.shadow]}>
                                             <View style={[general.wrapperRowSpaceBetween, general.padding]}>
                                                 <Text style={general.textTitleCardLight}>Số lượt còn lại</Text>
                                                 <IconLight name={'entypo|dots-three-horizontal'}/>
                                             </View>
                                             <View style={general.paddingLeft}>
-                                                <Text style={general.textTitleGiantThin}>12</Text>
+                                                <Text
+                                                    style={[general.textTitleGiantThin, {backgroundColor: 'transparent'}]}>12</Text>
                                             </View>
                                         </View>
                                         <Text/>
@@ -97,7 +98,7 @@ class HistoryContainer extends Component {
                                         renderItem={({item}) => {
                                             return (
                                                 <ListHistoryRegister item={item}
-                                                                     modalHistory = {this.state.modalHistory}
+                                                                     modalHistory={this.state.modalHistory}
                                                                      openModalHistory={this.openModalHistory}/>)
                                         }
                                         }
@@ -114,7 +115,7 @@ class HistoryContainer extends Component {
                 </Content>
                 <Modal swipeToClose={true}
                        style={[general.wrapperModal]}
-                       ref = {"modal1"}
+                       ref={"modal1"}
                 >
                     <View style={[general.wrapperModalStaff, {height: size.hei, width: size.wid}]}>
                         <Container style={general.wrapperContainer}>
@@ -136,42 +137,49 @@ class HistoryContainer extends Component {
                                     </TouchableOpacity>
                                 </Right>
                             </View>
-                            <Content style={general.wrapperFullWidth}>
+                            <Content
+                                style={general.wrapperFullWidth}
+                                showsVerticalScrollIndicator={false}
+                            >
                                 <TouchableOpacity
-                                    activeOpacity={0.8}
-                                    style={[general.marginTopBottom, general.shadow]}>
-                                    <Image
-                                    resizeMode={'cover'}
-                                    source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
-                                    style={general.imageFullWidth}
-                                    />
-                                </TouchableOpacity>
-                                {
-                                    this.isEmpty(this.state.item) == false ?
-                                        <View style={{marginTop: 30, marginLeft: 20}}>
-                                            <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
-                                            <Text
-                                                style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]}</Text>
-                                            <Text/>
-                                            <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
-                                            <Text
-                                                style={general.textSmallDarkGray}>{this.state.item.subscription.subscription_kind_name}</Text>
-                                            <Text/>
-                                            <Text style={general.textTitleCard}>Mô tả</Text>
-                                            <Text numberOfLines={6}
-                                                  style={general.textSmallDarkGray}>{this.state.item.subscription.description}</Text>
-                                            <Text/>
-                                            <Text style={general.textTitleCard}>Chi phí</Text>
-                                            <Text
-                                                style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.state.item.subscription.price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                                    activeOpacity={1}
+                                >
+                                    <View
+                                        style={[general.marginTopBottom, general.shadow]}>
+                                        <Image
+                                            resizeMode={'cover'}
+                                            source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
+                                            style={general.imageFullWidth}
+                                        />
+                                    </View>
+                                    {
+                                        this.isEmpty(this.state.item) == false ?
+                                            <View style={{marginTop: 30, marginLeft: 20}}>
+                                                <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
+                                                <Text
+                                                    style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]}</Text>
+                                                <Text/>
+                                                <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
+                                                <Text
+                                                    style={general.textSmallDarkGray}>{this.state.item.subscription.subscription_kind_name}</Text>
+                                                <Text/>
+                                                <Text style={general.textTitleCard}>Mô tả</Text>
+                                                <Text numberOfLines={6}
+                                                      style={general.textSmallDarkGray}>{this.state.item.subscription.description}</Text>
+                                                <Text/>
+                                                <Text style={general.textTitleCard}>Chi phí</Text>
+                                                <Text
+                                                    style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.state.item.subscription.price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
-                                            } VND / 1
-                                                NGÀY</Text>
-                                            <Text/>
-                                        </View>
-                                        :
-                                        <View/>
-                                }
+                                                } VND / 1
+                                                    NGÀY</Text>
+                                                <Text/>
+                                            </View>
+                                            :
+                                            <View/>
+                                    }
+                                </TouchableOpacity>
+
                             </Content>
 
 

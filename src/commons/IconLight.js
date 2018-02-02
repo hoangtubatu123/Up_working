@@ -13,7 +13,7 @@ class IconName extends Component{
                     name={this.props.name}
                     size={15}
                     color={'#fff'}
-                    style={{padding: 5}}
+                    style={{padding: 5, backgroundColor: 'transparent'}}
                 />
             </TouchableOpacity>
         );

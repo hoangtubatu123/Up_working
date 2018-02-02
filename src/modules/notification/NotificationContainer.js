@@ -48,7 +48,7 @@ class NotificationContainer extends Component {
                                     return (
                                         <CardItem
                                             avatar
-                                            style={[item.seen ? general.backgroundNone : general.backgroundGray, general.noMarginLeft, general.padding, general.haveBorderBottom]}>
+                                            style={[item.seen ? general.backgroundNone : general.backgroundGray, general.padding, general.haveBorderBottom]}>
                                             <TouchableOpacity
                                                 activeOpacity={0.8}
                                                 style={{flex: 1}}

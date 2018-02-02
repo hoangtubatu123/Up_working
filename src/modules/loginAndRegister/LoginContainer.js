@@ -70,8 +70,9 @@ class LoginContainer extends Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                                                                  style={general.wrapperContainer}
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+                style={general.wrapperContainer}
             >
 
                 <StatusBar
@@ -104,7 +105,10 @@ class LoginContainer extends Component {
                                 style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Password"
-                                returnKeyType={'next'}
+                                returnKeyType={'go'}
+                                onSubmitEditing={() => {
+                                    this.signIn()
+                                }}
                                 secureTextEntry={true}
                                 autoCorrect={false}
                                 onChangeText={(password) => {
@@ -145,7 +149,7 @@ class LoginContainer extends Component {
                     </View>
                 </View>
                 {/*<View style={[general.wrapperBottomLogin]}>*/}
-                    {/*<Text style={general.textLogin}>FORGOT PASSWORD</Text>*/}
+                {/*<Text style={general.textLogin}>FORGOT PASSWORD</Text>*/}
                 {/*</View>*/}
             </KeyboardAvoidingView>
 

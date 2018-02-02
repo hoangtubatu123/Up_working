@@ -18,12 +18,11 @@ class ListHistoryRegister extends Component {
         return (
             <View style={[general.paddingLR]}>
                 <TouchableOpacity
-                    activeOpacity={0.8}
+                    activeOpacity={1}
                     style={general.marginTopBottom}
                     onPress = {() => this.props.openModalHistory(this.props.item)}
                 >
-                    <View
-                        style={[ {marginLeft: 2, marginRight: 2}]}>
+                    <View style={general.shadow}>
                         <Image
                             borderRadius={10}
                             resizeMode={'cover'}
@@ -37,7 +36,6 @@ class ListHistoryRegister extends Component {
                             }]}>
                             <Text style={[general.textTitleCardLight]}>{item.created_at.split(" ")[1]}</Text>
                             <Text/>
-
                         </View>
                     </View>
 

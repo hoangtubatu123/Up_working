@@ -62,6 +62,7 @@ export function getBases(token, provinceId){
         reservationApi.getReservation(token, provinceId)
             .then(function (res){
                 dispatch(getBasesSuccess(res))
+                console.log(res.data.data.bases)
             })
             .catch(function(){
                 dispatch(getBasesError())

@@ -63,7 +63,7 @@ class ReservationContainer extends Component {
         this.setState({id: item.id});
         this.props.reservationAction.getBases(this.props.token, item.id);
         this.isLoading();
-       this.refs.modal2.close();
+        this.refs.modal2.close();
     }
 
     setModalProvinces(visible) {
@@ -101,7 +101,7 @@ class ReservationContainer extends Component {
                 url: item.avatar_url,
                 title: item.name,
                 description: item.description,
-                bonusImage: item.images_url.split(",")
+                bonusImage: item.images_url
             }
         });
     }
@@ -118,7 +118,7 @@ class ReservationContainer extends Component {
             <Icon
                 name="fontawesome|times"
                 size={20}
-                style={{marginLeft: size.wid * 0.9, padding: 5, marginTop : 20}}
+                style={{marginLeft: size.wid * 0.9, padding: 5, marginTop: 20}}
                 color={'#eff1f4'}
             />
         </TouchableOpacity>;
@@ -140,6 +140,7 @@ class ReservationContainer extends Component {
                 />
 
                 <TouchableOpacity
+                    activeOpacity={1}
                     style={[general.paddingLR, general.wrapperRowCenter, {marginTop: -20}]}
                     onPress={() => this.refs.modal2.open()}>
                     <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
@@ -148,6 +149,7 @@ class ReservationContainer extends Component {
 
                 <Content
                     showsVerticalScrollIndicator={false}
+
                     style={{flex: 1}}>
                     {
                         this.props.isLoadingUp || this.state.isLoading || (this.props.isLoading && this.props.bases.length === 0)
@@ -158,46 +160,47 @@ class ReservationContainer extends Component {
                                 {
                                     this.props.bases.length != 0 ?
 
-                                    this.props.bases.map((item, i) =>
-                                        <TouchableOpacity
-                                            onPress={() => {
-                                                this.openModalInfoUp(item)
-                                            }}
-                                            key={i}
-                                            activeOpacity={0.8}
-                                            style={[general.marginTopBottom, {marginTop: 20}]}>
-                                            <View style={general.paddingLR}>
-                                                <View style={[general.shadow, general.imageFeature]}>
-                                                <Image
-                                                    resizeMode={'cover'}
-                                                    source={{uri: item.avatar_url}}
-                                                    style={general.imageFeature}
-                                                />
+                                        this.props.bases.map((item, i) =>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    this.openModalInfoUp(item)
+                                                }}
+                                                key={i}
+                                                activeOpacity={0.8}
+                                                style={[general.marginTopBottom, {marginTop: 20}]}>
+                                                <View style={general.paddingLR}>
+                                                    <View style={[general.shadow, general.imageFeature]}>
+                                                        <Image
+                                                            resizeMode={'cover'}
+                                                            source={{uri: item.avatar_url}}
+                                                            style={general.imageFeature}
+                                                        />
+                                                    </View>
+                                                    <View
+                                                        style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
+                                                        <IconLight name={"entypo|user"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                        <Text>&nbsp;</Text>
+                                                        <IconLight name={"entypo|aircraft"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                        <Text>&nbsp;</Text>
+                                                        <IconLight name={"entypo|archive"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                    </View>
                                                 </View>
-                                                <View
-                                                    style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
-                                                    <IconLight name={"entypo|user"}/>
-                                                    <Text style={general.textDescriptionCardLight}>12</Text>
-                                                    <Text>&nbsp;</Text>
-                                                    <IconLight name={"entypo|aircraft"}/>
-                                                    <Text style={general.textDescriptionCardLight}>12</Text>
-                                                    <Text>&nbsp;</Text>
-                                                    <IconLight name={"entypo|archive"}/>
-                                                    <Text style={general.textDescriptionCardLight}>12</Text>
-                                                </View>
-                                            </View>
 
-                                            <View
-                                                style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
-                                                <Text style={general.textTitleCard}>{item.name}</Text>
-                                                <Text/>
-                                                <Text style={general.textDescriptionCard}>{item.description}</Text>
-                                            </View>
-                                        </TouchableOpacity>
-                                    )
+                                                <View
+                                                    style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
+                                                    <Text
+                                                        style={[general.textTitleCard, general.paddingLine]}>{item.name}</Text>
+                                                    <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                        )
                                         :
                                         <View style={[general.wrapperCenter, general.paddingLR]}>
-                                            <Text style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
+                                            <Text
+                                                style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
                                                 Không tìm thấy kết quả nào.
                                             </Text>
                                         </View>
@@ -212,31 +215,35 @@ class ReservationContainer extends Component {
                 <Modal
                     isOpen={this.state.modalProvince}
                     ref={"modal2"}
-                    style={[{justifyContent: "flex-end", margin: 0, backgroundColor:'transparent'},general.wrapperModalBottom]}
+                    style={[{
+                        justifyContent: "flex-end",
+                        margin: 0,
+                        backgroundColor: 'transparent'
+                    }, general.wrapperModalBottom]}
                     backdropContent={bCont}
                     position={"bottom"}
                 >
-                    <View style = {general.wrapperModalBottom} {...this.panResponder.panHandlers}>
+                    <View style={general.wrapperModalBottom} {...this.panResponder.panHandlers}>
                         <TouchableOpacity style={[general.wrapperModalTypeBottom, {backgroundColor: '#f7f7f7'}]}>
                             <Text style={general.textTitleCardBlue}>Chọn tỉnh</Text>
                         </TouchableOpacity>
                         <View style={general.line}/>
-                        <Content showsVerticalScrollIndicator={false}
-                        >{
-                            this.state.isLoading ? <Loading/> :
-                                <View style={general.wrapperCenter}>
-                                    {
-                                        this.props.provinces.map((item, i) => {
-                                            return (
-                                                <TouchableOpacity style={{padding: 10}}
-                                                                  onPress={() => this.onChangeValue(item)}>
-                                                    <Text style={general.textTitleBoldNormal}>{item.name}</Text>
-                                                </TouchableOpacity>
-                                            )
-                                        })
-                                    }
-                                </View>
-                        }
+                        <Content showsVerticalScrollIndicator={false}>
+                            {
+                                this.state.isLoading ? <Loading/> :
+                                    <View style={general.wrapperCenter}>
+                                        {
+                                            this.props.provinces.map((item, i) => {
+                                                return (
+                                                    <TouchableOpacity style={{padding: 10}}
+                                                                      onPress={() => this.onChangeValue(item)}>
+                                                        <Text style={general.textTitleBoldNormal}>{item.name}</Text>
+                                                    </TouchableOpacity>
+                                                )
+                                            })
+                                        }
+                                    </View>
+                            }
                         </Content>
                         <TouchableOpacity style={[general.wrapperModalTypeBottom, {backgroundColor: '#f7f7f7'}]}
                                           onPress={() => this.refs.modal2.close()}>

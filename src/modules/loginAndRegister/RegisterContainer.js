@@ -79,7 +79,7 @@ class RegisterContainer extends Component {
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={[general.imageLogin, {margin : 20, width:3* size.wid/4}]}
+                        style={[general.imageLogin, {margin : 20}]}
                     />
                     <View>
                         <Item style={general.itemInput}>
@@ -97,7 +97,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 30}}>
+                    <View style={{marginTop: 20}}>
                         <Item style={[general.itemInput, ]}>
                             <Input
                                 style={[general.inputTheme02, general.textDescriptionCard]}
@@ -113,7 +113,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 30}}>
+                    <View style={{marginTop: 20}}>
                         <Item style={[general.itemInput, ]}>
                             <Input
                                 style={[general.inputTheme02 ,general.textDescriptionCard]}
@@ -129,15 +129,18 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{marginTop: 30}}>
+                    <View style={{marginTop: 20}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Username"
                                 keyboardType={'email-address'}
-                                returnKeyType={'next'}
+                                returnKeyType={'done'}
                                 autoCorrect={false}
+                                onSubmitEditing={() => {
+                                    this.register(this.state)
+                                }}
                                 onChangeText={(username) => {
                                    this.setState({username})
                                 }}
@@ -145,7 +148,7 @@ class RegisterContainer extends Component {
                             />
                         </Item>
                     </View>
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
+                    <View style={general.wrapperCenter}>
                         <View style={general.wrapperLoginButton}>
                             <TouchableOpacity
                                 style={general.buttonBuyNowFullSize}

@@ -13,7 +13,7 @@ class HamburgerButton extends Component{
                 <Icon
                     name="materialCommunity|menu"
                     size={30}
-                    style={{marginRight: -3, padding: 5}}
+                    style={{marginRight: -8, padding: 5}}
                     color={color.textColor}
                 />
             </TouchableOpacity>
