@@ -322,7 +322,7 @@ class ListUserPack extends Component {
                             </View>
                             <View style={[general.bottomModal, general.haveBorderTop]}>
                                 <Body>
-                                <TouchableOpacity style={general.buttonOrderInModal}
+                                <TouchableOpacity style={[general.buttonOrderInModal, general.wrapperCenter]}
                                                   onPress={() => this.props.upRoomAction.closeModalSuccess()}
                                 >
                                     <Text style={general.textBigLight}>Xác nhận</Text>
