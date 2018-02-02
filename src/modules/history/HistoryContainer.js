@@ -130,8 +130,8 @@ class HistoryContainer extends Component {
                                             this.refs.modal1.close()
                                         }}
                                     >
-                                        <Icon name="fontawesome|times"
-                                              size={size.iconBig}
+                                        <Icon name="ion|ios-close-outline"
+                                              size={40}
                                               color={color.iconColor}
                                         />
                                     </TouchableOpacity>

@@ -185,7 +185,7 @@ class ListUserPack extends Component {
                                                 <Text/>
                                                 <Text style={general.textTitleCard}>Mô tả</Text>
                                                 <Text numberOfLines={6}
-                                                      style={general.textSmallDarkGray}>{this.props.item.subscriptions[this.state.id].description}</Text>
+                                                      style={general.textSmallDarkGray}>{this.props.item.subscriptions[this.state.id].description.trim()}</Text>
                                                 <Text/>
                                                 <Text style={general.textTitleCard}>Chi phí</Text>
                                                 <Text
@@ -252,7 +252,7 @@ class ListUserPack extends Component {
                             </View>
                             <View style={{alignItems: 'center', justifyContent: 'center'}}>
                                 <TouchableOpacity
-                                    style={[general.buttonBuyNowFullSize, {bottom: 20, width: size.wid * 0.6}]}
+                                    style={[general.buttonOrderInModal, {bottom: 20, width: size.wid - 80,}, general.wrapperCenter]}
                                     onPress={() => {
                                         this.registerUserPack(this.state.email, this.state.phone, this.props.item.subscriptions[this.state.id].id)
                                     }}

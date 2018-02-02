@@ -58,9 +58,9 @@ class InfoUpContainer extends Component {
                     {this.state.isLoading ?
                         <Loading/>
                         :
-                        <View>
+                        <TouchableOpacity activeOpacity={1}>
                             <TouchableOpacity
-                                activeOpacity={0.8}
+                                activeOpacity={1}
                                 style={[general.marginTopBottom]}>
                                 <View style={[general.imageFullWidth, general.shadow]}>
                                     <Image
@@ -123,7 +123,7 @@ class InfoUpContainer extends Component {
 
                             <View style={general.wrapperBottomModule}/>
                             <View style={general.wrapperBottomModule}/>
-                        </View>
+                        </TouchableOpacity>
                     }
 
                 </Content>

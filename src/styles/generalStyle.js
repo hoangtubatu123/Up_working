@@ -484,7 +484,7 @@ export const style = {
     },
     buttonBuyNowFullSize: {
         borderRadius: 50,
-        width: size.wid * 0.8,
+        width: size.wid - 40,
         padding: 8,
         backgroundColor: color.mainColor,
         alignItems: 'center',
@@ -813,7 +813,6 @@ export const style = {
     },
     bottomModal: {
         height: 50,
-        padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
         bottom: 0,
@@ -875,6 +874,7 @@ export const style = {
     },
     buttonOrder:{
         backgroundColor:color.mainColor,
+        width: wid - 80,
         height: 30,
         borderRadius: 20,
     },
@@ -931,7 +931,9 @@ export const style = {
         fontWeight: Platform.OS === 'ios' ? '400' : 'normal',
     },
     buttonOrderInModal: {
+        height: 30,
         borderRadius: 15,
+        width: wid - 80,
         padding: 20,
         paddingTop: 5,
         paddingBottom: 5,
