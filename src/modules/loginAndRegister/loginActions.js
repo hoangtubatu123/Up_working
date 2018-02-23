@@ -18,12 +18,14 @@ export function openMainApp() {
     }
 }
 
+
 export function loginUser(login) {
     return function (dispatch) {
         dispatch(beginLogin());
         loginApi.login(login)
             .then(function (response) {
                 dispatch(loginSuccess(response));
+                dispatch(openMainApp())
             })
             .catch(function (error) {
                 dispatch(loginError(error));

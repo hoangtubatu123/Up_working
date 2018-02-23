@@ -110,7 +110,7 @@ class ListUserPack extends Component {
                         backgroundColor: color.none
                     }}>
                         <TouchableOpacity
-                            style={[general.buttonBuyNowFullSize]}
+                            style={[general.buttonReservation]}
                             onPress={() =>
                                 this.setModal(true)
                             }

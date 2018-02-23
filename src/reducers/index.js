@@ -6,6 +6,7 @@ import upRoomReducer from '../modules/upRoom/upRoomReducer';
 import getReservationReducer from '../modules/reservation/reservationReducer';
 import notificationReducer from '../modules/notification/notificationReducer';
 import historyReducer from '../modules/history/historyReducer';
+import navigatorReduce from '../navigation/navigationReducer'
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     reservation                 : getReservationReducer,
     upRoom                      : upRoomReducer,
     notification                : notificationReducer,
-    history                     : historyReducer
+    history                     : historyReducer,
+    nav                         : navigatorReduce
 });
 export default rootReducer;

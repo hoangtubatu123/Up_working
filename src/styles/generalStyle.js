@@ -484,7 +484,16 @@ export const style = {
     },
     buttonBuyNowFullSize: {
         borderRadius: 50,
-        width: size.wid - 40,
+        width: size.wid * 0.8,
+        padding: 8,
+        backgroundColor: color.mainColor,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    buttonReservation: {
+        borderRadius: 50,
+        width: size.wid * 0.9,
         padding: 8,
         backgroundColor: color.mainColor,
         alignItems: 'center',
