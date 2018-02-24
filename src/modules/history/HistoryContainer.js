@@ -157,8 +157,8 @@ class HistoryContainer extends Component {
                                             <View style={{marginTop: 30, marginLeft: 20}}>
                                                 <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
                                                 <Text
-                                                    style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]}</Text>
-                                                <Text/>
+                                                    style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]} Vào lúc {this.state.item.created_at.split(" ")[0]}</Text>
+                                         <Text/>
                                                 <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
                                                 <Text
                                                     style={general.textSmallDarkGray}>{this.state.item.subscription.subscription_kind_name}</Text>

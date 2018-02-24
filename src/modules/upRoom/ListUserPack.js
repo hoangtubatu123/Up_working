@@ -320,7 +320,7 @@ class ListUserPack extends Component {
                                 </View>
 
                             </View>
-                            <View style={[general.bottomModal, general.haveBorderTop]}>
+                            <View style={[general.bottomModal]}>
                                 <Body>
                                 <TouchableOpacity style={[general.buttonOrderInModal, general.wrapperCenter]}
                                                   onPress={() => this.props.upRoomAction.closeModalSuccess()}

@@ -53,19 +53,19 @@ class LoginContainer extends Component {
         this.props.loginAction.updateDataLogin(login);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.status == 200) {
-            const resetAction = NavigationActions.reset({
-                index: 0,
-                actions: [
-                    NavigationActions.navigate({routeName: 'Drawer'})
-                ]
-            })
-            this.props.navigation.dispatch(resetAction)
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.status == 200) {
+    //         const resetAction = NavigationActions.reset({
+    //             index: 0,
+    //             actions: [
+    //                 NavigationActions.navigate({routeName: 'Drawer'})
+    //             ]
+    //         })
+    //         this.props.navigation.dispatch(resetAction)
 
 
-        }
-    }
+    //     }
+    // }
 
     render() {
         const {navigate} = this.props.navigation;
@@ -141,7 +141,7 @@ class LoginContainer extends Component {
                                 }
                             </TouchableOpacity>
                         </View>
-                        <View style={{marginTop: 20}}>
+                        <View style={{marginTop: 25}}>
                             <Text style={general.textLogin}
                                   onPress={() => this.props.navigation.navigate('Register')}>DON'T HAVE AN ACCOUNT?
                                 REGISTER</Text>
