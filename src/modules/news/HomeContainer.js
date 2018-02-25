@@ -92,10 +92,8 @@ class HomeContainer extends Component {
         }
         if(this.state.txt != "" && this.state.new == 0){
             this.props.homeAction.getMoreNewsSearch(page, this.state.txt);
-            this.setState({page : page})
         }
-        
-    
+        this.setState({page : page})
     }
     refreshList(){
         this.props.homeAction.refreshNews();
