@@ -11,7 +11,9 @@ export function getNewSuccess(res){
     return{
         type : types.GET_NEWS_SUCCESS,
         isLoading: false,
-        news : res.data.blogs
+        news : res.data.blogs.length !==0 ? res.data.blogs.filter(function(item) {
+            return item.status ==1 ;
+          }) : res.data.blogs,
     }
 }
 export function getNewError() {
@@ -60,7 +62,6 @@ export function getDetailNew(newId){
         homeApi.getDetailNewApi(newId)
             .then(function(res){
                 dispatch(getDetailSuccess(res));
-                console.log(res.data.data.product)
             })
             .catch(function () {
                 dispatch(getDetailError());
@@ -79,7 +80,9 @@ export function getSearchNewSuccess(res){
     return {
         type : types.GET_SEARCH_NEW_SUCCESS,
         isLoadingSearch: false,
-        news : res.data.blogs
+        news :  res.data.blogs.length !==0 ? res.data.blogs.filter(function(item) {
+            return item.status ==1 ;
+          }) : res.data.blogs
     }
 }
 export function getSearchNewError(){
@@ -112,7 +115,9 @@ export function getMoreNews(page){
             .then(function (res){
                 dispatch({
                     type : types.GET_MORE_NEWS_SUCCESS,
-                    news : res.data.blogs
+                    news :  res.data.blogs.length !==0 ? res.data.blogs.filter(function(item) {
+                        return item.status ==1 ;
+                      }) : res.data.blogs
                 });
 
             })
@@ -134,7 +139,9 @@ export function refreshNews(){
             .then(function (res){
                 dispatch({
                     type : types.GET_REFRESH_SUCCESS,
-                    news : res.data.blogs
+                    news :  res.data.blogs.length !==0 ? res.data.blogs.filter(function(item) {
+                        return item.status ==1 ;
+                      }) : res.data.blogs
                 });
 
             })
@@ -156,9 +163,10 @@ export function getMoreNewsSearch(page, txt){
             .then(function (res){
                 dispatch({
                     type : types.GET_MORE_NEWS_SEARCH_SUCCESS,
-                    news : res.data.blogs
+                    news :  res.data.blogs.length !==0 ? res.data.blogs.filter(function(item) {
+                        return item.status ==1 ;
+                      }) : res.data.blogs
                 });
-
             })
             .catch(function(){
                 dispatch({

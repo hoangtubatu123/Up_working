@@ -20,13 +20,19 @@ class HomeContainer extends Component {
             id: 0,
             showSearch: false,
             page: 1,
-            txt : ""
+            txt : "",
+            new : 0
         }
     }
 
     componentWillMount() {
         this.props.homeAction.getNews();
         this.isLoading();
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.news.length !== this.props.news.length){
+            this.setState({new : 1})
+        }
     }
 
     toggleSearch() {
@@ -64,28 +70,36 @@ class HomeContainer extends Component {
 
     handleChangText(input) {
         this.isLoading();
-        this.setState({txt : input})
+        this.setState({txt : input, page:1})
+        if(input!== "")
         this.props.homeAction.getSearchNew(input);
+        if(input == ""){
+            this.props.homeAction.getNews()
+            this.setState({page : 1})
+        }
+    }
+    onX(){
+        this.props.homeAction.getNews()
+            this.setState({page : 1, txt : ""})
     }
 
     getMore() {
         const {news} = this.props;
-        if (news.length === this.state.page * 6) {
             let page = this.state.page + 1;
-            if(this.state.txt !== ""){
-                this.props.homeAction.getMoreNewsSearch(page, this.state.txt);
-            }else{
-
-             this.props.homeAction.getMoreNews(page);
-            }
-           this.setState({page : page})
+            if(news.length >= this.state.page * 6){
+                this.props.homeAction.getMoreNews(page);
+                this.setState({page : page})
         }
-
-        console.log(this.state.page, this.props.isLoadingMore)
+        if(this.state.txt != "" && this.state.new == 0){
+            this.props.homeAction.getMoreNewsSearch(page, this.state.txt);
+            this.setState({page : page})
+        }
+        
+    
     }
     refreshList(){
         this.props.homeAction.refreshNews();
-        this.setState({page : 1});
+        this.setState({page : 1, txt : ""});
     }
 
 
@@ -107,6 +121,7 @@ class HomeContainer extends Component {
                     <SearchBar
                         ref={(ref) => this.searchBar = ref}
                         onBack={() => this.onBack()}
+                        onX = {() => this.onX()}
                         handleChangeText={(input) => this.handleChangText(input)}
                     />
                     <View style={general.wrapperFullWidth}>
@@ -119,7 +134,7 @@ class HomeContainer extends Component {
                             <FlatList
                                 showsVerticalScrollIndicator={false}
                                 data={this.props.news}
-                                onEndReachedThreshold={10}
+                                onEndReachedThreshold={5}
                                 onEndReached={
                                     () => this.getMore()
                                 }

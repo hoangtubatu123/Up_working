@@ -930,7 +930,8 @@ export const style = {
         justifyContent: 'center'
     },
     wrapperTextInputInfoUser: {
-        width: wid * 0.7,
+       paddingLeft : 20,
+       paddingRight : 20,
         margin: 5,
     },
     textPrice2: {

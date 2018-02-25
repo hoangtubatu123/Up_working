@@ -12,7 +12,9 @@ export default function upRoomReducer(state =  initialState.upRoom, action){
         case types.GET_USER_PACKS_SUCCESS :
             return {
                 ...state,
-                ...{isLoadingUserPack: false, user_packs : action.user_packs}
+                ...{isLoadingUserPack: false, user_packs : action.user_packs.filter(function (item) {
+                    return item.status ==1
+                  })}
             };
         case types.GET_USER_PACKS_ERROR:
             return {

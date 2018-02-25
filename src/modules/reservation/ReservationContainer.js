@@ -105,7 +105,6 @@ class ReservationContainer extends Component {
                 bonusImage: item.images_url
             }
         });
-        console.log(item)
     }
 
     handleChangeText(input) {
@@ -136,6 +135,7 @@ class ReservationContainer extends Component {
                     </Right>
                 </View>
                 <SearchBar
+                     onX = {() => this.refreshList()}
                     ref={(ref) => this.searchBar = ref}
                     onBack={() => this.toggleSearch()}
                     handleChangeText={(input) => this.handleChangeText(input)}

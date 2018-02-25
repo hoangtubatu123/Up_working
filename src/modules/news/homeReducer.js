@@ -14,7 +14,9 @@ export default function homeAction(state = initialState.home, action) {
             return {
                 ...state,
                 ...{
-                    news : action.news,
+                    news : action.news.length !==0 ? action.news.filter(function(item) {
+                        return item.status ==1 ;
+                      }) : action.news,
                     isLoading: action.isLoading,
                 }
             };
@@ -54,7 +56,9 @@ export default function homeAction(state = initialState.home, action) {
         case types.GET_SEARCH_NEW_SUCCESS:
             return {
                 ...state,
-                ...{isLoadingSearch: action.isLoadingSearch, news : action.news}
+                ...{isLoadingSearch: action.isLoadingSearch, news : action.news.length !==0 ? action.news.filter(function(item) {
+                    return item.status ==1 ;
+                  }) : action.news}
             };
         case types.GET_SEARCH_NEW_ERROR:
             return {
@@ -69,7 +73,9 @@ export default function homeAction(state = initialState.home, action) {
         case types.GET_MORE_NEWS_SUCCESS:
             return {
                 ...state,
-                ...{isLoadingMore: false, news: [...state.news, ...action.news]}
+                ...{isLoadingMore: false, news: [...state.news, ...action.news.length !==0 ? action.news.filter(function(item) {
+                    return item.status ==1 ;
+                  }) : action.news]}
             };
         case types.GET_MORE_NEWS_ERROR:
             return {
@@ -82,29 +88,12 @@ export default function homeAction(state = initialState.home, action) {
                 ...{isRefreshing : true}
             };
         case types.GET_REFRESH_SUCCESS:
-            // let array1 = state.news;
-            // let array2 = action.news;
-            // let array3 = [];
-            // let bool = [];
-            // for (let i = 0; i< action.news.length; i++){
-            //     bool.push(false);
-            // }
-            //
-            // for (let i = 0; i<6; i++){
-            //     for (let j = 0;j<6; j++){
-            //         if(array2[i].id === array1[j].id){
-            //             bool[i] = true;
-            //             break;
-            //         }
-            //     }
-            // }
-            // for (let i =0; i<6; i++){
-            //     if(bool[i]===false){array3.push(array2[i])}
-            // }
-            // console.log(array3);
+          
             return {
                 ...state,
-                ...{isRefreshing: false, news : [ ...action.news] }
+                ...{isRefreshing: false, news : [ ...action.news.length !==0 ? action.news.filter(function(item) {
+                    return item.status ==1 ;
+                  }) : action.news,] }
             };
         case types.GET_REFRESH_ERROR:
             return {
@@ -120,7 +109,9 @@ export default function homeAction(state = initialState.home, action) {
             console.log(action.news);
             return {
                 ...state,
-                ...{isLoadingMoreSearch: false, news : [...state.news, ...action.news]}
+                ...{isLoadingMoreSearch: false, news : [...state.news, ...action.news.length !==0 ? action.news.filter(function(item) {
+                    return item.status ==1 ;
+                  }) : action.news,]}
             };
         case types.GET_MORE_NEWS_SEARCH_ERROR:
             return {
