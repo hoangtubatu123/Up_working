@@ -26,7 +26,7 @@ class ListHistoryRegister extends Component {
                         <Image
                             borderRadius={10}
                             resizeMode={'cover'}
-                            source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
+                            source={{uri: item.base.base.avatar_url}}
                             style={[general.imageFeatureHeightLow ,general.shadow, general.imageFeatureHeightLow,]}
                         />
                         <View
@@ -40,8 +40,9 @@ class ListHistoryRegister extends Component {
                     </View>
 
                     <View
-                        style={[general.paddingLR, {height : 30, marginTop: 10}]}>
-                        <Text style={general.textTitleCard}>BKUP</Text>
+                        style={[ {height : 30, marginTop: 10}]}>
+                        <Text style={general.textTitleCard}>{item.base.base.name} - {item.base.district.name} - {item.base.province.name}</Text>
+                        <Text/>
                     </View>
                 </TouchableOpacity>
 

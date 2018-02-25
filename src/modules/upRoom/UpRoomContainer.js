@@ -55,7 +55,7 @@ class UpRoomContainer extends Component {
                                 onEndReachedThreshold={5}
                                 renderItem={({item}) => {
                                     return (
-                                        <ListUserPack item = {item} isLoading = {this.props.isLoading}/>
+                                        <ListUserPack base_id = {this.props.navigation.state.params.base_id}  item = {item} isLoading = {this.props.isLoading}/>
                                     )
                                 }
                                 }

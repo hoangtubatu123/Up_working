@@ -97,6 +97,7 @@ class ReservationContainer extends Component {
         this.setModalUp(true);
         this.setState({
             feature: {
+                id : item.id,
                 name: item.name,
                 url: item.avatar_url,
                 title: item.name,
@@ -104,6 +105,7 @@ class ReservationContainer extends Component {
                 bonusImage: item.images_url
             }
         });
+        console.log(item)
     }
 
     handleChangeText(input) {

@@ -37,7 +37,7 @@ export default function upRoomReducer(state =  initialState.upRoom, action){
             return {
                 ...state,
                 ...{
-                    isLoadingUserPack : false, errorUserPack: false
+                    isLoadingRegister : false, errorUserPack: true
                 }
             };
 

@@ -68,11 +68,11 @@ class ListUserPack extends Component {
         this.setState({modal: false, modalRegister: true});
     }
 
-    registerUserPack(email, phone, subscription_id) {
+    registerUserPack(email, phone, subscription_id,base_id) {
         if (email == "" || phone == "") {
             alert("Bạn cần nhập đầy đủ thông tin trên");
         } else {
-            this.props.upRoomAction.registerUserPack(email, phone, subscription_id)
+            this.props.upRoomAction.registerUserPack(email, phone, subscription_id,base_id)
         }
     }
 
@@ -97,9 +97,7 @@ class ListUserPack extends Component {
                     <View style={general.marginTopFar}>
                         <Text numberOfLines={1}
                               style={general.textTitleCard}>Thông tin</Text>
-                        <Text numberOfLines={2} style={[general.textDescriptionCard, general.paddingLine]}>Với hơn 1000 chỗ
-                            ngồi trong không
-                            gian 1000m2, chắc chắn sẽ khiến bạn hài lòng và thăng hoa khi làm việc</Text>
+                        <Text numberOfLines={2} style={[general.textDescriptionCard, general.paddingLine]}>{this.props.item.detail}</Text>
                     </View>
                     <View style={{
                         width: size.wid * 0.9,
@@ -254,7 +252,7 @@ class ListUserPack extends Component {
                                 <TouchableOpacity
                                     style={[general.buttonOrderInModal, {bottom: 20, width: size.wid - 80,}, general.wrapperCenter]}
                                     onPress={() => {
-                                        this.registerUserPack(this.state.email, this.state.phone, this.props.item.subscriptions[this.state.id].id)
+                                        this.registerUserPack(this.state.email, this.state.phone, this.props.item.subscriptions[this.state.id].id, this.props.base_id)
                                     }}
                                 >
                                     {(this.props.isLoadingRegister) ? (

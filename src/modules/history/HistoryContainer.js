@@ -15,13 +15,13 @@ import * as color from '../../styles/color';
 import Icon from '../../commons/Icon';
 
 class HistoryContainer extends Component {
-    constructor() {
-        super();
+    constructor(context,props) {
+        super(context,props);
         this.state = {
             tab: 0,
             isLoading: false,
             item: {},
-            modalHistory: false
+            modalHistory: false,
         }
         this.openModalHistory = this.openModalHistory.bind(this);
     }
@@ -72,7 +72,7 @@ class HistoryContainer extends Component {
                             <Loading/>
                             :
 
-                            this.props.history_registers !== 0 ?
+                            this.props.history_registers.length !== 0 ?
                                 <View>
                                     <View style={general.paddingLR}>
                                         <View style={[general.wrapperFeatureHeightLow, general.shadow]}>
@@ -146,34 +146,52 @@ class HistoryContainer extends Component {
                                 >
                                     <View
                                         style={[general.marginTopBottom, general.shadow]}>
-                                        <Image
+                                        {
+                                            this.isEmpty(this.state.item) == false ?
+                                             <Image
                                             resizeMode={'cover'}
-                                            source={{uri: "http://up-co.vn/wp-content/uploads/8-1024x1024.jpeg"}}
+                                            source={{uri: item.base.base.avatar_url }}
                                             style={general.imageFullWidth}
                                         />
+                                        :
+                                        <View/>
+                                    }
+                                       
                                     </View>
                                     {
                                         this.isEmpty(this.state.item) == false ?
-                                            <View style={{marginTop: 30, marginLeft: 20}}>
+                                            <View style={{marginTop: 20, marginLeft: 20}}>
+                                            <Text style={[general.textTitleCard]}>Cơ sở </Text>
+                                                <Text
+                                                    style={general.textSmallDarkGray}>{item.base.base.name} - {item.base.district.name} - {item.base.province.name}</Text>
+                                         <Text style = {{height : 5}}/>
+                                         <Text style={general.textTitleCard}>Địa chỉ </Text>
+                                                <Text
+                                                    style={general.textSmallDarkGray}>{item.base.base.address}</Text>
+                                          <Text style = {{height : 5}}/>
                                                 <Text style={general.textTitleCard}>Ngày đặt chỗ</Text>
                                                 <Text
                                                     style={general.textSmallDarkGray}>{this.state.item.created_at.split(" ")[1]} Vào lúc {this.state.item.created_at.split(" ")[0]}</Text>
-                                         <Text/>
+                                          <Text style = {{height : 5}}/>
+                                          <Text style={general.textTitleCard}>Gói đặt chỗ</Text>
+                                                <Text
+                                                    style={general.textSmallDarkGray}>{this.state.item.subscription.user_pack_name}</Text>
+                                                 <Text style = {{height : 5}}/>
                                                 <Text style={general.textTitleCard}>Loại chỗ ngồi</Text>
                                                 <Text
                                                     style={general.textSmallDarkGray}>{this.state.item.subscription.subscription_kind_name}</Text>
-                                                <Text/>
+                                                 <Text style = {{height : 5}}/>
                                                 <Text style={general.textTitleCard}>Mô tả</Text>
                                                 <Text numberOfLines={6}
-                                                      style={general.textSmallDarkGray}>{this.state.item.subscription.description}</Text>
-                                                <Text/>
+                                                      style={general.textSmallDarkGray}>{this.state.item.subscription.description.trim()}</Text>
+                                                 <Text style = {{height : 5}}/>
                                                 <Text style={general.textTitleCard}>Chi phí</Text>
                                                 <Text
                                                     style={[general.textDescriptionCard, {color: '#8bd100'}]}>{this.state.item.subscription.price.toString().replace(/\./g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
                                                 } VND / 1
                                                     NGÀY</Text>
-                                                <Text/>
+                                                    <Text style = {{height : 5}}/>
                                             </View>
                                             :
                                             <View/>

@@ -132,7 +132,7 @@ class InfoUpContainer extends Component {
                     <TouchableOpacity
                         style={general.buttonBuyNowFullSize}
                         onPress={() => {
-                            this.props.navigation.navigate("UpRoom", {baseName: this.props.feature.name})
+                            this.props.navigation.navigate("UpRoom", {baseName: this.props.feature.name, base_id : this.props.feature.id })
                         }}
                     >
                         <Text style={[general.paddingRight, general.textBigLight]}>Đặt chỗ
