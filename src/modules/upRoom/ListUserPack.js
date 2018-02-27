@@ -21,7 +21,8 @@ class ListUserPack extends Component {
             modalRegister: false,
             modalSuccess: false,
             phone: "",
-            email: this.props.email
+            email: this.props.emailRegister !== "" ? this.props.emailRegister : this.props.email,
+            name : this.props.nameRegister ? this.props.nameRegister : this.props.name
         }
     }
 
@@ -45,6 +46,7 @@ class ListUserPack extends Component {
                 modalRegister: false,
             });
             this.props.upRoomAction.closeModalSuccess();
+            this.props.upRoomAction.closeModalRegister();
         }
     }
 
@@ -97,7 +99,7 @@ class ListUserPack extends Component {
                     <View style={general.marginTopFar}>
                         <Text numberOfLines={1}
                               style={general.textTitleCard}>Thông tin</Text>
-                        <Text numberOfLines={2} style={[general.textDescriptionCard, general.paddingLine]}>{this.props.item.detail}</Text>
+                        <Text numberOfLines={2} style={[general.textDescriptionCard, general.paddingLine]}>{this.props.item.detail.trim()}</Text>
                     </View>
                     <View style={{
                         width: size.wid * 0.9,
@@ -143,7 +145,7 @@ class ListUserPack extends Component {
                                 <View style={general.paddingLR}>
                                     <Text/>
                                     <Text
-                                        style={[general.textDescriptionCard, general.textAlign]}>Chào {this.props.name ? this.props.name : "Admin"}</Text>
+                                        style={[general.textDescriptionCard, general.textAlign]}>Chào {this.state.name}</Text>
                                     <Text/>
                                     <Text style={[general.textSmallDarkGray, general.textAlign]}>Bạn đang tiến hành đặt
                                         chỗ tại Up.</Text>
@@ -341,6 +343,8 @@ class ListUserPack extends Component {
 
 function mapStateToProps(state) {
     return {
+        nameRegister : state.register.name,
+        emailRegister:state.register.email,
         isLoadingRegister: state.upRoom.isLoadingRegister,
         email: state.login.user.email,
         name: state.login.user.name,

@@ -36,7 +36,12 @@ export const style = {
         bottom: 50,
         right: 50
     },
-
+    wrapperBackButtonAbsolute: {
+        position: 'absolute',
+        top: Platform.OS === 'ios' ? 20 : 0,
+        left:5,
+        backgroundColor: "transparent"
+    },
     wrapperBottomLogin : {
         height: 0.1 * hei,
         justifyContent:'center',

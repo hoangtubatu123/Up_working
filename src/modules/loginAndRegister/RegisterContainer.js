@@ -9,6 +9,7 @@ import general from '../../styles/generalStyle';
 import * as color from '../../styles/color';
 import * as loginAction from '../loginAndRegister/loginActions';
 import Icon from '../../commons/Icon';
+import BackButton from "../../commons/BackButton"
 import {NavigationActions} from 'react-navigation'
 
 class RegisterContainer extends Component {
@@ -55,39 +56,27 @@ class RegisterContainer extends Component {
     }
     render(){
         const {navigate} = this.props.navigation;
+        const {goBack} = this.props.navigation;
         return (
+            <View style={{flex: 1}}>
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'position' : undefined}
-                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 200}
+                behavior={Platform.OS === 'android' ? 'position' : "position"}
+                keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 0}
                 style={general.wrapperContainer}
             >
-                <StatusBar
-                    backgroundColor={color.background}
-                />
-          <View style={{marginTop:20}}>
-              <TouchableOpacity
-                  style={[general.padding, general.wrapperBackButton]}
-                  onPress={() => this.props.navigation.goBack()}
-              >
-                  <Icon name="entypo|chevron-thin-left"
-                        size={size.iconBig}
-                        color={color.iconColor}
-                  />
-              </TouchableOpacity>
-          </View>
-                <View style={[general.wrapperLogin, {padding : 20}]}>
+
+                <View style={[general.wrapperLogin, {padding: 20, backgroundColor : "transparent"}]}>
                     <Image
                         resizeMode={'contain'}
                         source={require('../../../assets/image/384x176logo.png')}
-                        style={[general.imageLogin, {margin : 20}]}
+                        style={[general.imageLogin, general.marginLR]}
                     />
-                    <View>
+                   <View style = {{marginTop : 20}}>
                         <Item style={general.itemInput}>
                             <Input
                                 style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
                                 placeholder="Email"
-                                keyboardType={'email-address'}
                                 returnKeyType={'next'}
                                 autoCorrect={false}
                                 onChangeText={(email) => {
@@ -98,7 +87,7 @@ class RegisterContainer extends Component {
                         </Item>
                     </View>
                     <View style={{marginTop: 20}}>
-                        <Item style={[general.itemInput, ]}>
+                        <Item style={[general.itemInput]}>
                             <Input
                                 style={[general.inputTheme02, general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
@@ -114,7 +103,7 @@ class RegisterContainer extends Component {
                         </Item>
                     </View>
                     <View style={{marginTop: 20}}>
-                        <Item style={[general.itemInput, ]}>
+                        <Item style={[general.itemInput]}>
                             <Input
                                 style={[general.inputTheme02 ,general.textDescriptionCard]}
                                 underlineColorAndroid={color.none}
@@ -174,13 +163,15 @@ class RegisterContainer extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={{justifyContent:'center', alignItems : 'center', bottom:-size.hei/6+20}}>
-                        <Text style ={[general.textLogin, ]}>FORGOT PASSWORD</Text>
-                    </View>
+                    {/*<View style={{justifyContent: 'center', alignItems: 'center', bottom: -size.hei / 6 + 20}}>*/}
+                    {/*<Text style={[general.textLogin,]}>FORGOT PASSWORD</Text>*/}
+                    {/*</View>*/}
                 </View>
-
-
             </KeyboardAvoidingView>
+            <View style={general.wrapperBackButtonAbsolute}>
+                <BackButton goBack={goBack}/>
+            </View>
+        </View>
         )
     }
 

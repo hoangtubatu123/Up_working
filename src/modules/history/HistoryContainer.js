@@ -191,7 +191,7 @@ class HistoryContainer extends Component {
 
                                                 } VND / 1
                                                     NGÀY</Text>
-                                                    <Text style = {{height : 5}}/>
+                                                    <Text style = {{height : 30}}/>
                                             </View>
                                             :
                                             <View/>

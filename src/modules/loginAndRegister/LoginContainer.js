@@ -71,7 +71,8 @@ class LoginContainer extends Component {
         const {navigate} = this.props.navigation;
         return (
             <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'position' : undefined}
+            behavior={Platform.OS === 'android' ? 'position' : 'position'}
+            keyboardVerticalOffset={Platform.OS === 'ios' ? undefined : 0}
                 style={general.wrapperContainer}
             >
 

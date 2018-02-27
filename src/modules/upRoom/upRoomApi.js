@@ -6,7 +6,7 @@ export function getUserPack(){
     return axios.get(url);
 }
 export function registerUserPack(email, phone, subscription_id,base_id){
-    let url = env.API_UP + '/coworking-space/register';
+    let url = env.API_UP + '/coworking-space/register/18';
     return axios.post(url, {
         email : email,
         phone : phone,

@@ -15,6 +15,8 @@ export function registerSuccess (response){
         isLoading : false,
         error : false,
         status : response.status,
+        email   : response.data.user.email,
+        name    : response.data.user.name
     }
 }
 export function registerError (error){

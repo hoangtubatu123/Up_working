@@ -17,7 +17,9 @@ export default function registerReducer (state = initialState.register, action) 
                 ...{
                     isLoading : action.isLoading,
                     error : action.error,
-                    status : action.status
+                    status : action.status,
+                    email : action.email,
+                    name : action.name
                 }
             };
         case registerTypes.REGISTER_ERROR :

@@ -48,6 +48,14 @@ export default function upRoomReducer(state =  initialState.upRoom, action){
                 ...state,
                 ...{status : action.status}
             }
+            case "CLOSE_MODAL_SUCCESS":
+            return{
+                ...state,
+                ...{ isLoadingRegister : false,
+                    message : "",
+                    errorRegister : false,
+                    }
+            }
         default:
             return state;
     }

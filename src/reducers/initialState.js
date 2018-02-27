@@ -17,7 +17,8 @@ export default {
         user: {},
     },
     register: {
-        register: {},
+        name : "",
+        email:"",
         isLoading: false,
         error: false,
         status: 0,

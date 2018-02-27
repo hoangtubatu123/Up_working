@@ -51,3 +51,8 @@ export function  closeModalSuccess(){
         status: 2,
     }
 }
+export function closeModalRegister(){
+    return {
+        type : "CLOSE_MODAL_REGISTER",
+    }
+}

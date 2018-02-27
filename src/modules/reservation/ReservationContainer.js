@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, PanResponder, Text, TouchableOpacity, View} from 'react-native';
+import {Image, PanResponder, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {Container, Content, Item, Left, Right, Spinner} from 'native-base';
 import HamburgerButton from '../../commons/HamburgerButton';
 import Loading from '../../commons/Loading';
@@ -148,72 +148,6 @@ class ReservationContainer extends Component {
                     <Text style={general.textTitleBoldNormal}>{this.state.province}</Text>
                     <IconDark  action = {() => this.refs.modal2.open() } name={"entypo|chevron-down"}/>
                 </TouchableOpacity>
-
-                <Content
-                    showsVerticalScrollIndicator={false}
-
-                    style={{flex: 1}}>
-                    {
-                        this.props.isLoadingUp || this.state.isLoading || (this.props.isLoading && this.props.bases.length === 0)
-                            ?
-                            <Loading/>
-                            :
-                            <View>
-                                {
-                                    this.props.bases.length != 0 ?
-
-                                        this.props.bases.map((item, i) =>
-                                            <TouchableOpacity
-                                                onPress={() => {
-                                                    this.openModalInfoUp(item)
-                                                }}
-                                                key={i}
-                                                activeOpacity={0.8}
-                                                style={[general.marginTopBottom, {marginTop: 20}]}>
-                                                <View style={general.paddingLR}>
-                                                    <View style={[general.shadow, general.imageFeature]}>
-                                                        <Image
-                                                            resizeMode={'cover'}
-                                                            source={{uri: item.avatar_url}}
-                                                            style={general.imageFeature}
-                                                        />
-                                                    </View>
-                                                    <View
-                                                        style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
-                                                        <IconLight name={"entypo|user"}/>
-                                                        <Text style={general.textDescriptionCardLight}>12</Text>
-                                                        <Text>&nbsp;</Text>
-                                                        <IconLight name={"entypo|aircraft"}/>
-                                                        <Text style={general.textDescriptionCardLight}>12</Text>
-                                                        <Text>&nbsp;</Text>
-                                                        <IconLight name={"entypo|archive"}/>
-                                                        <Text style={general.textDescriptionCardLight}>12</Text>
-                                                    </View>
-                                                </View>
-
-                                                <View
-                                                    style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
-                                                    <Text
-                                                        style={[general.textTitleCard, general.paddingLine]}>{item.name}</Text>
-                                                    <Text style={general.textDescriptionCard}>{item.description}</Text>
-                                                </View>
-                                            </TouchableOpacity>
-                                        )
-                                        :
-                                        <View style={[general.wrapperCenter, general.paddingLR]}>
-                                            <Text
-                                                style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
-                                                Không tìm thấy kết quả nào.
-                                            </Text>
-                                        </View>
-                                }
-
-                            </View>
-
-                    }
-                </Content>
-                <SearchButton
-                    function={() => this.toggleSearch()}/>
                 <Modal
                     isOpen={this.state.modalProvince}
                     ref={"modal2"}
@@ -255,7 +189,7 @@ class ReservationContainer extends Component {
                 </Modal>
                 <Modal swipeToClose={true}
                        isOpen={this.state.modalUp}
-                       style={[general.wrapperModal, {position: 'absolute'}]}
+                       style={[general.wrapperModal]}
                        ref={"modal1"}
                 >
                     <View style={[general.wrapperModalStaff, {height: size.hei, width: size.wid}]}>
@@ -263,6 +197,75 @@ class ReservationContainer extends Component {
                                          feature={this.state.feature}/>
                     </View>
                 </Modal>
+                <View style = {{flex : 1}}>
+                    {
+                        this.props.isLoadingUp || this.state.isLoading || (this.props.isLoading && this.props.bases.length === 0)
+                            ?
+                            <Loading/>
+                            :
+                            <View>
+                                {
+                                    this.props.bases.length != 0 ?
+                                    <View>
+                                     <FlatList
+                                      data = {this.props.bases}
+                                      renderItem={({item}) =>
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    this.openModalInfoUp(item)
+                                                }}
+                                            
+                                                activeOpacity={0.8}
+                                                style={[general.marginTopBottom, {marginTop: 20}]}>
+                                                <View style={general.paddingLR}>
+                                                    <View style={[general.shadow, general.imageFeature]}>
+                                                        <Image
+                                                            resizeMode={'cover'}
+                                                            source={{uri: item.avatar_url}}
+                                                            style={general.imageFeature}
+                                                        />
+                                                    </View>
+                                                    <View
+                                                        style={[general.wrapperTabInImage, general.shadow, general.wrapperCenterRow]}>
+                                                        <IconLight name={"entypo|user"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                        <Text>&nbsp;</Text>
+                                                        <IconLight name={"entypo|aircraft"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                        <Text>&nbsp;</Text>
+                                                        <IconLight name={"entypo|archive"}/>
+                                                        <Text style={general.textDescriptionCardLight}>12</Text>
+                                                    </View>
+                                                </View>
+
+                                                <View
+                                                    style={[general.marginTop, general.paddingLR, general.wrapperTextDownImage]}>
+                                                    <Text
+                                                        style={[general.textTitleCard, general.paddingLine]}>{item.name}</Text>
+                                                    <Text style={general.textDescriptionCard}>{item.description}</Text>
+                                                </View>
+                                            </TouchableOpacity>
+                                      }/>
+                                     <SearchButton
+                                         function = {() => this.toggleSearch()}
+                                      />
+                    </View>
+                                        :
+                                        <View style={[general.wrapperCenter, general.paddingLR]}>
+                                            <Text
+                                                style={[general.textTitleCard, general.marginTop, {textAlign: 'center'}]}>
+                                                Không tìm thấy kết quả nào.
+                                            </Text>
+                                        </View>
+                                }
+
+                            </View>
+
+                    }                                    
+                     
+               
+               
+               </View>
             </Container>
         );
     }
